@@ -85,7 +85,7 @@ export default async function Home({
             </p>
             <Link
               href={`/${locale}/artists`}
-              className="link-underline mt-6 inline-block font-display text-coral"
+              className="link-underline mt-6 inline-block font-heading text-coral"
             >
               {ui.nav.artists[locale]} →
             </Link>
@@ -113,7 +113,7 @@ export default async function Home({
                 </div>
                 <div className="min-w-0">
                   <span className="pixel text-[11px] text-coral-deep">{a.roman}</span>
-                  <h3 className="font-display text-3xl text-navy group-hover:text-coral">
+                  <h3 className="font-heading text-3xl text-navy group-hover:text-coral">
                     {a.name[locale]}
                   </h3>
                   <p className="font-hand text-xl text-teal">{a.tagline[locale]}</p>
@@ -168,7 +168,7 @@ export default async function Home({
                     <span className="pixel text-coral-deep">
                       {String(tk.number).padStart(2, "0")}
                     </span>
-                    <span className="font-display text-lg text-navy group-hover:text-coral">
+                    <span className="font-heading text-lg text-navy group-hover:text-coral">
                       {tk.title[locale]}
                     </span>
                   </Link>
@@ -177,7 +177,7 @@ export default async function Home({
             </ul>
             <Link
               href={`/${locale}/album`}
-              className="link-underline mt-6 inline-block font-display text-coral"
+              className="link-underline mt-6 inline-block font-heading text-coral"
             >
               {locale === "ja" ? "アルバムを見る" : "앨범 보러가기"} →
             </Link>
@@ -232,7 +232,7 @@ export default async function Home({
             </div>
             <Link
               href={`/${locale}/gallery`}
-              className="link-underline hidden font-display text-coral sm:block"
+              className="link-underline hidden font-heading text-coral sm:block"
             >
               {locale === "ja" ? "もっと見る" : "더 보기"} →
             </Link>
@@ -245,7 +245,7 @@ export default async function Home({
         </Reveal>
         <Link
           href={`/${locale}/gallery`}
-          className="link-underline mt-6 inline-block font-display text-coral sm:hidden"
+          className="link-underline mt-6 inline-block font-heading text-coral sm:hidden"
         >
           {locale === "ja" ? "もっと見る" : "더 보기"} →
         </Link>

@@ -55,7 +55,7 @@ export default async function AboutPage({
               className={`grid grid-cols-3 gap-4 px-5 py-3.5 ${i % 2 === 0 ? "bg-cream" : "bg-cream-deep/50"}`}
             >
               <dt className="col-span-1 text-sm text-navy/60">{c.role[locale]}</dt>
-              <dd className="col-span-2 font-display text-navy">{c.name[locale]}</dd>
+              <dd className="col-span-2 font-heading text-navy">{c.name[locale]}</dd>
             </div>
           ))}
         </dl>

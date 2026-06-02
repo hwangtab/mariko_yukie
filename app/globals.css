@@ -40,6 +40,7 @@
   /* 폰트 */
   --font-display: "Bagel Fat One", "Black Han Sans", sans-serif;
   --font-display-jp: "Mochiy Pop One", "Bagel Fat One", sans-serif;
+  --font-heading: "Jua", "Gowun Dodum", sans-serif;
   --font-body: "Gowun Dodum", "Noto Sans KR", sans-serif;
   --font-body-jp: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   --font-hand: "Gaegu", cursive;
@@ -87,6 +88,11 @@ p {
 /* 일본어에서는 디스플레이도 라운드 JP 폰트로 */
 .lang-ja .font-display {
   font-family: var(--font-display-jp);
+}
+/* 중간 헤딩: 일본어는 라운드 고딕 볼드로 */
+.lang-ja .font-heading {
+  font-family: var(--font-body-jp);
+  font-weight: 700;
 }
 
 /* ── 텍스트 외곽선 (커버 레터링 톤) ── */

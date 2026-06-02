@@ -124,7 +124,7 @@ export default async function TrackPage({
               <span className="pixel text-xs text-navy/50">
                 ← {String(prev.number).padStart(2, "0")}
               </span>
-              <p className="font-display text-navy group-hover:text-coral">{prev.title[locale]}</p>
+              <p className="font-heading text-navy group-hover:text-coral">{prev.title[locale]}</p>
             </Link>
           ) : (
             <span />
@@ -137,7 +137,7 @@ export default async function TrackPage({
               <span className="pixel text-xs text-navy/50">
                 {String(next.number).padStart(2, "0")} →
               </span>
-              <p className="font-display text-navy group-hover:text-coral">{next.title[locale]}</p>
+              <p className="font-heading text-navy group-hover:text-coral">{next.title[locale]}</p>
             </Link>
           ) : (
             <span />

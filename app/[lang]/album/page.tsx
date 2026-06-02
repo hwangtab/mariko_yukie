@@ -101,7 +101,7 @@ export default async function AlbumPage({
                   <span className="font-display text-3xl text-coral outline-navy-thin">
                     {String(i + 1).padStart(2, "0")}
                   </span>
-                  <p className="font-display text-lg leading-snug text-navy">{p[locale]}</p>
+                  <p className="font-heading text-lg leading-snug text-navy">{p[locale]}</p>
                 </li>
               </Reveal>
             ))}
@@ -132,7 +132,7 @@ export default async function AlbumPage({
           {album.spec.map((row, i) => (
             <div key={i} className="flex justify-between gap-4 px-5 py-3.5">
               <dt className="text-sm text-navy/60">{row.label[locale]}</dt>
-              <dd className="text-right font-display text-navy">{row.value[locale]}</dd>
+              <dd className="text-right font-heading text-navy">{row.value[locale]}</dd>
             </div>
           ))}
         </dl>

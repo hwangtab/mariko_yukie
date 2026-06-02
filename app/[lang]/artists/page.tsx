@@ -64,12 +64,12 @@ export default async function ArtistsPage({
                   </span>
                 </div>
                 <div className="flex flex-1 flex-col p-6">
-                  <h2 className="font-display text-4xl text-navy group-hover:text-coral">
+                  <h2 className="font-heading text-4xl text-navy group-hover:text-coral">
                     {a.name[locale]}
                   </h2>
                   <p className="font-hand text-2xl text-teal">{a.tagline[locale]}</p>
                   <p className="mt-4 leading-relaxed text-navy/75">{a.lead[locale]}</p>
-                  <span className="mt-auto pt-5 inline-block font-display text-coral transition group-hover:translate-x-1">
+                  <span className="mt-auto pt-5 inline-block font-heading text-coral transition group-hover:translate-x-1">
                     {ui.common.readMore[locale]} →
                   </span>
                 </div>

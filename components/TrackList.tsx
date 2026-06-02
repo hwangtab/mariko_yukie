@@ -18,7 +18,7 @@ export default function TrackList({ locale }: { locale: Locale }) {
               {String(tk.number).padStart(2, "0")}
             </span>
             <div className="min-w-0 flex-1">
-              <span className="font-display text-lg text-navy group-hover:text-coral">
+              <span className="font-heading text-lg text-navy group-hover:text-coral">
                 {tk.title[locale]}
               </span>
               <span className="ml-3 hidden text-sm text-navy/50 sm:inline">

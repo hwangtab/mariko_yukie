@@ -56,7 +56,7 @@ export default async function LivePage({
                     {statusLabel[ev.status][locale]}
                   </span>
                 </div>
-                <h2 className="mt-3 font-display text-2xl text-navy">{ev.title[locale]}</h2>
+                <h2 className="mt-3 font-heading text-2xl text-navy">{ev.title[locale]}</h2>
                 <p className="mt-2 text-sm text-navy/70">📍 {ev.venue[locale]}</p>
                 <p className="mt-3 leading-relaxed text-navy/80">{ev.note[locale]}</p>
               </article>

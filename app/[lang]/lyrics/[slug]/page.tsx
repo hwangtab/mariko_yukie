@@ -98,7 +98,7 @@ export default async function LyricsPage({
 
       <Link
         href={`/${locale}/album/${tk.slug}`}
-        className="mt-8 inline-block font-display text-coral hover:underline"
+        className="mt-8 inline-block font-heading text-coral hover:underline"
       >
         {ui.common.backToAlbum[locale]}
       </Link>

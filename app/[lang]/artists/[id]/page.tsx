@@ -138,7 +138,7 @@ export default async function ArtistPage({
                 <li key={i} className="flex gap-4">
                   <span className="pixel w-20 shrink-0 text-sm text-coral-deep">{d.year}</span>
                   <div>
-                    <p className="font-display text-lg text-navy">{d.title[locale]}</p>
+                    <p className="font-heading text-lg text-navy">{d.title[locale]}</p>
                     {d.note && <p className="text-sm text-navy/60">{d.note[locale]}</p>}
                   </div>
                 </li>

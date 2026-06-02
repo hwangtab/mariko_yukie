@@ -53,7 +53,7 @@ export default async function LyricsIndex({
               <span className="pixel w-8 text-sm text-coral-deep">
                 {String(tk.number).padStart(2, "0")}
               </span>
-              <span className="flex-1 font-display text-lg text-navy group-hover:text-coral">
+              <span className="flex-1 font-heading text-lg text-navy group-hover:text-coral">
                 {tk.title[locale]}
               </span>
               {lyrics[tk.slug] ? (

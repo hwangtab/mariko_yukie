@@ -55,7 +55,7 @@ export default async function LangLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Mochiy+Pop+One&family=Black+Han+Sans&family=Gowun+Dodum&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Gaegu:wght@400;700&family=DotGothic16&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Mochiy+Pop+One&family=Black+Han+Sans&family=Jua&family=Gowun+Dodum&family=Zen+Maru+Gothic:wght@400;500;700;900&family=Gaegu:wght@400;700&family=DotGothic16&display=swap"
           rel="stylesheet"
         />
         {/* JS 미동작 시에도 스크롤 등장 콘텐츠가 보이도록 폴백 */}
