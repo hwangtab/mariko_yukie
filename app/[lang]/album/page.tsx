@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { album, images } from "@/lib/content";
 import { SectionLabel, Stamp, Star, WaveDivider } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -74,7 +74,7 @@ export default async function AlbumPage({
 
       {/* 앨범이 말하는 것 */}
       <section className="mx-auto max-w-3xl px-5 py-16 md:px-8">
-        <SectionLabel>{locale === "ja" ? "このアルバムが語ること" : "앨범이 말하는 것"}</SectionLabel>
+        <SectionLabel>{tri(locale, "앨범이 말하는 것", "このアルバムが語ること", "What the album says")}</SectionLabel>
         <div className="mt-6 space-y-5">
           {album.says[locale].map((p, i) => (
             <Reveal key={i} delay={i * 80}>
@@ -88,7 +88,7 @@ export default async function AlbumPage({
       <section className="border-y-2 border-navy bg-cream-deep/40">
         <div className="mx-auto max-w-5xl px-5 py-16 md:px-8">
           <SectionLabel tone="coral">
-            {locale === "ja" ? "このアルバムの独自性" : "이 음반의 독창성"}
+            {tri(locale, "이 음반의 독창성", "このアルバムの独自性", "What makes it singular")}
           </SectionLabel>
           <ol className="mt-8 grid gap-4 md:grid-cols-2">
             {album.positioning.map((p, i) => (
@@ -115,10 +115,10 @@ export default async function AlbumPage({
           <SectionLabel tone="coral">{ui.common.tracklist[locale]}</SectionLabel>
         </div>
         <h2 className="mt-4 font-display text-3xl text-navy">
-          {locale === "ja" ? "全15トラック" : "총 15트랙"}
+          {tri(locale, "총 15트랙", "全15トラック", "15 tracks")}
         </h2>
         <p className="mt-1 text-sm text-navy/60">
-          {locale === "ja" ? "韓国語10 + 日本語5" : "한국어 10 + 일본어 5"}
+          {tri(locale, "한국어 10 + 일본어 5", "韓国語10 + 日本語5", "10 Korean + 5 Japanese")}
         </p>
         <div className="mt-7">
           <TrackList locale={locale} />

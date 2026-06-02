@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ui, type Locale } from "@/lib/i18n";
+import { tri, ui, type Locale } from "@/lib/i18n";
 import { links } from "@/lib/content";
 import { Star } from "./ui";
 
@@ -20,9 +20,12 @@ export default function CTABlock({ locale }: { locale: Locale }) {
           2026 · Namsan Tower
         </p>
         <h2 className="mx-auto mt-5 max-w-2xl text-balance font-display text-3xl leading-tight outline-navy-thin md:text-5xl">
-          {locale === "ja"
-            ? "このアルバムを世に出す力は、あなたの応援です。"
-            : "이 음반을 세상에 내보내는 힘은 당신의 후원입니다."}
+          {tri(
+            locale,
+            "이 음반을 세상에 내보내는 힘은 당신의 후원입니다.",
+            "このアルバムを世に出す力は、あなたの応援です。",
+            "The power to bring this album into the world is your support.",
+          )}
         </h2>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">

@@ -3,9 +3,11 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { ui, type Locale } from "@/lib/i18n";
+import { ui, locales, type Locale } from "@/lib/i18n";
+import { album } from "@/lib/content";
 
 const navKeys = ["artists", "album", "video", "gallery", "live", "about"] as const;
+const langCodes: Record<Locale, string> = { ko: "KO", ja: "JA", en: "EN" };
 
 export default function Header({ locale }: { locale: Locale }) {
   const pathname = usePathname();
@@ -21,9 +23,7 @@ export default function Header({ locale }: { locale: Locale }) {
 
   useEffect(() => setOpen(false), [pathname]);
 
-  const other: Locale = locale === "ko" ? "ja" : "ko";
-  const rest = pathname.replace(/^\/(ko|ja)/, "");
-  const otherHref = `/${other}${rest || ""}`;
+  const rest = pathname.replace(/^\/(ko|ja|en)/, "");
   const home = `/${locale}`;
   const isActive = (key: string) => pathname.startsWith(`/${locale}/${key}`);
 
@@ -45,7 +45,7 @@ export default function Header({ locale }: { locale: Locale }) {
           <span
             className={`hidden font-display text-sm leading-none sm:inline ${dark ? "text-cream" : "text-navy"}`}
           >
-            마리코 &amp; 유키에
+            {album.artist[locale]}
           </span>
         </Link>
 
@@ -70,21 +70,37 @@ export default function Header({ locale }: { locale: Locale }) {
         </nav>
 
         <div className="flex items-center gap-2.5">
-          <Link
-            href={otherHref}
-            prefetch={false}
-            onClick={() => {
-              document.cookie = `locale=${other};path=/;max-age=31536000`;
-            }}
-            className={`rounded-full border-2 px-3 py-1 text-xs font-bold transition ${
-              dark
-                ? "border-cream/70 text-cream hover:bg-cream hover:text-navy"
-                : "border-navy text-navy hover:bg-navy hover:text-cream"
+          <div
+            className={`flex items-center gap-0.5 rounded-full border-2 p-0.5 ${
+              dark ? "border-cream/70" : "border-navy"
             }`}
-            aria-label="Switch language"
+            role="group"
+            aria-label="Language"
           >
-            {locale === "ko" ? "日本語" : "한국어"}
-          </Link>
+            {locales.map((loc) => {
+              const active = loc === locale;
+              return (
+                <Link
+                  key={loc}
+                  href={`/${loc}${rest || ""}`}
+                  prefetch={false}
+                  onClick={() => {
+                    document.cookie = `locale=${loc};path=/;max-age=31536000`;
+                  }}
+                  aria-current={active ? "true" : undefined}
+                  className={`rounded-full px-2 py-0.5 text-xs font-bold transition ${
+                    active
+                      ? "bg-coral text-cream"
+                      : dark
+                        ? "text-cream/80 hover:text-cream"
+                        : "text-navy/70 hover:text-navy"
+                  }`}
+                >
+                  {langCodes[loc]}
+                </Link>
+              );
+            })}
+          </div>
           <button
             onClick={() => setOpen((v) => !v)}
             className={`flex h-9 w-9 items-center justify-center rounded-full border-2 md:hidden ${

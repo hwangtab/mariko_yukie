@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import {
   album,
   artists,
@@ -37,11 +37,11 @@ export default async function Home({
   const locale = lang as Locale;
   const featured = tracks.filter((t) => [5, 3, 7, 10].includes(t.number));
   const heroSlides = [
-    { src: "/images/namsan_69.webp", caption: locale === "ja" ? "南山の夜景の下、二人" : "남산 야경 아래, 두 사람" },
-    { src: "/images/namsan_12.webp", caption: locale === "ja" ? "ステージの上" : "무대 위" },
-    { src: "/images/namsan_19.webp", caption: locale === "ja" ? "盛り上がるステージ" : "흥겨운 무대" },
-    { src: "/images/namsan_08.webp", caption: locale === "ja" ? "グループサウンド" : "그룹 사운드" },
-    { src: "/images/namsan_71.webp", caption: locale === "ja" ? "南山タワー、緑の夜" : "남산타워, 초록빛 밤" },
+    { src: "/images/namsan_69.webp", caption: tri(locale, "남산 야경 아래, 두 사람", "南山の夜景の下、二人", "Under Namsan's night view") },
+    { src: "/images/namsan_12.webp", caption: tri(locale, "무대 위", "ステージの上", "On stage") },
+    { src: "/images/namsan_19.webp", caption: tri(locale, "흥겨운 무대", "盛り上がるステージ", "A lively stage") },
+    { src: "/images/namsan_08.webp", caption: tri(locale, "그룹 사운드", "グループサウンド", "Group sound") },
+    { src: "/images/namsan_71.webp", caption: tri(locale, "남산타워, 초록빛 밤", "南山タワー、緑の夜", "Namsan Tower, a green night") },
   ];
 
   return (
@@ -66,7 +66,7 @@ export default async function Home({
             <div className="relative">
               <RetroImage
                 src={images.walk}
-                alt={locale === "ja" ? "ソウルを歩く二人" : "서울을 걷는 두 사람"}
+                alt={tri(locale, "서울을 걷는 두 사람", "ソウルを歩く二人", "The two walking in Seoul")}
                 width={1280}
                 height={720}
                 frame="coral"
@@ -155,7 +155,7 @@ export default async function Home({
           <Reveal delay={120}>
             <SectionLabel tone="coral">{ui.common.tracklist[locale]}</SectionLabel>
             <h2 className="mt-4 font-display text-4xl leading-tight text-navy md:text-5xl">
-              {locale === "ja" ? "全15トラック" : "총 15트랙"}
+              {tri(locale, "총 15트랙", "全15トラック", "15 tracks")}
             </h2>
             <p className="mt-3 leading-relaxed text-navy/75">{album.concept[locale]}</p>
             <ul className="mt-5 space-y-2">
@@ -179,7 +179,7 @@ export default async function Home({
               href={`/${locale}/album`}
               className="link-underline mt-6 inline-block font-heading text-coral"
             >
-              {locale === "ja" ? "アルバムを見る" : "앨범 보러가기"} →
+              {tri(locale, "앨범 보러가기", "アルバムを見る", "See the album")} →
             </Link>
           </Reveal>
         </div>
@@ -191,9 +191,9 @@ export default async function Home({
         <StarScatter />
         <Reveal>
           <div className="relative text-center">
-            <SectionLabel>{locale === "ja" ? "音楽のルーツ" : "음악의 뿌리"}</SectionLabel>
+            <SectionLabel>{tri(locale, "음악의 뿌리", "音楽のルーツ", "Roots of the music")}</SectionLabel>
             <h2 className="mt-4 font-display text-4xl text-navy md:text-5xl">
-              {locale === "ja" ? "この音はどこから来たのか" : "이 소리는 어디서 왔나"}
+              {tri(locale, "이 소리는 어디서 왔나", "この音はどこから来たのか", "Where did this sound come from?")}
             </h2>
           </div>
         </Reveal>
@@ -227,14 +227,14 @@ export default async function Home({
             <div>
               <SectionLabel tone="coral">Gallery</SectionLabel>
               <h2 className="mt-3 font-display text-4xl text-navy">
-                {locale === "ja" ? "撮影の一日" : "촬영의 하루"}
+                {tri(locale, "촬영의 하루", "撮影の一日", "A day on set")}
               </h2>
             </div>
             <Link
               href={`/${locale}/gallery`}
               className="link-underline hidden font-heading text-coral sm:block"
             >
-              {locale === "ja" ? "もっと見る" : "더 보기"} →
+              {tri(locale, "더 보기", "もっと見る", "See more")} →
             </Link>
           </div>
         </Reveal>
@@ -247,7 +247,7 @@ export default async function Home({
           href={`/${locale}/gallery`}
           className="link-underline mt-6 inline-block font-heading text-coral sm:hidden"
         >
-          {locale === "ja" ? "もっと見る" : "더 보기"} →
+          {tri(locale, "더 보기", "もっと見る", "See more")} →
         </Link>
        </div>
       </section>
@@ -266,12 +266,15 @@ export default async function Home({
         <div className="absolute inset-0 bg-night/70" />
         <div className="relative mx-auto max-w-5xl px-5 py-20 md:px-8">
           <SectionLabel tone="cream">
-            {locale === "ja" ? "南山タワーのこと" : "남산타워 이야기"}
+            {tri(locale, "남산타워 이야기", "南山タワーのこと", "About Namsan Tower")}
           </SectionLabel>
           <h2 className="mt-4 max-w-2xl text-balance font-display text-3xl leading-snug text-cream md:text-4xl">
-            {locale === "ja"
-              ? "彼らにとって名所ではなく、近所のランドマーク。"
-              : "그들에게 명소가 아니라, 동네 랜드마크."}
+            {tri(
+              locale,
+              "그들에게 명소가 아니라, 동네 랜드마크.",
+              "彼らにとって名所ではなく、近所のランドマーク。",
+              "Not a sight to visit — the landmark in their neighborhood.",
+            )}
           </h2>
           <ul className="mt-8 grid gap-3 sm:grid-cols-2">
             {towerFacts.map((t, i) => (

@@ -1,7 +1,7 @@
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { credits, links, album, images } from "@/lib/content";
 import { SectionLabel } from "@/components/ui";
 import CTABlock from "@/components/CTABlock";
@@ -28,7 +28,8 @@ export default async function AboutPage({
   const intro = {
     ko: "이 음반은 외부 투자 없이 두 아티스트가 스스로 만들고 스스로 내는 음반입니다. 30년 가까이 서울에 살며 한국 음악의 뿌리를 탐구해온 일본인 음악가와, 트로트를 사랑해 한국으로 건너온 일본인 가수가 음악적 동반자로서 함께 만든 결과물입니다.",
     ja: "このアルバムは、外部の投資なしに二人のアーティストが自ら作り、自ら世に出すアルバムです。30年近くソウルに暮らし韓国音楽の根を探究してきた日本人音楽家と、トロットを愛して韓国へ渡った日本人歌手が、音楽的な伴侶として共に作り上げた結果です。",
-  };
+    en: "This album is made and released by the two artists themselves, with no outside investment. It is the result of a partnership between a Japanese musician who has lived in Seoul for nearly 30 years exploring the roots of Korean music, and a Japanese singer who crossed over to Korea out of love for trot.",
+  } as Record<Locale, string>;
 
   return (
     <>
@@ -46,7 +47,7 @@ export default async function AboutPage({
 
       <section className="mx-auto max-w-3xl px-5 py-16 md:px-8">
         <SectionLabel tone="coral">
-          {locale === "ja" ? "プロジェクトチーム" : "프로젝트 팀"}
+          {tri(locale, "프로젝트 팀", "プロジェクトチーム", "Project team")}
         </SectionLabel>
         <dl className="mt-6 overflow-hidden rounded-card border-2 border-navy">
           {credits.map((c, i) => (
@@ -60,9 +61,12 @@ export default async function AboutPage({
           ))}
         </dl>
         <p className="mt-4 text-xs text-navy/55">
-          {locale === "ja"
-            ? "デザイン・撮影チームの正式クレジットは、公開協議のうえ順次追加します。"
-            : "디자인·촬영 팀의 정식 크레딧은 공개 협의 후 순차 추가됩니다."}
+          {tri(
+            locale,
+            "디자인·촬영 팀의 정식 크레딧은 공개 협의 후 순차 추가됩니다.",
+            "デザイン・撮影チームの正式クレジットは、公開協議のうえ順次追加します。",
+            "Full credits for the design and film teams will be added in turn, once cleared for release.",
+          )}
         </p>
       </section>
 

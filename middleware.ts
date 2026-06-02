@@ -13,12 +13,15 @@ export function middleware(req: NextRequest) {
   // 사용자가 이전에 고른 언어 우선, 없으면 Accept-Language로 1회 분기
   const cookieLocale = req.cookies.get("locale")?.value;
   const accept = req.headers.get("accept-language") ?? "";
+  const lower = accept.toLowerCase();
   const preferred =
     cookieLocale && locales.includes(cookieLocale as never)
       ? cookieLocale
-      : accept.toLowerCase().startsWith("ja")
+      : lower.startsWith("ja")
         ? "ja"
-        : defaultLocale;
+        : lower.startsWith("en")
+          ? "en"
+          : defaultLocale;
 
   const url = req.nextUrl.clone();
   url.pathname = `/${preferred}${pathname === "/" ? "" : pathname}`;

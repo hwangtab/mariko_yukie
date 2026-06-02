@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { events } from "@/lib/content";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -17,9 +17,9 @@ export async function generateMetadata({
 }
 
 const statusLabel = {
-  tentative: { ko: "미정", ja: "未定" },
-  confirmed: { ko: "확정", ja: "確定" },
-  past: { ko: "종료", ja: "終了" },
+  tentative: { ko: "미정", ja: "未定", en: "TBD" },
+  confirmed: { ko: "확정", ja: "確定", en: "Confirmed" },
+  past: { ko: "종료", ja: "終了", en: "Past" },
 };
 const typeTone = { release: "bg-coral/15", tour: "bg-blue/15", news: "bg-yellow/20" } as const;
 
@@ -65,9 +65,12 @@ export default async function LivePage({
         </div>
 
         <p className="mt-10 text-center text-sm text-navy/60">
-          {locale === "ja"
-            ? "公演の場所・日程は確定次第、こちらと텀블벅でお知らせします。"
-            : "공연 장소·날짜는 확정되는 대로 이곳과 텀블벅에서 안내합니다."}
+          {tri(
+            locale,
+            "공연 장소·날짜는 확정되는 대로 이곳과 텀블벅에서 안내합니다.",
+            "公演の場所・日程は確定次第、こちらと텀블벅でお知らせします。",
+            "Venue and dates will be announced here and on Tumblbug as soon as they're confirmed.",
+          )}
         </p>
       </section>
 

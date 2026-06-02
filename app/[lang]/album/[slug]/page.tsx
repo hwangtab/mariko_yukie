@@ -2,7 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, locales, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack, album, trackImages } from "@/lib/content";
 import { Stamp, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -10,7 +10,7 @@ import CTABlock from "@/components/CTABlock";
 
 export function generateStaticParams() {
   return tracks.flatMap((t) =>
-    (["ko", "ja"] as const).map((lang) => ({ lang, slug: t.slug })),
+    locales.map((lang) => ({ lang, slug: t.slug })),
   );
 }
 

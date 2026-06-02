@@ -18,10 +18,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  const title =
-    loc === "ja" ? "マリコ & ユキエ — 南山タワー" : "마리코 & 유키에 — 남산타워";
-  const description = loc === "ja" ? album.concept.ja : album.concept.ko;
-  const siteName = loc === "ja" ? "マリコ & ユキエ" : "마리코 & 유키에";
+  const titles: Record<Locale, string> = {
+    ko: "마리코 & 유키에 — 남산타워",
+    ja: "マリコ & ユキエ — 南山タワー",
+    en: "Mariko & Yukie — Namsan Tower",
+  };
+  const ogLocales: Record<Locale, string> = { ko: "ko_KR", ja: "ja_JP", en: "en_US" };
+  const keywordSets: Record<Locale, string[]> = {
+    ko: ["마리코", "유키에", "사토유키에", "곱창전골", "남산타워", "트로트", "한국 록", "Mariko & Yukie"],
+    ja: ["マリコ", "ユキエ", "佐藤行衛", "コプチャンチョンゴル", "南山タワー", "トロット", "韓国ロック"],
+    en: ["Mariko & Yukie", "Sato Yukie", "Kopchangjeongol", "Namsan Tower", "trot", "Korean rock", "Seoul indie"],
+  };
+  const title = titles[loc];
+  const description = album.concept[loc];
+  const siteName = album.artist[loc];
 
   return {
     metadataBase: new URL(
@@ -30,20 +40,17 @@ export async function generateMetadata({
     title: { default: title, template: `%s — ${album.artistRoman}` },
     description,
     applicationName: siteName,
-    keywords:
-      loc === "ja"
-        ? ["マリコ", "ユキエ", "佐藤行衛", "コプチャンチョンゴル", "南山タワー", "トロット", "韓国ロック"]
-        : ["마리코", "유키에", "사토유키에", "곱창전골", "남산타워", "트로트", "한국 록", "Mariko & Yukie"],
+    keywords: keywordSets[loc],
     alternates: {
-      languages: { ko: "/ko", ja: "/ja", "x-default": "/ko" },
+      languages: { ko: "/ko", ja: "/ja", en: "/en", "x-default": "/ko" },
     },
     openGraph: {
       siteName,
       title,
       description,
       url: `/${loc}`,
-      locale: loc === "ja" ? "ja_JP" : "ko_KR",
-      alternateLocale: loc === "ja" ? "ko_KR" : "ja_JP",
+      locale: ogLocales[loc],
+      alternateLocale: locales.filter((l) => l !== loc).map((l) => ogLocales[l]),
       type: "website",
       images: [
         {

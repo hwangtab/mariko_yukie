@@ -1,14 +1,14 @@
 import Link from "next/link";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, ui, type Locale } from "@/lib/i18n";
+import { isLocale, locales, tri, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
 import { Star } from "@/components/ui";
 
 export function generateStaticParams() {
   return tracks.flatMap((t) =>
-    (["ko", "ja"] as const).map((lang) => ({ lang, slug: t.slug })),
+    locales.map((lang) => ({ lang, slug: t.slug })),
   );
 }
 
@@ -77,9 +77,12 @@ export default async function LyricsPage({
             </div>
           </div>
           <p className="mt-4 text-center text-xs text-navy/55">
-            {locale === "ja"
-              ? "原曲歌詞(韓国語)。日本語版(再解釈)はCDブックレットに収録予定です。"
-              : "원곡 가사. 일본어 재해석 버전은 CD 부클릿(12P)에 함께 수록됩니다."}
+            {tri(
+              locale,
+              "원곡 가사. 일본어 재해석 버전은 CD 부클릿(12P)에 함께 수록됩니다.",
+              "原曲歌詞(韓国語)。日本語版(再解釈)はCDブックレットに収録予定です。",
+              "Original lyrics. The Japanese reinterpretation is included in the CD booklet (12p).",
+            )}
           </p>
         </>
       ) : (
@@ -89,9 +92,12 @@ export default async function LyricsPage({
             {ui.cta.soon[locale]}
           </span>
           <p className="mt-4 leading-relaxed text-navy/80">
-            {locale === "ja"
-              ? "この曲の歌詞は準備中です。全曲の韓国語・日本語歌詞は、CDブックレット(12P)および支援者向けの歌詞PDFに収録されます。"
-              : "이 곡의 가사는 준비 중입니다. 전곡 가사는 CD 부클릿(12P)과 후원자 제공 가사지 PDF에 수록됩니다."}
+            {tri(
+              locale,
+              "이 곡의 가사는 준비 중입니다. 전곡 가사는 CD 부클릿(12P)과 후원자 제공 가사지 PDF에 수록됩니다.",
+              "この曲の歌詞は準備中です。全曲の韓国語・日本語歌詞は、CDブックレット(12P)および支援者向けの歌詞PDFに収録されます。",
+              "Lyrics for this song are in preparation. Full lyrics are included in the CD booklet (12p) and the backers' lyrics PDF.",
+            )}
           </p>
         </div>
       )}

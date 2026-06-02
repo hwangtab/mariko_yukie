@@ -20,7 +20,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         <div className="grid gap-10 md:grid-cols-3">
           <div>
             <p className="font-display text-3xl leading-none text-yellow outline-navy-thin">
-              마리코 &amp; 유키에
+              {album.artist[locale]}
             </p>
             <p className="pixel mt-3 text-xs text-cream/60">
               {album.title[locale]} · {album.titleRoman}
