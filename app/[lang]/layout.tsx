@@ -21,7 +21,7 @@ export async function generateMetadata({
   const titles: Record<Locale, string> = {
     ko: "마리코 & 유키에 — 남산타워",
     ja: "マリコ & ユキエ — 南山タワー",
-    en: "Mariko & Yukie — Namsan Tower",
+    en: "Mariko & Yukie — Namsan Tower Lights",
   };
   const ogLocales: Record<Locale, string> = { ko: "ko_KR", ja: "ja_JP", en: "en_US" };
   const keywordSets: Record<Locale, string[]> = {

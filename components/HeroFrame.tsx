@@ -90,9 +90,11 @@ export default function HeroFrame({
           >
             {title}
           </h1>
-          <p className="rise mt-3 font-display text-xl text-cream md:text-2xl" style={{ animationDelay: "260ms" }}>
-            {roman}
-          </p>
+          {roman && (
+            <p className="rise mt-3 font-display text-xl text-cream md:text-2xl" style={{ animationDelay: "260ms" }}>
+              {roman}
+            </p>
+          )}
           <p
             className="rise mt-5 max-w-xl text-balance leading-relaxed text-cream/85 md:text-lg"
             style={{ animationDelay: "360ms" }}

@@ -95,8 +95,8 @@ export const images = {
 
 // ── 앨범 ──
 export const album = {
-  title: { ko: "남산타워", ja: "南山タワー", en: "Namsan Tower" } as Localized,
-  titleRoman: "Namsan Tower",
+  title: { ko: "남산타워", ja: "南山タワー", en: "Namsan Tower Lights" } as Localized,
+  titleRoman: "Namsan Tower Lights",
   artist: { ko: "마리코 & 유키에", ja: "マリコ & ユキエ", en: "Mariko & Yukie" } as Localized,
   artistRoman: "Mariko & Yukie",
   releaseLabel: {

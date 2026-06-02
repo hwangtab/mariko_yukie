@@ -52,7 +52,9 @@ export default async function AlbumPage({
             <h1 className="mt-4 font-display text-6xl text-yellow text-shadow-pop md:text-7xl">
               {album.title[locale]}
             </h1>
-            <p className="mt-2 font-display text-xl text-cream">{album.titleRoman}</p>
+            {locale !== "en" && (
+              <p className="mt-2 font-display text-xl text-cream">{album.titleRoman}</p>
+            )}
             <div className="mt-5">
               <Stamp tone="navy">
                 <span className="text-cream">{album.releaseLabel[locale]}</span>

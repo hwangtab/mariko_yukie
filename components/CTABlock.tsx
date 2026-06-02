@@ -17,7 +17,7 @@ export default function CTABlock({ locale }: { locale: Locale }) {
 
       <div className="relative mx-auto max-w-6xl px-5 py-20 text-center md:px-8">
         <p className="pixel text-xs uppercase tracking-[0.2em] text-yellow">
-          2026 · Namsan Tower
+          2026 · Namsan Tower Lights
         </p>
         <h2 className="mx-auto mt-5 max-w-2xl text-balance font-display text-3xl leading-tight outline-navy-thin md:text-5xl">
           {tri(

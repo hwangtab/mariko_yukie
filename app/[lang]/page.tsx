@@ -50,7 +50,7 @@ export default async function Home({
       <HeroFrame
         slides={heroSlides}
         title={album.title[locale]}
-        roman={album.titleRoman}
+        roman={locale === "en" ? "" : album.titleRoman}
         concept={album.concept[locale]}
         ribbon="Mariko & Yukie · 1st Album"
         release={album.releaseLabel[locale]}
@@ -294,7 +294,8 @@ export default async function Home({
       <section className="mx-auto max-w-3xl px-5 py-20 md:px-8">
         <Reveal>
           <SectionLabel tone="coral">
-            {album.title[locale]} · {album.titleRoman}
+            {album.title[locale]}
+            {locale !== "en" && ` · ${album.titleRoman}`}
           </SectionLabel>
           <div className="mt-6">
             <TrackList locale={locale} />

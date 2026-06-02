@@ -41,7 +41,7 @@ export default async function GalleryPage({
               locale,
               "2026년 4월 21일, 서울 남산타워 일대. 뮤직비디오 「남산타워」 촬영의 기록.",
               "2026年4月21日、ソウル南山タワー一帯。ミュージックビデオ「南山タワー」撮影の記録。",
-              "April 21, 2026, around Seoul's Namsan Tower — a record of the 'Namsan Tower' music-video shoot.",
+              "April 21, 2026, around Seoul's Namsan Tower — a record of the 'Namsan Tower Lights' music-video shoot.",
             )}
           </p>
         </div>

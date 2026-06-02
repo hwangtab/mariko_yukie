@@ -23,7 +23,8 @@ export default function Footer({ locale }: { locale: Locale }) {
               {album.artist[locale]}
             </p>
             <p className="pixel mt-3 text-xs text-cream/60">
-              {album.title[locale]} · {album.titleRoman}
+              {album.title[locale]}
+              {locale !== "en" && ` · ${album.titleRoman}`}
             </p>
             <p className="mt-4 max-w-xs text-sm leading-relaxed text-cream/70">
               {album.concept[locale]}
