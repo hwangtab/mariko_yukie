@@ -26,3 +26,4 @@ next-env.d.ts
 ~$*.doc
 ~$*.xlsx
 .playwright-mcp/
+.vercel
