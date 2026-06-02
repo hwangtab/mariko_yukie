@@ -1,0 +1,350 @@
+@import "tailwindcss";
+
+/* ──────────────────────────────────────────────
+   마리코 & 유키에 — 디자인 시스템 v2.0
+   70s 사이키델릭 그루비 + 쇼와 키치 + 큐트
+   키비주얼: images/album_cover.jpg
+   ────────────────────────────────────────────── */
+
+@theme {
+  /* 사이키델릭 팝 팔레트 (앨범 커버 추출) */
+  --color-cream: #f8efdc;
+  --color-cream-deep: #f1e3c6;
+  --color-coral: #f0612f; /* primary */
+  --color-coral-deep: #d8431a;
+  --color-pink: #ec6ba8;
+  --color-pink-deep: #d9418a;
+  --color-blue: #4ea7d8;
+  --color-blue-deep: #2f7fb8;
+  --color-yellow: #f5b733;
+  --color-teal: #2e8a86;
+  --color-lilac: #9b7cd4;
+
+  /* 파스텔 워시 — 섹션 배경(무지개 색 여행) */
+  --color-wash-coral: #fce1d3;
+  --color-wash-pink: #fbdcec;
+  --color-wash-blue: #d8ebf8;
+  --color-wash-yellow: #fcefc6;
+  --color-wash-mint: #d6f0e4;
+  --color-wash-lilac: #ece2fb;
+
+  /* 잉크 / 외곽선 — 굵은 네이비가 전체를 묶는다 */
+  --color-navy: #1c2750;
+  --color-navy-soft: #3a4575;
+
+  /* 밤하늘 (야경 섹션) */
+  --color-night: #221a3f;
+  --color-night-deep: #16102b;
+  --color-night-line: #463a73;
+
+  /* 폰트 */
+  --font-display: "Bagel Fat One", "Black Han Sans", sans-serif;
+  --font-display-jp: "Mochiy Pop One", "Bagel Fat One", sans-serif;
+  --font-body: "Gowun Dodum", "Noto Sans KR", sans-serif;
+  --font-body-jp: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
+  --font-hand: "Gaegu", cursive;
+  --font-pixel: "DotGothic16", monospace;
+
+  --radius-card: 22px;
+}
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-cream);
+  color: var(--color-navy);
+  font-family: var(--font-body);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: hidden;
+}
+
+[lang="ja"] body,
+.lang-ja {
+  font-family: var(--font-body-jp);
+}
+
+/* 한국어 줄바꿈: 어절(단어) 단위로만 끊기 — 단어 중간 잘림 방지 */
+[lang="ko"] {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+/* 제목은 줄 길이를 고르게, 본문은 외톨이 단어 방지 */
+h1, h2, h3, h4 {
+  text-wrap: balance;
+}
+p {
+  text-wrap: pretty;
+}
+
+/* 일본어에서는 디스플레이도 라운드 JP 폰트로 */
+.lang-ja .font-display {
+  font-family: var(--font-display-jp);
+}
+
+/* ── 텍스트 외곽선 (커버 레터링 톤) ── */
+.outline-navy {
+  -webkit-text-stroke: 2px var(--color-navy);
+  paint-order: stroke fill;
+}
+.outline-navy-thin {
+  -webkit-text-stroke: 1px var(--color-navy);
+  paint-order: stroke fill;
+}
+.text-shadow-pop {
+  text-shadow: 3px 3px 0 var(--color-navy);
+}
+
+/* ── 종이 + 그레인 ── */
+.bg-cream-grain {
+  background-color: var(--color-cream);
+}
+.grain::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 80;
+  opacity: 0.35;
+  mix-blend-mode: multiply;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 220 220' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.5'/%3E%3C/svg%3E");
+}
+
+/* ── 그루비 동심원 (사이키델릭 레인보우) ── */
+.groovy-rings {
+  background:
+    repeating-radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 40%),
+      var(--color-coral) 0 48px,
+      var(--color-yellow) 48px 96px,
+      var(--color-cream) 96px 144px,
+      var(--color-pink) 144px 192px,
+      var(--color-blue) 192px 240px,
+      var(--color-teal) 240px 288px
+    );
+}
+.groovy-soft {
+  background:
+    repeating-radial-gradient(
+      circle at var(--gx, 50%) var(--gy, 50%),
+      rgba(240, 97, 47, 0.10) 0 26px,
+      rgba(245, 183, 51, 0.10) 26px 52px,
+      transparent 52px 78px,
+      rgba(236, 107, 168, 0.10) 78px 104px,
+      rgba(78, 167, 216, 0.10) 104px 130px
+    );
+}
+@keyframes spin-slow {
+  to { transform: rotate(360deg); }
+}
+.groovy-spin {
+  animation: spin-slow 48s linear infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .groovy-spin { animation: none; }
+}
+
+/* ── 하프톤 ── */
+.halftone {
+  background-image: radial-gradient(var(--color-navy) 1px, transparent 1.5px);
+  background-size: 9px 9px;
+}
+.halftone-light {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.5) 1px, transparent 1.6px);
+  background-size: 8px 8px;
+}
+
+/* ── 야경 ── */
+.night {
+  background-color: var(--color-night);
+  background-image:
+    radial-gradient(ellipse 90% 55% at 50% -8%, rgba(245, 183, 51, 0.22), transparent 60%),
+    radial-gradient(circle at 15% 100%, rgba(236, 107, 168, 0.18), transparent 50%),
+    radial-gradient(circle at 90% 20%, rgba(78, 167, 216, 0.16), transparent 45%);
+  color: var(--color-cream);
+}
+
+/* ── 반짝이 별 (4-point) ── */
+.sparkle {
+  position: relative;
+  display: inline-block;
+}
+.star {
+  display: inline-block;
+  background: currentColor;
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+}
+@keyframes twinkle {
+  0%, 100% { transform: scale(1) rotate(0deg); opacity: 0.9; }
+  50% { transform: scale(1.35) rotate(20deg); opacity: 1; }
+}
+.twinkle { animation: twinkle 2.6s ease-in-out infinite; }
+.twinkle-2 { animation: twinkle 3.4s ease-in-out infinite 0.6s; }
+@media (prefers-reduced-motion: reduce) {
+  .twinkle, .twinkle-2 { animation: none; }
+}
+
+/* ── 리본 배너 ── */
+.ribbon {
+  position: relative;
+  background: var(--color-coral);
+  color: var(--color-cream);
+  padding: 0.35rem 1.4rem;
+  display: inline-block;
+  font-family: var(--font-display);
+}
+.ribbon::before,
+.ribbon::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  width: 0;
+  height: 0;
+  border: 0.85rem solid var(--color-coral-deep);
+}
+.ribbon::before {
+  left: -1.1rem;
+  border-left-color: transparent;
+  border-right-width: 0.5rem;
+}
+.ribbon::after {
+  right: -1.1rem;
+  border-right-color: transparent;
+  border-left-width: 0.5rem;
+}
+
+/* ── 스티커 / 컷아웃 프레임 ── */
+.sticker {
+  border: 3px solid var(--color-navy);
+  box-shadow: 5px 5px 0 var(--color-navy);
+}
+.sticker-coral { box-shadow: 5px 5px 0 var(--color-coral); }
+.sticker-pink { box-shadow: 5px 5px 0 var(--color-pink-deep); }
+
+/* 이미지 빈티지 인쇄 톤 */
+.print-tone {
+  filter: saturate(1.12) contrast(1.05);
+}
+
+/* ── 마퀴 ── */
+@keyframes marquee {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.marquee-track {
+  display: inline-flex;
+  white-space: nowrap;
+  animation: marquee 30s linear infinite;
+}
+.marquee-rev { animation-direction: reverse; }
+@media (prefers-reduced-motion: reduce) {
+  .marquee-track { animation: none; }
+}
+
+/* ── 등장 ── */
+@keyframes rise {
+  from { opacity: 0; transform: translateY(22px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.rise { opacity: 0; animation: rise 0.8s cubic-bezier(0.22, 1, 0.36, 1) forwards; }
+
+@keyframes pop-in {
+  0% { opacity: 0; transform: scale(0.7) rotate(-6deg); }
+  70% { transform: scale(1.06) rotate(2deg); }
+  100% { opacity: 1; transform: scale(1) rotate(0deg); }
+}
+.pop-in { opacity: 0; animation: pop-in 0.7s cubic-bezier(0.34, 1.56, 0.64, 1) forwards; }
+
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.9s cubic-bezier(0.22, 1, 0.36, 1), transform 0.9s cubic-bezier(0.22, 1, 0.36, 1);
+}
+.reveal.in { opacity: 1; transform: none; }
+@media (prefers-reduced-motion: reduce) {
+  .rise, .pop-in { opacity: 1; animation: none; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ── 둥실 떠다니는 데코 ── */
+@keyframes float-y {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+.float-y { animation: float-y 5s ease-in-out infinite; }
+@media (prefers-reduced-motion: reduce) {
+  .float-y { animation: none; }
+}
+
+/* ── 링크 밑줄 ── */
+.link-underline {
+  background-image: linear-gradient(currentColor, currentColor);
+  background-size: 0% 2px;
+  background-position: 0 100%;
+  background-repeat: no-repeat;
+  transition: background-size 0.35s ease;
+}
+.link-underline:hover { background-size: 100% 2px; }
+
+/* ── 픽셀 라벨 ── */
+.pixel {
+  font-family: var(--font-pixel);
+  letter-spacing: 0.04em;
+}
+
+/* ── 웨이브 디바이더용 ── */
+.wave-flip { transform: scaleY(-1); }
+
+/* ── 폴카 닷 ── */
+.dots {
+  background-image: radial-gradient(var(--color-coral) 22%, transparent 23%);
+  background-size: 22px 22px;
+}
+.dots-soft {
+  background-image: radial-gradient(rgba(28, 39, 80, 0.12) 20%, transparent 21%);
+  background-size: 18px 18px;
+}
+
+/* ── 블롭(말랑한 모서리) ── */
+.blob {
+  border-radius: 42% 58% 60% 40% / 48% 42% 58% 52%;
+}
+.blob-2 {
+  border-radius: 60% 40% 45% 55% / 55% 58% 42% 45%;
+}
+
+/* ── 물결 밑줄 (큐트 강조) ── */
+.wavy-underline {
+  text-decoration: underline wavy var(--color-coral);
+  text-underline-offset: 6px;
+  text-decoration-thickness: 2px;
+}
+
+/* ── 회전하는 해/꽃 ── */
+@keyframes spin-rev { to { transform: rotate(-360deg); } }
+.spin-slow-rev { animation: spin-rev 26s linear infinite; }
+@media (prefers-reduced-motion: reduce) { .spin-slow-rev { animation: none; } }
+
+/* ── 켄번스(느린 줌) — 히어로 캐러셀 ── */
+@keyframes kenburns {
+  from { transform: scale(1); }
+  to { transform: scale(1.08); }
+}
+.kenburns { animation: kenburns 7s ease-out forwards; }
+@media (prefers-reduced-motion: reduce) { .kenburns { animation: none; } }
+
+/* ── 흔들 호버 ── */
+@keyframes wiggle {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(-3deg); }
+  75% { transform: rotate(3deg); }
+}
+.hover-wiggle:hover { animation: wiggle 0.5s ease-in-out; }
+@media (prefers-reduced-motion: reduce) { .hover-wiggle:hover { animation: none; } }

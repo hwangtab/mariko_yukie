@@ -12,6 +12,12 @@ dist/
 build/
 .cache/
 
+# Next.js
+.next/
+out/
+next-env.d.ts
+*.tsbuildinfo
+
 .env
 .env.*
 !.env.example
@@ -19,3 +25,4 @@ build/
 ~$*.docx
 ~$*.doc
 ~$*.xlsx
+.playwright-mcp/
