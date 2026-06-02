@@ -20,16 +20,45 @@ export async function generateMetadata({
   const loc: Locale = isLocale(lang) ? lang : "ko";
   const title =
     loc === "ja" ? "マリコ & ユキエ — 南山タワー" : "마리코 & 유키에 — 남산타워";
-  const description =
-    loc === "ja" ? album.concept.ja : album.concept.ko;
+  const description = loc === "ja" ? album.concept.ja : album.concept.ko;
+  const siteName = loc === "ja" ? "マリコ & ユキエ" : "마리코 & 유키에";
+
   return {
+    metadataBase: new URL(
+      process.env.NEXT_PUBLIC_SITE_URL ?? "https://marikoyukie.vercel.app",
+    ),
     title: { default: title, template: `%s — ${album.artistRoman}` },
     description,
+    applicationName: siteName,
+    keywords:
+      loc === "ja"
+        ? ["マリコ", "ユキエ", "佐藤行衛", "コプチャンチョンゴル", "南山タワー", "トロット", "韓国ロック"]
+        : ["마리코", "유키에", "사토유키에", "곱창전골", "남산타워", "트로트", "한국 록", "Mariko & Yukie"],
+    alternates: {
+      languages: { ko: "/ko", ja: "/ja", "x-default": "/ko" },
+    },
     openGraph: {
+      siteName,
       title,
       description,
+      url: `/${loc}`,
       locale: loc === "ja" ? "ja_JP" : "ko_KR",
+      alternateLocale: loc === "ja" ? "ko_KR" : "ja_JP",
       type: "website",
+      images: [
+        {
+          url: "/og.jpg",
+          width: 1200,
+          height: 630,
+          alt: `${album.title[loc]} — ${album.artistRoman}`,
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      images: ["/og.jpg"],
     },
   };
 }
