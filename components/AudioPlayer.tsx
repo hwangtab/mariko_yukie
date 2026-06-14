@@ -76,17 +76,22 @@ export function AudioPlayerProvider({
   const activeSlug = index != null ? playlist[index]?.slug ?? null : null;
 
   // 트랙/재생상태 변화에 따라 실제 <audio> 제어
+  // (playing이 단일 진실원천 — src 변경이 쏘는 pause 이벤트로 상태를 되돌리지 않음)
   useEffect(() => {
     const a = audioRef.current;
     if (!a || index == null) return;
     const src = trackAudio[playlist[index].slug];
     if (!a.currentSrc.endsWith(src)) {
-      a.src = src;
-      a.load();
+      a.src = src; // load() 명시 호출 X — play()가 자동 로드(AbortError 방지)
       setCurrentTime(0);
     }
     if (playing) {
-      a.play().catch(() => setPlaying(false));
+      a.play().catch((err: unknown) => {
+        // AbortError(src 교체 중 중단)는 무시, 자동재생 차단 등만 정지 처리
+        if (!(err instanceof DOMException) || err.name !== "AbortError") {
+          setPlaying(false);
+        }
+      });
     } else {
       a.pause();
     }
@@ -175,8 +180,6 @@ export function AudioPlayerProvider({
         preload="metadata"
         onTimeUpdate={(e) => setCurrentTime(e.currentTarget.currentTime)}
         onLoadedMetadata={(e) => setDuration(e.currentTarget.duration)}
-        onPlay={() => setPlaying(true)}
-        onPause={() => setPlaying(false)}
         onEnded={() => {
           if (index != null && index < playlist.length - 1) {
             setIndex(index + 1);

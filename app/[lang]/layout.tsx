@@ -83,7 +83,7 @@ export default async function LangLayout({
   const loc = lang as Locale;
 
   return (
-    <html lang={loc} suppressHydrationWarning>
+    <html lang={loc} data-scroll-behavior="smooth" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
