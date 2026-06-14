@@ -63,7 +63,7 @@ export interface EventItem {
 
 // ── 외부 링크 (links.json 역할) ── 빈 값은 UI에서 자동 숨김
 export const links = {
-  tumblbug: "", // 펀딩 오픈 시 확정
+  tumblbug: "https://tumblbug.com/marikoandyukie", // 펀딩 페이지
   musicVideoYoutubeId: "bWIwjnij0XQ", // 영상 ID (https://youtu.be/bWIwjnij0XQ)
   streaming: {
     spotify: "",
