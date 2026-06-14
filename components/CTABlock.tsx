@@ -46,7 +46,7 @@ export default function CTABlock({ locale }: { locale: Locale }) {
 
           <Link
             href={hasStreaming ? `/${locale}/album` : `/${locale}/video`}
-            className="link-underline font-display text-base text-cream/85"
+            className="rounded-full border-2 border-cream/80 px-8 py-3.5 font-display text-base text-cream transition hover:-translate-y-1 hover:bg-cream hover:text-night"
           >
             {hasStreaming ? ui.cta.listen[locale] : ui.cta.watchMV[locale]} →
           </Link>
