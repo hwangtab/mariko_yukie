@@ -43,7 +43,7 @@ export default async function ArtistPage({
     <>
       {/* HERO: 사진 + 이름 */}
       <section className="night relative overflow-hidden">
-        <Image src={a.photo} alt="" fill sizes="100vw" className="object-cover object-top opacity-35" />
+        <Image src={a.photo} alt="" fill priority sizes="100vw" className="object-cover object-top opacity-35" />
         <div className="absolute inset-0 bg-gradient-to-t from-night via-night/80 to-night/55" />
         <Star size={26} className="twinkle absolute right-[12%] top-20 text-yellow" />
         <div className="relative mx-auto max-w-4xl px-5 py-20 md:px-8 md:py-28">

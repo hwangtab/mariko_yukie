@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, tri, type Locale} from "@/lib/i18n";
+import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { gallery } from "@/lib/content";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -14,7 +14,7 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: loc === "ja" ? "ギャラリー" : "갤러리" };
+  return { title: ui.nav.gallery[loc] };
 }
 
 export default async function GalleryPage({

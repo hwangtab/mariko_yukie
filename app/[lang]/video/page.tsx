@@ -40,7 +40,7 @@ export default async function VideoPage({
         <div className="relative mx-auto max-w-5xl px-5 pb-16 pt-24 md:px-8">
           <SectionLabel tone="cream">Music Video</SectionLabel>
           <h1 className="mt-5 font-display text-4xl text-yellow text-shadow-pop md:text-5xl">
-            남산타워 Namsan Tower Lights
+            {tri(locale, "남산타워 Namsan Tower Lights", "南山タワー Namsan Tower Lights", "Namsan Tower Lights")}
           </h1>
 
           <div className="sticker mt-8 overflow-hidden rounded-card">
@@ -56,7 +56,7 @@ export default async function VideoPage({
               </div>
             ) : (
               <div className="relative flex aspect-video items-center justify-center overflow-hidden">
-                <Image src={images.towerNight} alt="" fill sizes="100vw" className="object-cover opacity-60" />
+                <Image src={images.towerNight} alt="" fill priority sizes="100vw" className="object-cover opacity-60" />
                 <div className="absolute inset-0 bg-night/55" />
                 <div className="relative text-center">
                   <span className="pixel text-2xl text-yellow">▶ {ui.cta.soon[locale]}</span>

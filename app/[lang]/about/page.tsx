@@ -34,7 +34,7 @@ export default async function AboutPage({
   return (
     <>
       <section className="night relative overflow-hidden">
-        <Image src={images.deck} alt="" fill sizes="100vw" className="object-cover opacity-30" />
+        <Image src={images.deck} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
         <div className="absolute inset-0 bg-night/70" />
         <div className="relative mx-auto max-w-3xl px-5 py-20 md:px-8">
           <SectionLabel tone="cream">About</SectionLabel>

@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { ui, type Locale } from "@/lib/i18n";
+import { tri, ui, type Locale } from "@/lib/i18n";
 import { links, album } from "@/lib/content";
 import { Star } from "./ui";
 
@@ -71,7 +71,7 @@ export default function Footer({ locale }: { locale: Locale }) {
         </div>
 
         <div className="mt-12 flex flex-col items-start justify-between gap-2 border-t border-night-line pt-6 text-xs text-cream/45 sm:flex-row sm:items-center">
-          <span>© 2026 Mariko &amp; Yukie · 스튜디오 놀</span>
+          <span>© 2026 Mariko &amp; Yukie · {tri(locale, "스튜디오 놀", "スタジオ・ノル", "Studio Nol")}</span>
           <span className="pixel">서울 · ソウル · SEOUL</span>
         </div>
       </div>

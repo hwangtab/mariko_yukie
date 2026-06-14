@@ -23,8 +23,11 @@ export async function generateMetadata({
   const loc: Locale = isLocale(lang) ? lang : "ko";
   const tk = getTrack(slug);
   if (!tk) return {};
+  // 트랙 제목이 앨범 제목을 포함하면 앨범명 반복 생략 (중복 방지)
+  const t = tk.title[loc];
+  const title = t.includes(album.title[loc]) ? t : `${t} — ${album.title[loc]}`;
   return {
-    title: `${tk.title[loc]} — ${album.title[loc]}`,
+    title,
     description: tk.pull?.[loc] ?? tk.body[loc][0],
   };
 }
@@ -50,7 +53,7 @@ export default async function TrackPage({
       <section className="night relative overflow-hidden">
         {heroImg && (
           <>
-            <Image src={heroImg} alt="" fill sizes="100vw" className="object-cover opacity-30" />
+            <Image src={heroImg} alt="" fill priority sizes="100vw" className="object-cover opacity-30" />
             <div className="absolute inset-0 bg-gradient-to-t from-night via-night/82 to-night/55" />
           </>
         )}
