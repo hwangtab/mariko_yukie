@@ -193,7 +193,7 @@ export default async function Home({
           <div className="relative text-center">
             <SectionLabel>{tri(locale, "음악의 뿌리", "音楽のルーツ", "Roots of the music")}</SectionLabel>
             <h2 className="mt-4 font-display text-4xl text-navy md:text-5xl">
-              {tri(locale, "이 소리는 어디서 왔나", "この音はどこから来たのか", "Where did this sound come from?")}
+              {tri(locale, "이 소리는 어디서 왔나", "このサウンドはどこから来たのか", "Where did this sound come from?")}
             </h2>
           </div>
         </Reveal>
