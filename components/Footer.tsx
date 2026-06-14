@@ -7,7 +7,7 @@ export default function Footer({ locale }: { locale: Locale }) {
   const sns = [
     { label: "Instagram", href: links.sns.marikoInstagram },
     { label: "Twitter / X", href: links.sns.marikoTwitter },
-    { label: "YouTube", href: links.sns.yukieYoutube },
+    { label: "YouTube", href: links.sns.youtubeChannel },
     { label: "Facebook", href: links.sns.yukieFacebook },
   ];
   return (

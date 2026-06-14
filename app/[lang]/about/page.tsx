@@ -80,7 +80,7 @@ export default async function AboutPage({
             ✉ {links.contactEmail}
           </a>
           <a
-            href={links.sns.yukieYoutube}
+            href={links.sns.youtubeChannel}
             target="_blank"
             rel="noopener noreferrer"
             className="rounded-full border-2 border-navy px-5 py-2.5 text-navy transition hover:bg-navy hover:text-cream"
