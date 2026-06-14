@@ -107,7 +107,7 @@ export const album = {
   } as Localized,
   concept: {
     ko: "60~70년대 음악을 몸으로 관통한 사람이 2026년에 내는 음반입니다. 오래됐지만 새롭고, 낯설지만 익숙한 소리.",
-    ja: "60〜70年代の音楽を体で通り抜けた人が2026年に出すアルバムです。古いのに新しく、見知らぬのに懐かしい音。",
+    ja: "1960〜70年代の音楽を肌で感じてきた人間が、2026年に出すアルバムです。古いのに新しく、初めてなのに懐かしいサウンド。",
     en: "An album made in 2026 by someone who lived and breathed '60s–'70s music. Old yet new, unfamiliar yet familiar.",
   } as Localized,
   says: {
@@ -442,7 +442,7 @@ export function getArtist(id: string) {
 
 export const duoIntro = {
   ko: "두 사람은 2018년부터 함께 활동해왔다. 사토유키에의 60~70년대 빈티지 그룹 사운드와 마리코의 80년대 트로트 색채가 특정 트랙들에서 자연스럽게 맞물린다. 60~70년대 그룹 사운드와 80년대 트로트 사이에는 사실 그렇게 먼 거리가 없다 — 같은 시대의 공기를 마시고 자란 소리들이다.",
-  ja: "二人は2018年から共に活動してきた。サトウユキエの60〜70年代ヴィンテージ・グループサウンドと、マリコの80年代トロットの色彩が特定のトラックで自然に噛み合う。60〜70年代グループサウンドと80年代トロットのあいだには、実はそれほど遠い距離はない — 同じ時代の空気を吸って育った音たちだ。",
+  ja: "ふたりは、2018年から一緒に活動してきた。サトウユキエの60〜70年代ヴィンテージ・グループサウンドと、マリコの80年代トロットの色彩が、曲のなかで自然に溶け込む。60〜70年代グループサウンドと、80年代トロットには、実はそれほど遠いものではない — 同じ時代の空気を吸って育った“音”なのだ。",
   en: "The two have worked together since 2018. Sato Yukie's vintage '60s–'70s group sound and Mariko's '80s trot color lock together naturally on certain tracks. Between '60s–'70s group sound and '80s trot there really isn't much distance — these are sounds that grew up breathing the same era's air.",
 } as Localized;
 
@@ -490,6 +490,11 @@ export const trackImages: Record<string, string> = {
   "hot-flash": "/images/namsan_08.webp",
   "sarang-ui-suljan": "/images/namsan_22.webp",
 };
+
+// ── 트랙 음원 (public/audio, 192kbps 마스터) ── 슬러그 → mp3 경로
+export const trackAudio: Record<string, string> = Object.fromEntries(
+  tracks.map((t) => [t.slug, `/audio/${t.slug}.mp3`]),
+);
 
 // ── 갤러리 (MV 「남산타워」 촬영 스틸, 2026-04-21) ──
 export const gallery: GalleryItem[] = [

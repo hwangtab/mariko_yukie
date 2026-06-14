@@ -6,6 +6,7 @@ import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { album } from "@/lib/content";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { AudioPlayerProvider } from "@/components/AudioPlayer";
 
 export function generateStaticParams() {
   return locales.map((lang) => ({ lang }));
@@ -100,9 +101,11 @@ export default async function LangLayout({
         </noscript>
       </head>
       <body className={`grain bg-cream-grain ${loc === "ja" ? "lang-ja" : ""}`}>
-        <Header locale={loc} />
-        <main>{children}</main>
-        <Footer locale={loc} />
+        <AudioPlayerProvider locale={loc}>
+          <Header locale={loc} />
+          <main>{children}</main>
+          <Footer locale={loc} />
+        </AudioPlayerProvider>
       </body>
     </html>
   );

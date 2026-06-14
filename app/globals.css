@@ -354,3 +354,47 @@ p {
 }
 .hover-wiggle:hover { animation: wiggle 0.5s ease-in-out; }
 @media (prefers-reduced-motion: reduce) { .hover-wiggle:hover { animation: none; } }
+
+/* ── 미니플레이어 진행 바 ── */
+.player-range {
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  cursor: pointer;
+}
+.player-range::-webkit-slider-runnable-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: linear-gradient(
+    to right,
+    var(--color-coral) 0 var(--pct, 0%),
+    rgba(255, 247, 232, 0.22) var(--pct, 0%) 100%
+  );
+}
+.player-range::-moz-range-track {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: rgba(255, 247, 232, 0.22);
+}
+.player-range::-moz-range-progress {
+  height: 0.375rem;
+  border-radius: 9999px;
+  background: var(--color-coral);
+}
+.player-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  margin-top: -0.28rem;
+  height: 0.95rem;
+  width: 0.95rem;
+  border-radius: 9999px;
+  background: var(--color-yellow);
+  border: 2px solid var(--color-navy);
+}
+.player-range::-moz-range-thumb {
+  height: 0.95rem;
+  width: 0.95rem;
+  border-radius: 9999px;
+  background: var(--color-yellow);
+  border: 2px solid var(--color-navy);
+}

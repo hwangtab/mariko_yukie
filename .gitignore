@@ -27,3 +27,6 @@ next-env.d.ts
 ~$*.xlsx
 .playwright-mcp/
 .vercel
+
+# 원본 음원 마스터(공개 금지) — 웹 스트리밍본은 public/audio/만 배포
+/music/

@@ -2,11 +2,12 @@ import Link from "next/link";
 import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
-import { isLocale, locales, ui, type Locale } from "@/lib/i18n";
+import { isLocale, locales, tri, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack, album, trackImages } from "@/lib/content";
 import { Stamp, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import CTABlock from "@/components/CTABlock";
+import { PlayThisTrack } from "@/components/AudioPlayer";
 
 export function generateStaticParams() {
   return tracks.flatMap((t) =>
@@ -102,6 +103,11 @@ export default async function TrackPage({
         </div>
 
         <div className="mt-10 flex flex-wrap gap-3">
+          <PlayThisTrack
+            slug={tk.slug}
+            label={tri(locale, "이 곡 듣기", "この曲を聴く", "Play this track")}
+            labelPause={tri(locale, "일시정지", "一時停止", "Pause")}
+          />
           {tk.hasMV && (
             <Link
               href={`/${locale}/video`}
