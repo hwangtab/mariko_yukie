@@ -33,12 +33,9 @@
 
 ---
 
-## 관련 문서 (사이트 바깥)
+## 관련 자료
 
-웹사이트 콘텐츠의 원천이 되는 상위 기획 문서입니다.
-
-- [`docs/plan/album_plan.md`](../plan/album_plan.md) — 앨범 발매 프로젝트 기획안 (v4.0). 아티스트·트랙·전략·예산의 원본.
-- [`docs/plan/tumblbug/funding_plan.md`](../plan/tumblbug/funding_plan.md) — 텀블벅 펀딩 페이지 원고. 트랙 소개·리워드·FAQ·정책.
+- 상위 기획안(`docs/plan/` — 예산·전략 등 내부 자료)은 **비공개**로 별도 보관합니다(레포 미포함).
 - [`docs/lyrics/`](../lyrics/) — 전곡 가사 원본 (docx).
 - [`images/`](../../images/) — 앨범 커버, 남산타워 촬영분(`namsan_*.png`).
 
