@@ -3,7 +3,7 @@ import { locales } from "@/lib/i18n";
 import { tracks, artists } from "@/lib/content";
 
 // 도메인 확정 시 NEXT_PUBLIC_SITE_URL 환경변수로 교체
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://mariko-yukie.example";
+const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marikoyukie.vercel.app";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["", "/artists", "/album", "/video", "/gallery", "/lyrics", "/live", "/about"];
