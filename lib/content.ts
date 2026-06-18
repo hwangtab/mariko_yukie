@@ -94,6 +94,29 @@ export const images = {
   stage: img("namsan_19.webp"),
 };
 
+const productionCredits = {
+  producer: { ko: "사토유키에", ja: "佐藤行衛", en: "Sato Yukie" } as Localized,
+  recordingStudio: {
+    ko: "Bohemian Studio (2024.4〜2025.7)",
+    ja: "Bohemian Studio (2024.4〜2025.7)",
+    en: "Bohemian Studio (2024.4〜2025.7)",
+  } as Localized,
+  mixingStudio: {
+    ko: "Studio Nol (2025.8〜2025.12)",
+    ja: "Studio Nol (2025.8〜2025.12)",
+    en: "Studio Nol (2025.8〜2025.12)",
+  } as Localized,
+  masteringStudio: {
+    ko: "Aubrite Mastering Studio",
+    ja: "Aubrite Mastering Studio",
+    en: "Aubrite Mastering Studio",
+  } as Localized,
+  recordingDirector: { ko: "곽우영", ja: "クァク・ウヨン", en: "Kwak Woo-young" } as Localized,
+  mixingEngineer: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } as Localized,
+  masteringEngineer: { ko: "Hashimoto Yoei", ja: "Hashimoto Yoei", en: "Hashimoto Yoei" } as Localized,
+  originalArtworkDesign: { ko: "Nao (Studio Vamp)", ja: "Nao (Studio Vamp)", en: "Nao (Studio Vamp)" } as Localized,
+};
+
 // ── 앨범 ──
 export const album = {
   title: { ko: "남산타워", ja: "南山タワー", en: "Namsan Tower Lights" } as Localized,
@@ -153,9 +176,14 @@ export const album = {
     { label: { ko: "부클릿", ja: "ブックレット", en: "Booklet" }, value: { ko: "12p, 한·일 가사 + Thanks To", ja: "12p、韓・日歌詞 + Thanks To", en: "12p, KR·JP lyrics + Thanks To" } },
     { label: { ko: "제작 수량", ja: "製作数", en: "Pressing" }, value: { ko: "500장 한정", ja: "500枚限定", en: "500 copies, limited" } },
     { label: { ko: "발매", ja: "リリース", en: "Release" }, value: { ko: "2026년 8월", ja: "2026年8月", en: "August 2026" } },
-    { label: { ko: "레코딩", ja: "レコーディング", en: "Recording" }, value: { ko: "Bohemian Studio (2024.4〜2025.7)", ja: "Bohemian Studio (2024.4〜2025.7)", en: "Bohemian Studio (2024.4〜2025.7)" } },
-    { label: { ko: "믹싱", ja: "ミキシング", en: "Mixing" }, value: { ko: "Studio Nol (2025.8〜2025.12)", ja: "Studio Nol (2025.8〜2025.12)", en: "Studio Nol (2025.8〜2025.12)" } },
-    { label: { ko: "마스터링", ja: "マスタリング", en: "Mastering" }, value: { ko: "Aubrite Mastering Studio", ja: "Aubrite Mastering Studio", en: "Aubrite Mastering Studio" } },
+    { label: { ko: "프로듀스", ja: "プロデュース", en: "Produced by" }, value: productionCredits.producer },
+    { label: { ko: "레코딩 스튜디오", ja: "レコーディングスタジオ", en: "Recording Studio" }, value: productionCredits.recordingStudio },
+    { label: { ko: "믹싱 스튜디오", ja: "ミキシングスタジオ", en: "Mixing Studio" }, value: productionCredits.mixingStudio },
+    { label: { ko: "마스터링 스튜디오", ja: "マスタリングスタジオ", en: "Mastering Studio" }, value: productionCredits.masteringStudio },
+    { label: { ko: "레코딩 디렉터", ja: "レコーディングディレクター", en: "Recording Director" }, value: productionCredits.recordingDirector },
+    { label: { ko: "믹싱 엔지니어", ja: "ミキシングエンジニア", en: "Mixing Engineer" }, value: productionCredits.mixingEngineer },
+    { label: { ko: "마스터링 엔지니어", ja: "マスタリングエンジニア", en: "Mastering Engineer" }, value: productionCredits.masteringEngineer },
+    { label: { ko: "오리지널 아트워크 & 디자인", ja: "オリジナルアートワーク & デザイン", en: "Original Artwork & Design" }, value: productionCredits.originalArtworkDesign },
   ] as SpecRow[],
 };
 
@@ -469,19 +497,19 @@ export const events: EventItem[] = [
   },
 ];
 
-// ── 크레딧 (credits.json) ──
+// ── 크레딧 ──
 export const credits: { role: Localized; name: Localized }[] = [
   { role: { ko: "아티스트 / 작사·작곡·연주", ja: "アーティスト / 作詞・作曲・演奏", en: "Artists / writing · composing · performance" }, name: { ko: "마리코, 사토유키에", ja: "マリコ、佐藤行衛", en: "Mariko, Sato Yukie" } },
-  { role: { ko: "프로듀스", ja: "プロデュース", en: "Produced by" }, name: { ko: "사토유키에", ja: "佐藤行衛", en: "Sato Yukie" } },
-  { role: { ko: "레코딩 스튜디오", ja: "レコーディングスタジオ", en: "Recording Studio" }, name: { ko: "Bohemian Studio (2024.4〜2025.7)", ja: "Bohemian Studio (2024.4〜2025.7)", en: "Bohemian Studio (2024.4〜2025.7)" } },
-  { role: { ko: "믹싱 스튜디오", ja: "ミキシングスタジオ", en: "Mixing Studio" }, name: { ko: "Studio Nol (2025.8〜2025.12)", ja: "Studio Nol (2025.8〜2025.12)", en: "Studio Nol (2025.8〜2025.12)" } },
-  { role: { ko: "마스터링 스튜디오", ja: "マスタリングスタジオ", en: "Mastering Studio" }, name: { ko: "Aubrite Mastering Studio", ja: "Aubrite Mastering Studio", en: "Aubrite Mastering Studio" } },
-  { role: { ko: "레코딩 디렉터", ja: "レコーディングディレクター", en: "Recording Director" }, name: { ko: "곽우영", ja: "クァク・ウヨン", en: "Kwak Woo-young" } },
-  { role: { ko: "믹싱 엔지니어", ja: "ミキシングエンジニア", en: "Mixing Engineer" }, name: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } },
-  { role: { ko: "마스터링 엔지니어", ja: "マスタリングエンジニア", en: "Mastering Engineer" }, name: { ko: "Hashimoto Yoei", ja: "Hashimoto Yoei", en: "Hashimoto Yoei" } },
+  { role: { ko: "프로듀스", ja: "プロデュース", en: "Produced by" }, name: productionCredits.producer },
+  { role: { ko: "레코딩 스튜디오", ja: "レコーディングスタジオ", en: "Recording Studio" }, name: productionCredits.recordingStudio },
+  { role: { ko: "믹싱 스튜디오", ja: "ミキシングスタジオ", en: "Mixing Studio" }, name: productionCredits.mixingStudio },
+  { role: { ko: "마스터링 스튜디오", ja: "マスタリングスタジオ", en: "Mastering Studio" }, name: productionCredits.masteringStudio },
+  { role: { ko: "레코딩 디렉터", ja: "レコーディングディレクター", en: "Recording Director" }, name: productionCredits.recordingDirector },
+  { role: { ko: "믹싱 엔지니어", ja: "ミキシングエンジニア", en: "Mixing Engineer" }, name: productionCredits.mixingEngineer },
+  { role: { ko: "마스터링 엔지니어", ja: "マスタリングエンジニア", en: "Mastering Engineer" }, name: productionCredits.masteringEngineer },
   { role: { ko: "기획·제작·운영", ja: "企画・制作・運営", en: "Planning · production · operation" }, name: { ko: "황경하 (스튜디오 놀)", ja: "ファン・ギョンハ(スタジオ・ノル)", en: "Hwang Kyeong-ha (Studio Nol)" } },
   { role: { ko: "비주얼 디렉팅", ja: "ビジュアルディレクション", en: "Visual direction" }, name: { ko: "마리코", ja: "マリコ", en: "Mariko" } },
-  { role: { ko: "오리지널 아트워크 & 디자인", ja: "オリジナルアートワーク & デザイン", en: "Original Artwork & Design" }, name: { ko: "Nao (Studio Vamp)", ja: "Nao (Studio Vamp)", en: "Nao (Studio Vamp)" } },
+  { role: { ko: "오리지널 아트워크 & 디자인", ja: "オリジナルアートワーク & デザイン", en: "Original Artwork & Design" }, name: productionCredits.originalArtworkDesign },
   { role: { ko: "사진·영상", ja: "写真・映像", en: "Photo · video" }, name: { ko: "박치치 감독", ja: "パク・チチ監督", en: "Director Park Chichi" } },
   { role: { ko: "웹사이트", ja: "ウェブサイト", en: "Website" }, name: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } },
 ];

@@ -132,9 +132,9 @@ export default async function AlbumPage({
         <SectionLabel>{ui.common.spec[locale]}</SectionLabel>
         <dl className="mt-6 divide-y divide-navy/15 overflow-hidden rounded-card border-2 border-navy">
           {album.spec.map((row, i) => (
-            <div key={i} className="flex justify-between gap-4 px-5 py-3.5">
+            <div key={i} className="grid gap-1 px-5 py-3.5 sm:grid-cols-[minmax(8rem,0.9fr)_minmax(0,1.4fr)] sm:gap-4">
               <dt className="text-sm text-navy/60">{row.label[locale]}</dt>
-              <dd className="text-right font-heading text-navy">{row.value[locale]}</dd>
+              <dd className="break-words font-heading text-navy sm:text-right">{row.value[locale]}</dd>
             </div>
           ))}
         </dl>
