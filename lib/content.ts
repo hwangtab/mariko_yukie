@@ -153,8 +153,9 @@ export const album = {
     { label: { ko: "부클릿", ja: "ブックレット", en: "Booklet" }, value: { ko: "12p, 한·일 가사 + Thanks To", ja: "12p、韓・日歌詞 + Thanks To", en: "12p, KR·JP lyrics + Thanks To" } },
     { label: { ko: "제작 수량", ja: "製作数", en: "Pressing" }, value: { ko: "500장 한정", ja: "500枚限定", en: "500 copies, limited" } },
     { label: { ko: "발매", ja: "リリース", en: "Release" }, value: { ko: "2026년 8월", ja: "2026年8月", en: "August 2026" } },
-    { label: { ko: "녹음·믹싱", ja: "録音・ミックス", en: "Recording / Mix" }, value: { ko: "스튜디오 놀", ja: "スタジオ・ノル", en: "Studio Nol" } },
-    { label: { ko: "마스터링", ja: "マスタリング", en: "Mastering" }, value: { ko: "일본 (사토유키에 협업)", ja: "日本(佐藤行衛と協業)", en: "Japan (with Sato Yukie)" } },
+    { label: { ko: "레코딩", ja: "レコーディング", en: "Recording" }, value: { ko: "Bohemian Studio (2024.4〜2025.7)", ja: "Bohemian Studio (2024.4〜2025.7)", en: "Bohemian Studio (2024.4〜2025.7)" } },
+    { label: { ko: "믹싱", ja: "ミキシング", en: "Mixing" }, value: { ko: "Studio Nol (2025.8〜2025.12)", ja: "Studio Nol (2025.8〜2025.12)", en: "Studio Nol (2025.8〜2025.12)" } },
+    { label: { ko: "마스터링", ja: "マスタリング", en: "Mastering" }, value: { ko: "Aubrite Mastering Studio", ja: "Aubrite Mastering Studio", en: "Aubrite Mastering Studio" } },
   ] as SpecRow[],
 };
 
