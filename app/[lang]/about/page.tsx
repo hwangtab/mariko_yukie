@@ -63,9 +63,9 @@ export default async function AboutPage({
         <p className="mt-4 text-xs text-navy/55">
           {tri(
             locale,
-            "디자인·촬영 팀의 정식 크레딧은 공개 협의 후 순차 추가됩니다.",
-            "デザイン・撮影チームの正式クレジットは、公開協議のうえ順次追加します。",
-            "Full credits for the design and film teams will be added in turn, once cleared for release.",
+            "추가 크레딧은 공개 협의 후 순차 반영됩니다.",
+            "追加クレジットは、公開協議のうえ順次反映します。",
+            "Additional credits will be reflected in turn once cleared for release.",
           )}
         </p>
       </section>

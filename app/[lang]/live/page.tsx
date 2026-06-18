@@ -67,9 +67,9 @@ export default async function LivePage({
         <p className="mt-10 text-center text-sm text-navy/60">
           {tri(
             locale,
-            "공연 장소·날짜는 확정되는 대로 이곳과 텀블벅에서 안내합니다.",
-            "公演の場所・日程は確定次第、こちらと텀블벅でお知らせします。",
-            "Venue and dates will be announced here and on Tumblbug as soon as they're confirmed.",
+            "추가 공연과 소식은 확정되는 대로 이곳과 텀블벅에서 안내합니다.",
+            "追加公演やニュースは確定次第、こちらとTumblbugでお知らせします。",
+            "Additional shows and news will be announced here and on Tumblbug as soon as they're confirmed.",
           )}
         </p>
       </section>

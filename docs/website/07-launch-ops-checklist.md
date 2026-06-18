@@ -40,7 +40,7 @@
 ## 2. 발매(8월) 업데이트 체크리스트
 - [ ] 음원 스트리밍 링크 허브 연결(스포티파이·애플·유튜브뮤직·멜론 등)
 - [ ] 펀딩 CTA → 음원/공연 CTA로 교체
-- [ ] 발매 공연 장소·날짜 확정 반영(`events.json` status: confirmed)
+- [x] 발매 공연 장소·날짜 확정 반영(`release-show-2026` status: confirmed, 2026년 9월 6일 오후 5시, 스페이스 한강)
 - [ ] 뮤직비디오 정식 공개 상태 확인
 - [ ] 가사 전곡 공개(공개 범위 확정 후, `00` Open Q)
 
@@ -71,10 +71,10 @@
 ```
 
 ### 자주 하는 작업 예시
-- **공연 추가:** `content/data/events.json`에 항목 추가(미정은 `date: null` + `dateLabel`).
+- **공연 추가:** `lib/content.ts`의 `events` 배열에 항목 추가(미정은 `dateLabel`/`note`로 안전 표기).
 - **음원 링크 연결:** `content/data/links.json`의 `streaming` 채우기 → UI 자동 노출.
 - **트랙 비하인드 보강:** 해당 `album/tracks/<slug>.ko.md` 본문 편집.
-- **소식 추가:** `events.json`에 `type: "news"` 항목 또는 `/live` 콘텐츠 갱신.
+- **소식 추가:** `lib/content.ts`의 `events` 배열에 `type: "news"` 항목 또는 `/live` 콘텐츠 갱신.
 
 ---
 

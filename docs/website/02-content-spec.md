@@ -42,7 +42,7 @@ content/
 └─ data/
    ├─ tracks.json       (트랙 마스터: 번호·슬러그·제목·언어·성격)
    ├─ discography.json  (마리코·곱창전골·솔로)
-   ├─ events.json       (공연·일정)
+   ├─ lib/content.ts events 배열 (공연·일정)
    ├─ links.json        (외부 링크: 텀블벅·유튜브·SNS·음원)
    └─ credits.json      (프로젝트 팀)
 ```
@@ -118,18 +118,17 @@ links:
 ```
 본문: 서사형 소개(기획안 1-1 / 1-2). 디스코그래피·이력 표는 `discography.json` 참조 렌더.
 
-### 3.4 이벤트 (`events.json`)
+### 3.4 이벤트 (`lib/content.ts` events 배열)
 
 ```jsonc
 {
   "id": "release-show-2026",
   "type": "release",                 // release | tour | news
-  "title": { "ko": "《남산타워》 발매 공연", "ja": "..." },
-  "date": null,                       // 미정 → null, 확정 시 ISO 날짜
-  "dateLabel": { "ko": "2026년 8월 (예정)", "ja": "2026年8月(予定)" },
-  "venue": { "ko": "서울 홍대 인근 (미정: 롤링홀/프리즘홀)", "ja": "..." },
-  "note": { "ko": "후원자 초청 무료·클로즈드 공연", "ja": "..." },
-  "status": "tentative"               // tentative | confirmed | past
+  "title": { "ko": "《남산타워》 발매 기념공연", "ja": "《南山タワー》リリース記念公演" },
+  "dateLabel": { "ko": "2026년 9월 6일 (일) 오후 5시", "ja": "2026年9月6日(日)17:00" },
+  "venue": { "ko": "스페이스 한강 (서울)", "ja": "スペース・ハンガン(ソウル)" },
+  "note": { "ko": "후원자 초청제로 진행되는 무료 공연입니다.", "ja": "支援者招待制の無料公演です。" },
+  "status": "confirmed"               // tentative | confirmed | past
 }
 ```
 
@@ -184,7 +183,7 @@ links:
 
 ### 공연·소식 `/live`
 - 발매 공연 안내(무료·클로즈드·후원자 초청), 투어 검토(대구 등), 소식
-- 미정 항목은 `dateLabel`/`note`로 안전하게 표기
+- 확정된 발매 공연은 날짜·시간·장소를 명시하고, 미정 항목은 `dateLabel`/`note`로 안전하게 표기
 
 ### About `/about`
 - 프로젝트 개요, 프로젝트 팀/크레딧, 미디어 문의, SNS

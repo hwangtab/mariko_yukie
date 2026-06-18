@@ -446,7 +446,7 @@ export const duoIntro = {
   en: "The two have worked together since 2018. Sato Yukie's vintage '60s–'70s group sound and Mariko's '80s trot color lock together naturally on certain tracks. Between '60s–'70s group sound and '80s trot there really isn't much distance — these are sounds that grew up breathing the same era's air.",
 } as Localized;
 
-// ── 공연·소식 (events.json) ──
+// ── 공연·소식 ──
 export const events: EventItem[] = [
   {
     id: "release-show-2026",
@@ -468,12 +468,19 @@ export const events: EventItem[] = [
   },
 ];
 
-// ── 크레딧 (credits.json) — 공개 협의 중 항목은 일반 표기 ──
+// ── 크레딧 (credits.json) ──
 export const credits: { role: Localized; name: Localized }[] = [
   { role: { ko: "아티스트 / 작사·작곡·연주", ja: "アーティスト / 作詞・作曲・演奏", en: "Artists / writing · composing · performance" }, name: { ko: "마리코, 사토유키에", ja: "マリコ、佐藤行衛", en: "Mariko, Sato Yukie" } },
+  { role: { ko: "프로듀스", ja: "プロデュース", en: "Produced by" }, name: { ko: "사토유키에", ja: "佐藤行衛", en: "Sato Yukie" } },
+  { role: { ko: "레코딩 스튜디오", ja: "レコーディングスタジオ", en: "Recording Studio" }, name: { ko: "Bohemian Studio (2024.4〜2025.7)", ja: "Bohemian Studio (2024.4〜2025.7)", en: "Bohemian Studio (2024.4〜2025.7)" } },
+  { role: { ko: "믹싱 스튜디오", ja: "ミキシングスタジオ", en: "Mixing Studio" }, name: { ko: "Studio Nol (2025.8〜2025.12)", ja: "Studio Nol (2025.8〜2025.12)", en: "Studio Nol (2025.8〜2025.12)" } },
+  { role: { ko: "마스터링 스튜디오", ja: "マスタリングスタジオ", en: "Mastering Studio" }, name: { ko: "Aubrite Mastering Studio", ja: "Aubrite Mastering Studio", en: "Aubrite Mastering Studio" } },
+  { role: { ko: "레코딩 디렉터", ja: "レコーディングディレクター", en: "Recording Director" }, name: { ko: "곽우영", ja: "クァク・ウヨン", en: "Kwak Woo-young" } },
+  { role: { ko: "믹싱 엔지니어", ja: "ミキシングエンジニア", en: "Mixing Engineer" }, name: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } },
+  { role: { ko: "마스터링 엔지니어", ja: "マスタリングエンジニア", en: "Mastering Engineer" }, name: { ko: "Hashimoto Yoei", ja: "Hashimoto Yoei", en: "Hashimoto Yoei" } },
   { role: { ko: "기획·제작·운영", ja: "企画・制作・運営", en: "Planning · production · operation" }, name: { ko: "황경하 (스튜디오 놀)", ja: "ファン・ギョンハ(スタジオ・ノル)", en: "Hwang Kyeong-ha (Studio Nol)" } },
   { role: { ko: "비주얼 디렉팅", ja: "ビジュアルディレクション", en: "Visual direction" }, name: { ko: "마리코", ja: "マリコ", en: "Mariko" } },
-  { role: { ko: "아트워크·로고", ja: "アートワーク・ロゴ", en: "Artwork · logo" }, name: { ko: "일본 디자이너 (공개 협의 중)", ja: "日本人デザイナー(公開協議中)", en: "Japanese designer (TBA)" } },
+  { role: { ko: "오리지널 아트워크 & 디자인", ja: "オリジナルアートワーク & デザイン", en: "Original Artwork & Design" }, name: { ko: "Nao (Studio Vamp)", ja: "Nao (Studio Vamp)", en: "Nao (Studio Vamp)" } },
   { role: { ko: "사진·영상", ja: "写真・映像", en: "Photo · video" }, name: { ko: "박치치 감독", ja: "パク・チチ監督", en: "Director Park Chichi" } },
   { role: { ko: "웹사이트", ja: "ウェブサイト", en: "Website" }, name: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } },
 ];

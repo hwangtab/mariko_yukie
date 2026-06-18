@@ -45,7 +45,7 @@
 | `MusicAlbum` | 앨범 | byArtist, numTracks 15, datePublished 2026-08 |
 | `MusicRecording` | 트랙 상세 | 곡별 |
 | `VideoObject` | 뮤직비디오 | 유튜브 임베드 |
-| `MusicEvent` | 공연 | 발매 공연(확정 후 채움) |
+| `MusicEvent` | 공연 | 발매 기념공연(2026-09-06 17:00, 스페이스 한강) |
 | `BreadcrumbList` | 하위 페이지 | 내비게이션 |
 
 - `sameAs`에 SNS·유튜브·페이스북 연결(엔티티 신뢰도).

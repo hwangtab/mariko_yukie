@@ -42,7 +42,7 @@ docs/website/      기획·설계 문서 (PRD·IA·콘텐츠·디자인·i18n·�
 대부분 `lib/content.ts` 한 곳에서 KO/JA를 함께 편집합니다.
 
 - **외부 링크**(텀블벅 URL, 뮤직비디오 ID, 음원 스트리밍): `links` 객체 — 빈 값은 UI에서 자동 숨김/“곧 공개” 처리
-- **공연·소식**: `events` 배열 (미정은 `dateLabel`/`note`로 안전 표기)
+- **공연·소식**: `events` 배열 (발매 공연은 확정 정보, 미정 일정은 `dateLabel`/`note`로 안전 표기)
 - **트랙 비하인드 / 아티스트 서사**: `tracks`, `artists` 배열
 
 자세한 운영 워크플로는 [docs/website/07-launch-ops-checklist.md](docs/website/07-launch-ops-checklist.md) 참조.
