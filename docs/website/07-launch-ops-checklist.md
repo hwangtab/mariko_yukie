@@ -61,9 +61,9 @@
 
 ```
 1. 추가/수정할 콘텐츠 식별
-   - 본문(서사·트랙 소개) → content/**/*.ko.md, *.ja.md
-   - 구조 데이터(트랙·공연·링크) → content/data/*.json
-   - UI 라벨 → messages/ko.json, ja.json
+   - 구조 데이터(트랙·공연·링크·사이트 상태) → `content/data/*.ts`
+   - 가사 원천 → `content/lyrics/<slug>.ko.md`
+   - UI 라벨 → `lib/i18n.ts`
 2. 양언어 모두 갱신 (없으면 04 폴백 규칙대로 우선 KO만, JA "준비 중")
 3. (권장) 로컬 빌드로 누락 키·깨진 링크 경고 확인
 4. 커밋 → 푸시 → 자동 재배포(프리뷰 확인 후 main 머지)
@@ -71,10 +71,11 @@
 ```
 
 ### 자주 하는 작업 예시
-- **공연 추가:** `lib/content.ts`의 `events` 배열에 항목 추가(미정은 `dateLabel`/`note`로 안전 표기).
-- **음원 링크 연결:** `content/data/links.json`의 `streaming` 채우기 → UI 자동 노출.
-- **트랙 비하인드 보강:** 해당 `album/tracks/<slug>.ko.md` 본문 편집.
-- **소식 추가:** `lib/content.ts`의 `events` 배열에 `type: "news"` 항목 또는 `/live` 콘텐츠 갱신.
+- **공연 추가:** `content/data/events.ts`의 `events` 배열에 항목 추가(미정은 `dateLabel`/`note`로 안전 표기).
+- **음원 링크 연결:** `content/data/links.ts`의 `streaming` 채우기 → UI 자동 노출.
+- **트랙 비하인드 보강:** `content/data/tracks.ts`의 해당 slug 본문 편집.
+- **소식 추가:** `content/data/events.ts`의 `events` 배열에 `type: "news"` 항목 추가.
+- **가사 수정:** `content/lyrics/<slug>.ko.md`에서 연 단위 빈 줄을 유지하며 편집.
 
 ---
 

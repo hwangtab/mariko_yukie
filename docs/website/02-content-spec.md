@@ -32,44 +32,43 @@ content/
 │  ├─ mariko.ko.md      mariko.ja.md
 │  └─ yukie.ko.md       yukie.ja.md
 ├─ album/
-│  ├─ album.ko.md       album.ja.md      (앨범 개요)
-│  └─ tracks/
-│     ├─ 02-sarang-ui-suljan.ko.md / .ja.md
-│     ├─ 05-namsan-tower.ko.md / .ja.md
-│     └─ ...             (트랙별)
-├─ live/
-│  └─ release-show.ko.md / .ja.md
-└─ data/
-   ├─ tracks.json       (트랙 마스터: 번호·슬러그·제목·언어·성격)
-   ├─ discography.json  (마리코·곱창전골·솔로)
-   ├─ lib/content.ts events 배열 (공연·일정)
-   ├─ lib/content.ts album.spec 배열 (음반 사양·제작 크레딧)
-   ├─ links.json        (외부 링크: 텀블벅·유튜브·SNS·음원)
-   └─ lib/content.ts credits 배열 (프로젝트 팀·공식 크레딧)
+├─ data/
+│  ├─ site.ts           (사이트 URL fallback·캠페인 상태)
+│  ├─ links.ts          (텀블벅·유튜브·SNS·음원)
+│  ├─ album.ts          (앨범 개요·사양)
+│  ├─ tracks.ts         (트랙 마스터: 번호·슬러그·제목·언어·성격)
+│  ├─ artists.ts        (마리코·사토유키에 서사·이력)
+│  ├─ events.ts         (공연·소식)
+│  ├─ credits.ts        (프로젝트 팀·공식 크레딧)
+│  ├─ gallery.ts        (이미지 레지스트리·갤러리·음원 경로)
+│  └─ story.ts          (음악의 뿌리·남산타워 트리비아)
+└─ lyrics/
+   ├─ sarang-ui-suljan.ko.md
+   ├─ namsan-tower.ko.md
+   └─ ...               (공개 한국어 원곡 가사)
 ```
 
-> `.ko.md`/`.ja.md` 명명은 한 예시이며, 디렉터리 분리(`/ko`, `/ja`) 방식도 가능 — `05-tech-spec`에서 확정.
+> 구조 데이터는 TypeScript 파일로 타입 안전성을 우선하고, 긴 가사 원문만 사람이 읽기 쉬운 Markdown으로 관리한다.
 
 ---
 
 ## 3. 데이터 스키마
 
-### 3.1 트랙 마스터 (`tracks.json`)
+### 3.1 트랙 마스터 (`content/data/tracks.ts`)
 
 트랙 슬러그·번호의 단일 출처. IA의 URL 슬러그와 일치해야 한다.
 
-```jsonc
+```ts
 {
   "number": 5,                    // 트랙 번호 (1~15)
   "slug": "namsan-tower",         // URL 슬러그 (언어 무관 고정)
-  "title": { "ko": "남산타워 Namsan Tower Lights", "ja": "南山タワー Namsan Tower Lights" },
-  "type": { "ko": "그룹 사운드, 타이틀곡", "ja": "..." },
+  "title": { "ko": "남산타워 Namsan Tower Lights", "ja": "南山タワー Namsan Tower Lights", "en": "Namsan Tower Lights" },
+  "type": { "ko": "그룹 사운드, 타이틀곡", "ja": "...", "en": "..." },
   "language": "ko",               // 원곡 언어 ko | ja
   "isTitle": true,                // 타이틀곡 여부
   "isBonus": false,
   "hasMV": true,
-  "lyricsSlug": "namsan-tower",   // 가사 연결 (없으면 null)
-  "previewUrl": null              // 미리듣기 클립(있을 때)
+  "body": { "ko": ["..."], "ja": ["..."], "en": ["..."] }
 }
 ```
 
@@ -93,33 +92,25 @@ content/
 | 14 | 남산타워 (일본어) | `namsan-tower-ja` | 05 일본어 |
 | 15 | 꿈 속에서 본 사람 (일본어) | `yume-no-hito` | 보너스 |
 
-### 3.2 트랙 본문 (`album/tracks/*.md` frontmatter + 본문)
+### 3.2 트랙 본문 (`content/data/tracks.ts`)
 
-```yaml
----
-slug: namsan-tower
-number: 5
----
+본문은 `body: Localized<string[]>`에 문단 배열로 저장한다. 펀딩 원고의 곡 소개를 1차 콘텐츠로 활용하고, 사이트 전용으로 보강한다.
+
+### 3.3 아티스트 (`content/data/artists.ts`)
+
+```ts
+{
+  id: "yukie", // mariko | yukie
+  name: { ko: "사토유키에", ja: "佐藤行衛", en: "Sato Yukie" },
+  roman: "Sato Yukie",
+  tagline: { ko: "한국 록의 고고학자", ja: "...", en: "..." },
+  photo: "/images/namsan_04.webp",
+  links: [{ label: "YouTube — J-Music Archive", href: links.sns.yukieYoutube }],
+}
 ```
-본문: 트랙 소개·비하인드 (사토유키에 직접 작성분). 펀딩 원고의 곡 소개를 1차 콘텐츠로 활용하고, 사이트 전용으로 보강.
+본문: 서사형 소개(기획안 1-1 / 1-2). 디스코그래피·이력 표도 같은 artist 객체 안에서 관리한다.
 
-### 3.3 아티스트 (`artists/*.md`)
-
-```yaml
----
-id: yukie            # mariko | yukie
-name: { ko: "사토유키에", ja: "佐藤行衛" }
-roman: "Sato Yukie"
-tagline: { ko: "한국 록의 고고학자", ja: "..." }
-photo: "/images/artists/yukie.jpg"
-links:
-  youtube: "https://www.youtube.com/channel/UC6PtS4px3uFY8HKZnM4SzWA"
-  facebook: "https://www.facebook.com/Kopchangjeongol"
----
-```
-본문: 서사형 소개(기획안 1-1 / 1-2). 디스코그래피·이력 표는 `discography.json` 참조 렌더.
-
-### 3.4 이벤트 (`lib/content.ts` events 배열)
+### 3.4 이벤트 (`content/data/events.ts`)
 
 ```jsonc
 {
@@ -133,9 +124,9 @@ links:
 }
 ```
 
-### 3.5 외부 링크 (`links.json`)
+### 3.5 외부 링크 (`content/data/links.ts`)
 
-```jsonc
+```ts
 {
   "tumblbug": "",                     // 펀딩 오픈 시 확정
   "musicVideoYoutubeId": "",          // 영상 ID
@@ -149,7 +140,7 @@ links:
 }
 ```
 
-빈 값(`""`/`null`)은 UI에서 자동 숨김 처리 → 미확정 정보가 깨진 링크로 노출되지 않게 한다.
+빈 값(`""`)은 UI에서 자동 숨김 처리 → 미확정 정보가 깨진 링크로 노출되지 않게 한다.
 
 ---
 
@@ -179,8 +170,8 @@ links:
 - 링크 미확정 시 "곧 공개" 플레이스홀더
 
 ### 가사 `/lyrics`, `/lyrics/[slug]`
-- 곡별 한·일 가사 + 짧은 배경 메모
-- **공개 범위 확정 필요**(`00` Open Q): 전문 / 일부 / PDF 안내만
+- `content/lyrics/<slug>.ko.md`의 한국어 원곡 가사
+- 일본어 재해석본·미공개 곡은 CD 부클릿/PDF 안내로 안전 표기
 
 ### 공연·소식 `/live`
 - 발매 공연 안내(무료·클로즈드·후원자 초청), 투어 검토(대구 등), 소식
@@ -188,14 +179,14 @@ links:
 
 ### About `/about`
 - 프로젝트 개요, 프로젝트 팀/크레딧, 미디어 문의, SNS
-- 공식 크레딧은 `lib/content.ts`의 `credits` 배열에서 관리하고, 앨범 사양 표와 같은 제작 크레딧 원천을 공유
+- 공식 크레딧은 `content/data/credits.ts`에서 관리하고, 앨범 사양 표와 같은 제작 크레딧 원천을 공유
 
 ---
 
 ## 5. 콘텐츠 작업 항목 (To-do)
 
-- [x] `docs/lyrics/*.docx` → `lib/lyrics.ts`로 추출·정리(트랙 02~10 한국어 원곡, 연 단위). 일본어 재해석본은 추후 추가
-- [ ] 트랙 슬러그 15개 확정 (위 표 검토)
+- [x] `docs/lyrics/*.docx` → `content/lyrics/*.ko.md`로 추출·정리(트랙 02~10 한국어 원곡, 연 단위). 일본어 재해석본은 추후 추가
+- [x] 트랙 슬러그 15개 확정
 - [ ] 아티스트 프로필 사진 웹 최적화본 배치(`/images/artists/`)
 - [x] 앨범 커버 확정 (`images/album_cover.jpg`) — 사이키델릭·큐트 키비주얼 (`03` v2.0)
 - [ ] 뮤직비디오 유튜브 ID 입력(공개 시)

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { album } from "@/lib/content";
+import { getSiteUrl } from "@/content/data/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { AudioPlayerProvider } from "@/components/AudioPlayer";
@@ -35,9 +36,7 @@ export async function generateMetadata({
   const siteName = album.artist[loc];
 
   return {
-    metadataBase: new URL(
-      process.env.NEXT_PUBLIC_SITE_URL ?? "https://marikoyukie.vercel.app",
-    ),
+    metadataBase: new URL(getSiteUrl()),
     title: { default: title, template: `%s — ${album.artistRoman}` },
     description,
     applicationName: siteName,

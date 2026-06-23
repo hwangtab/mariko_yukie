@@ -1,12 +1,15 @@
 import Link from "next/link";
 import { tri, ui, type Locale } from "@/lib/i18n";
-import { links } from "@/lib/content";
+import { campaignPhase, links } from "@/lib/content";
 import { Star } from "./ui";
 
 // 상황별 CTA — 펀딩 기간엔 텀블벅, 미확정 시 "곧 공개"
 export default function CTABlock({ locale }: { locale: Locale }) {
-  const hasTumblbug = links.tumblbug.length > 0;
+  const isFunding = campaignPhase === "funding";
+  const hasTumblbug = isFunding && links.tumblbug.length > 0;
   const hasStreaming = Object.values(links.streaming).some(Boolean);
+  const secondaryHref = hasStreaming ? `/${locale}/album` : `/${locale}/video`;
+  const secondaryLabel = hasStreaming ? ui.cta.listen[locale] : ui.cta.watchMV[locale];
 
   return (
     <section className="night relative overflow-hidden">
@@ -45,10 +48,10 @@ export default function CTABlock({ locale }: { locale: Locale }) {
           )}
 
           <Link
-            href={hasStreaming ? `/${locale}/album` : `/${locale}/video`}
+            href={secondaryHref}
             className="rounded-full border-2 border-cream/80 px-8 py-3.5 font-display text-base text-cream transition hover:-translate-y-1 hover:bg-cream hover:text-night"
           >
-            {hasStreaming ? ui.cta.listen[locale] : ui.cta.watchMV[locale]} →
+            {secondaryLabel} →
           </Link>
         </div>
       </div>

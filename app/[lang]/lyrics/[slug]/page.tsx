@@ -77,12 +77,26 @@ export default async function LyricsPage({
             </div>
           </div>
           <p className="mt-4 text-center text-xs text-navy/55">
-            {tri(
-              locale,
-              "원곡 가사. 일본어 재해석 버전은 CD 부클릿(12P)에 함께 수록됩니다.",
-              "原曲歌詞(韓国語)。日本語版(再解釈)はCDブックレットに収録予定です。",
-              "Original lyrics. The Japanese reinterpretation is included in the CD booklet (12p).",
-            )}
+            {tk.language === "ko"
+              ? tri(
+                  locale,
+                  "원곡 가사. 일본어 재해석 버전은 CD 부클릿(12P)에 함께 수록됩니다.",
+                  "原曲歌詞(韓国語)。日本語版(再解釈)はCDブックレットに収録予定です。",
+                  "Original lyrics. The Japanese reinterpretation is included in the CD booklet (12p).",
+                )
+              : tk.isBonus
+                ? tri(
+                    locale,
+                    "일본어 보너스 트랙. 한국어 버전은 곱창전골 5집 발매 후 공개됩니다.",
+                    "日本語ボーナストラック。韓国語版はコプチャンチョンゴル5集のリリース後に公開されます。",
+                    "Japanese bonus track. The Korean version will be released after Kopchangjeongol's 5th album.",
+                  )
+                : tri(
+                    locale,
+                    "일본어 재해석 가사. 한국어 원곡 가사도 함께 수록되어 있습니다.",
+                    "日本語版(再解釈)の歌詞。韓国語の原曲歌詞も合わせて収録されています。",
+                    "Japanese reinterpretation. The original Korean lyrics are also included.",
+                  )}
           </p>
         </>
       ) : (

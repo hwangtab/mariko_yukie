@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, locales, tri, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack, album, trackImages } from "@/lib/content";
-import { Stamp, Star } from "@/components/ui";
+import { Stamp } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import CTABlock from "@/components/CTABlock";
 import { PlayThisTrack } from "@/components/AudioPlayer";

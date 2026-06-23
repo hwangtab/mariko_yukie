@@ -1,9 +1,7 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { tracks, artists } from "@/lib/content";
-
-// 도메인 확정 시 NEXT_PUBLIC_SITE_URL 환경변수로 교체
-const base = process.env.NEXT_PUBLIC_SITE_URL ?? "https://marikoyukie.vercel.app";
+import { getSiteUrl } from "@/content/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const staticPaths = ["", "/artists", "/album", "/video", "/gallery", "/lyrics", "/live", "/about"];
@@ -16,11 +14,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
 
   return locales.flatMap((loc) =>
     all.map((p) => ({
-      url: `${base}/${loc}${p}`,
+      url: getSiteUrl(`/${loc}${p}`),
       lastModified: new Date("2026-06-02"),
       alternates: {
         languages: Object.fromEntries(
-          locales.map((l) => [l, `${base}/${l}${p}`]),
+          locales.map((l) => [l, getSiteUrl(`/${l}${p}`)]),
         ),
       },
     })),

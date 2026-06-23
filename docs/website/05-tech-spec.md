@@ -14,14 +14,14 @@
 |------|------|------|
 | 프레임워크 | **Next.js (App Router)** + TypeScript | 정적 생성·i18n·이미지 최적화 내장 |
 | 렌더링 | **SSG(정적 생성)** 중심 | 콘텐츠가 파일 기반이라 빌드 타임에 전부 생성 가능 |
-| 콘텐츠 | **마크다운 + JSON (파일 기반)** | CMS 미도입 확정. `02` 디렉터리 구조 |
+| 콘텐츠 | **TypeScript 데이터 + Markdown 가사 (파일 기반)** | CMS 미도입 확정. 구조 데이터는 타입 안전성 우선 |
 | 스타일 | Tailwind CSS (또는 CSS Modules) | 디자인 토큰은 `03` 팔레트와 동기화 |
-| 마크다운 처리 | next-mdx / contentlayer / gray-matter + remark 중 택1 | frontmatter + 본문 파싱 |
-| i18n | App Router `[lang]` 세그먼트 + 메시지 사전 | `04` 정책 |
+| 마크다운 처리 | 직접 파싱 | 현재는 가사 Markdown만 연/줄 단위로 파싱 |
+| i18n | App Router `[lang]` 세그먼트 + `lib/i18n.ts` 사전 | `04` 정책 |
 | 배포 | **Vercel**(권장) 또는 정적 호스팅 | PR 프리뷰·도메인 관리 용이 |
 | 분석 | `06`에서 확정 | 개인정보 친화 옵션 우선 |
 
-> 라이브러리 세부 선택(contentlayer vs 직접 파싱 등)은 구현 착수 시 1개로 확정하고 본 문서에 기록한다.
+> 현재 구현은 추가 Markdown 라이브러리 없이 가사 Markdown을 직접 파싱한다. 구조 콘텐츠는 TypeScript 데이터 파일로 관리한다.
 
 ---
 
@@ -29,15 +29,15 @@
 
 ```
 ┌─────────────────────────────────────────┐
-│  content/  (md + json)  ← 단일 콘텐츠 출처 │
-│  messages/ (ko.json, ja.json)            │
+│  content/data/*.ts + content/lyrics/*.md │
+│  lib/i18n.ts                             │
 └───────────────┬─────────────────────────┘
                 │ 빌드 타임 로드/파싱
                 ▼
 ┌─────────────────────────────────────────┐
 │  Next.js (App Router, SSG)               │
 │   app/[lang]/...  라우트                  │
-│   lib/content.ts  콘텐츠 로더             │
+│   lib/content.ts  호환용 콘텐츠 barrel    │
 │   components/     공통 UI                 │
 └───────────────┬─────────────────────────┘
                 │ next build → 정적 산출물
@@ -68,11 +68,11 @@
 │  │  └─ about/page.tsx
 │  ├─ layout.tsx                 # 루트(html)
 │  └─ sitemap.ts, robots.ts      # 06 연동
-├─ content/                      # 02 콘텐츠 구조
-│  ├─ artists/  album/  live/  data/
-├─ messages/  ko.json  ja.json   # UI 문자열
+├─ content/
+│  ├─ data/                      # site, links, album, tracks, artists, events...
+│  └─ lyrics/                    # <slug>.ko.md
 ├─ components/                   # Header, Footer, CTA, TrackList, ...
-├─ lib/                          # content.ts, i18n.ts, seo.ts
+├─ lib/                          # content.ts(barrel), i18n.ts, lyrics.ts(barrel)
 ├─ public/images/                # 최적화 이미지 (원본은 /images)
 └─ docs/website/                 # 본 문서 세트
 ```
@@ -81,14 +81,14 @@
 
 ## 4. 콘텐츠 파이프라인
 
-1. 빌드 시 `lib/content.ts`가 `content/`의 md/json을 읽어 타입드 객체로 로드.
+1. 빌드 시 페이지가 `lib/content.ts` barrel을 통해 `content/data/*.ts`의 타입드 객체를 import.
 2. `generateStaticParams`로 트랙 슬러그·아티스트 id·언어를 정적 경로로 펼침.
-3. frontmatter는 `gray-matter`, 본문 md는 remark/MDX로 HTML 변환.
+3. 가사 페이지는 `content/lyrics/*.ko.md`를 연/줄 단위로 직접 파싱.
 4. 누락 언어/필드는 `04` 폴백 규칙 적용 + 빌드 경고.
 
 **타입 예시:**
 ```ts
-type Locale = "ko" | "ja";
+type Locale = "ko" | "ja" | "en";
 type Localized<T = string> = Record<Locale, T>;
 
 interface Track {
@@ -102,12 +102,13 @@ interface Track {
   hasMV: boolean;
   lyricsSlug: string | null;
   previewUrl: string | null;
-  body: Localized;        // 트랙 비하인드 본문(HTML)
+  body: Localized<string[]>;
 }
 ```
 
 콘텐츠 무결성 검사(빌드 전 스크립트 권장):
-- `tracks.json` 슬러그 ↔ `album/tracks/*` 파일 일치
+- `tracks.ts` 슬러그 ↔ `public/audio/*.mp3` 파일 일치
+- `lyrics/*.ko.md` 슬러그 ↔ 공개 가사 정책 일치
 - 외부 링크 빈 값은 경고만(차단 아님)
 - 이미지 경로 존재 여부
 
@@ -115,8 +116,8 @@ interface Track {
 
 ## 5. 이미지 처리
 
-- 원본 `images/`(`album_cover.jpg`, `namsan_*.png`)를 가공해 `public/images/`에 배치하거나 `next/image`로 최적화.
-- `next/image`로 반응형·지연 로딩·WebP/AVIF 자동 변환.
+- 원본 `images/`(`album_cover.jpg`, `namsan_*.png`)를 가공해 배포용 `public/images/`에 배치한다.
+- `next/image`는 현재 `unoptimized`로 레이아웃·지연 로딩만 담당한다.
 - 키비주얼은 우선순위 로딩(LCP 대상), 갤러리는 지연 로딩.
 
 ---
@@ -125,7 +126,7 @@ interface Track {
 
 - `app/[lang]/` 동적 세그먼트 + `generateStaticParams`로 `ko`/`ja` 모두 정적 생성.
 - 루트 미들웨어(또는 `/` 페이지)에서 `Accept-Language` 1회 분기(`04`).
-- 메시지 사전은 서버 컴포넌트에서 직접 import(런타임 비용 최소).
+- UI 문자열은 `lib/i18n.ts`에서 직접 import(런타임 비용 최소).
 
 ---
 
@@ -133,15 +134,15 @@ interface Track {
 
 - **호스팅:** Vercel 권장 — Git 푸시 시 자동 빌드·프리뷰 URL, 도메인·HTTPS 관리.
 - **브랜치 전략:** `main` 배포, 작업은 피처 브랜치 → 프리뷰 확인 후 머지.
-- **콘텐츠 업데이트:** md/json 수정 → 커밋/푸시 → 자동 재배포(`07` 워크플로).
+- **콘텐츠 업데이트:** `content/data/*.ts` 또는 `content/lyrics/*.ko.md` 수정 → `pnpm check` → 커밋/푸시 → 자동 재배포(`07` 워크플로).
 - **도메인:** `00` Open Q (전용 도메인 vs 하위 경로) 확정 후 연결.
 
 ---
 
 ## 8. 확정 필요
 
-- [ ] 마크다운 처리 라이브러리 1개 확정(contentlayer / next-mdx / 직접 파싱)
-- [ ] 스타일 솔루션 확정(Tailwind 가정)
+- [x] 마크다운 처리 방식 확정(가사 Markdown 직접 파싱)
+- [x] 스타일 솔루션 확정(Tailwind CSS v4)
 - [ ] 호스팅·도메인 확정
-- [ ] 콘텐츠 무결성 검사 스크립트 작성 여부
-- [ ] 콘텐츠 파일 명명 규칙 최종(`*.ko.md` vs `ko/` 디렉터리)
+- [x] 기본 콘텐츠 무결성 테스트 작성(`tests/content-*.test.ts`)
+- [x] 콘텐츠 파일 명명 규칙 최종(`content/lyrics/<slug>.ko.md`)
