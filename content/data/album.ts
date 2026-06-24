@@ -9,9 +9,9 @@ export const album = {
   artist: { ko: "마리코 & 유키에", ja: "マリコ & ユキエ", en: "Mariko & Yukie" } as Localized,
   artistRoman: "Mariko & Yukie",
   releaseLabel: {
-    ko: "2026년 8월 발매 예정",
-    ja: "2026年8月リリース予定",
-    en: "Out August 2026",
+    ko: "2026년 9월 발매 예정",
+    ja: "2026年9月リリース予定",
+    en: "Out September 2026",
   } as Localized,
   concept: {
     ko: "60~70년대 음악을 몸으로 관통한 사람이 2026년에 내는 음반입니다. 오래됐지만 새롭고, 낯설지만 익숙한 소리.",
@@ -60,7 +60,7 @@ export const album = {
     { label: { ko: "포맷", ja: "フォーマット", en: "Format" }, value: { ko: "CD(주얼 케이스) + 디지털 음원", ja: "CD(ジュエルケース) + デジタル音源", en: "CD (jewel case) + digital" } },
     { label: { ko: "부클릿", ja: "ブックレット", en: "Booklet" }, value: { ko: "12p, 한·일 가사 + Thanks To", ja: "12p、韓・日歌詞 + Thanks To", en: "12p, KR·JP lyrics + Thanks To" } },
     { label: { ko: "제작 수량", ja: "製作数", en: "Pressing" }, value: { ko: "500장 한정", ja: "500枚限定", en: "500 copies, limited" } },
-    { label: { ko: "발매", ja: "リリース", en: "Release" }, value: { ko: "2026년 8월", ja: "2026年8月", en: "August 2026" } },
+    { label: { ko: "발매", ja: "リリース", en: "Release" }, value: { ko: "2026년 9월", ja: "2026年9月", en: "September 2026" } },
     { label: { ko: "프로듀스", ja: "プロデュース", en: "Produced by" }, value: productionCredits.producer },
     { label: { ko: "레코딩 스튜디오", ja: "レコーディングスタジオ", en: "Recording Studio" }, value: productionCredits.recordingStudio },
     { label: { ko: "믹싱 스튜디오", ja: "ミキシングスタジオ", en: "Mixing Studio" }, value: productionCredits.mixingStudio },
