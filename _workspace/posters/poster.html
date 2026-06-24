@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8" />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Bagel+Fat+One&family=Mochiy+Pop+One&family=Gowun+Dodum&family=Zen+Maru+Gothic:wght@500;700&family=Jua&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --coral:#f0612f; --pink:#ec6ba8; --yellow:#f5b733;
+    --navy:#1c2750; --cream:#f8efdc; --night:#221a3f; --night-deep:#16102b;
+  }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html,body { width:1080px; height:1350px; overflow:hidden; }
+  .poster {
+    position:relative; width:1080px; height:1350px;
+    background:#000; overflow:hidden;
+    font-family:"Gowun Dodum", sans-serif; color:var(--cream);
+  }
+  .bg {
+    position:absolute; inset:0; width:100%; height:100%;
+    object-fit:cover; z-index:0;
+  }
+  /* 가독성 오버레이 — 상·하단을 진하게 */
+  .overlay {
+    position:absolute; inset:0; z-index:1;
+    background:
+      linear-gradient(180deg,
+        rgba(22,16,43,.80) 0%,
+        rgba(34,26,63,.40) 26%,
+        rgba(34,26,63,.34) 50%,
+        rgba(22,16,43,.88) 78%,
+        rgba(22,16,43,.97) 100%);
+  }
+  .content {
+    position:relative; z-index:2; height:100%;
+    display:flex; flex-direction:column; align-items:center;
+    padding:60px 72px 56px; text-align:center;
+  }
+  /* 리본 배너 */
+  .ribbon {
+    display:inline-flex; align-items:center; gap:12px;
+    background:var(--coral); color:#fff;
+    font-family:"Jua", sans-serif; font-size:34px; font-weight:700;
+    padding:14px 38px; border-radius:999px;
+    border:4px solid var(--navy);
+    box-shadow:0 8px 0 rgba(28,39,80,.45);
+    letter-spacing:.02em;
+  }
+  .ribbon .star { color:var(--yellow); font-size:30px; }
+  /* 앨범 커버 카드 */
+  .cover-wrap { margin-top:46px; }
+  .cover {
+    width:560px; height:560px; object-fit:cover;
+    border-radius:28px; border:8px solid var(--navy);
+    box-shadow:0 22px 48px rgba(0,0,0,.55);
+  }
+  /* 텍스트 블록 */
+  .meta { margin-top:auto; }
+  .album-line {
+    font-family:"Jua", sans-serif; font-size:30px;
+    color:#fff; opacity:.95;
+  }
+  .title {
+    font-family:"Bagel Fat One", sans-serif;
+    font-size:92px; line-height:1.05; color:#fff;
+    margin:6px 0 16px;
+    text-shadow:0 4px 0 var(--navy), 0 8px 22px rgba(0,0,0,.5);
+  }
+  .info {
+    font-size:30px; line-height:1.6; color:var(--cream);
+    text-shadow:0 2px 6px rgba(0,0,0,.7);
+  }
+  .info b { color:var(--yellow); }
+  /* QR 영역 */
+  .cta {
+    margin-top:30px; display:inline-flex; align-items:center; gap:22px;
+    background:rgba(248,239,220,.96); border:5px solid var(--navy);
+    border-radius:22px; padding:22px 28px;
+    box-shadow:0 10px 26px rgba(0,0,0,.4);
+  }
+  .cta img { width:150px; height:150px; display:block; }
+  .cta .txt { text-align:left; color:var(--navy); }
+  .cta .txt .lead {
+    font-family:"Jua", sans-serif; font-size:34px; color:var(--coral);
+    line-height:1.2;
+  }
+  .cta .txt .url { font-size:22px; margin-top:8px; opacity:.85; white-space:nowrap; }
+  .handle {
+    margin-top:26px; font-family:"Jua", sans-serif;
+    font-size:28px; color:#fff; opacity:.9;
+    text-shadow:0 2px 6px rgba(0,0,0,.7);
+  }
+  /* 일본어 폰트 스위치 */
+  body.ja .poster { font-family:"Zen Maru Gothic", sans-serif; }
+  body.ja .ribbon, body.ja .album-line, body.ja .cta .txt .lead, body.ja .handle { font-family:"Zen Maru Gothic", sans-serif; font-weight:700; }
+  body.ja .ribbon { font-size:31px; }
+  body.ja .title { font-family:"Mochiy Pop One", sans-serif; font-size:80px; }
+</style>
+</head>
+<body>
+  <div class="poster">
+    <img class="bg" src="file:///Users/hwang-gyeongha/mariko_yukie/public/images/namsan_69.webp" alt="" />
+    <div class="overlay"></div>
+    <div class="content">
+      <div class="ribbon"><span class="star">&#10022;</span><span id="ribbon"></span><span class="star">&#10022;</span></div>
+      <div class="cover-wrap">
+        <img class="cover" src="file:///Users/hwang-gyeongha/mariko_yukie/public/images/album_cover.webp" alt="남산타워 앨범 커버" />
+      </div>
+      <div class="meta">
+        <div class="album-line" id="albumLine"></div>
+        <div class="title" id="title"></div>
+        <div class="info" id="info"></div>
+        <div class="cta">
+          <img src="file:///Users/hwang-gyeongha/mariko_yukie/_workspace/posters/qr-tumblbug.png" alt="텀블벅 QR" />
+          <div class="txt">
+            <div class="lead" id="ctaLead"></div>
+            <div class="url">tumblbug.com/marikoandyukie</div>
+          </div>
+        </div>
+        <div class="handle">@marikoandyukie</div>
+      </div>
+    </div>
+  </div>
+<script>
+  const DATA = {
+    ko: {
+      ribbon: "텀블벅 펀딩 중",
+      albumLine: "마리코 & 사토유키에 1st Album",
+      title: "남산타워",
+      info: '2026.9 발매 · CD <b>500장 한정</b><br>9.6 발매공연 @스페이스 한강',
+      ctaLead: "스캔하고<br>펀딩 후원하기 →",
+    },
+    ja: {
+      ribbon: "テンバグ ファンディング中",
+      albumLine: "マリコ & サトユキエ 1st Album",
+      title: "南山タワー",
+      info: '2026.9リリース · CD <b>500枚限定</b><br>9.6 リリースライブ @スペース漢江',
+      ctaLead: "スキャンして<br>応援する →",
+    },
+  };
+  const lang = new URLSearchParams(location.search).get("lang") === "ja" ? "ja" : "ko";
+  if (lang === "ja") document.body.classList.add("ja");
+  const d = DATA[lang];
+  ribbon.textContent = d.ribbon;
+  albumLine.textContent = d.albumLine;
+  title.textContent = d.title;
+  info.innerHTML = d.info;
+  ctaLead.innerHTML = d.ctaLead;
+</script>
+</body>
+</html>
