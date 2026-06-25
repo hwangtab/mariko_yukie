@@ -30,3 +30,7 @@ next-env.d.ts
 
 # 원본 음원 마스터(공개 금지) — 웹 스트리밍본은 public/audio/만 배포
 /music/
+
+# 유통/ISRC 등록용 엑셀(내부 문서, 공개 금지)
+docs/트랙리스트_작성본.xlsx
+docs/ISRC등록_남산타워.xlsx
