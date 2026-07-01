@@ -27,10 +27,14 @@ test("lyrics have human-editable markdown sources", () => {
   const dir = join(root, "content/lyrics");
   assert.equal(existsSync(dir), true, "content/lyrics should exist");
 
-  const lyricSources = readdirSync(dir).filter((name) => name.endsWith(".ko.md"));
-  assert.equal(lyricSources.length, 9);
+  const lyricSources = readdirSync(dir).filter((name) => /\.(ko|ja)\.md$/.test(name));
+  assert.equal(lyricSources.length, 14);
   assert.ok(
     lyricSources.includes("sarang-ui-suljan.ko.md"),
-    "track lyrics should be named by slug",
+    "Korean original lyrics should be named by slug and language",
+  );
+  assert.ok(
+    lyricSources.includes("sarang-ui-suljan-ja.ja.md"),
+    "Japanese reinterpretation lyrics should keep the track slug and language",
   );
 });

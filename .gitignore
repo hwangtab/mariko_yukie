@@ -28,9 +28,17 @@ next-env.d.ts
 .playwright-mcp/
 .vercel
 
+# 로컬/에이전트 작업 산출물(제품 소스 아님)
+.superpowers/
+_workspace/
+docs/superpowers/
+
 # 원본 음원 마스터(공개 금지) — 웹 스트리밍본은 public/audio/만 배포
 /music/
 
 # 유통/ISRC 등록용 엑셀(내부 문서, 공개 금지)
 docs/트랙리스트_작성본.xlsx
 docs/ISRC등록_남산타워.xlsx
+
+# 로컬 검수용 아트워크 export(배포용은 public/images/album_cover.webp)
+docs/album_cover.png

@@ -70,7 +70,7 @@
 │  └─ sitemap.ts, robots.ts      # 06 연동
 ├─ content/
 │  ├─ data/                      # site, links, album, tracks, artists, events...
-│  └─ lyrics/                    # <slug>.ko.md
+│  └─ lyrics/                    # <slug>.<lang>.md (lang: ko | ja)
 ├─ components/                   # Header, Footer, CTA, TrackList, ...
 ├─ lib/                          # content.ts(barrel), i18n.ts, lyrics.ts(barrel)
 ├─ public/images/                # 최적화 이미지 (원본은 /images)
@@ -83,7 +83,7 @@
 
 1. 빌드 시 페이지가 `lib/content.ts` barrel을 통해 `content/data/*.ts`의 타입드 객체를 import.
 2. `generateStaticParams`로 트랙 슬러그·아티스트 id·언어를 정적 경로로 펼침.
-3. 가사 페이지는 `content/lyrics/*.ko.md`를 연/줄 단위로 직접 파싱.
+3. 가사 페이지는 `content/lyrics/*.{ko,ja}.md`를 연/줄 단위로 직접 파싱.
 4. 누락 언어/필드는 `04` 폴백 규칙 적용 + 빌드 경고.
 
 **타입 예시:**
@@ -108,7 +108,7 @@ interface Track {
 
 콘텐츠 무결성 검사(빌드 전 스크립트 권장):
 - `tracks.ts` 슬러그 ↔ `public/audio/*.mp3` 파일 일치
-- `lyrics/*.ko.md` 슬러그 ↔ 공개 가사 정책 일치
+- `lyrics/*.{ko,ja}.md` 슬러그 ↔ 공개 가사 정책 일치
 - 외부 링크 빈 값은 경고만(차단 아님)
 - 이미지 경로 존재 여부
 
@@ -134,7 +134,7 @@ interface Track {
 
 - **호스팅:** Vercel 권장 — Git 푸시 시 자동 빌드·프리뷰 URL, 도메인·HTTPS 관리.
 - **브랜치 전략:** `main` 배포, 작업은 피처 브랜치 → 프리뷰 확인 후 머지.
-- **콘텐츠 업데이트:** `content/data/*.ts` 또는 `content/lyrics/*.ko.md` 수정 → `pnpm check` → 커밋/푸시 → 자동 재배포(`07` 워크플로).
+- **콘텐츠 업데이트:** `content/data/*.ts` 또는 `content/lyrics/*.{ko,ja}.md` 수정 → `pnpm check` → 커밋/푸시 → 자동 재배포(`07` 워크플로).
 - **도메인:** `00` Open Q (전용 도메인 vs 하위 경로) 확정 후 연결.
 
 ---
@@ -145,4 +145,4 @@ interface Track {
 - [x] 스타일 솔루션 확정(Tailwind CSS v4)
 - [ ] 호스팅·도메인 확정
 - [x] 기본 콘텐츠 무결성 테스트 작성(`tests/content-*.test.ts`)
-- [x] 콘텐츠 파일 명명 규칙 최종(`content/lyrics/<slug>.ko.md`)
+- [x] 콘텐츠 파일 명명 규칙 최종(`content/lyrics/<slug>.<lang>.md`, `lang`: `ko` 또는 `ja`)

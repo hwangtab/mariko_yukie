@@ -7,7 +7,7 @@
 
 - **Next.js 15 (App Router)** + TypeScript
 - **Tailwind CSS v4** — 디자인 v2.0(70s 사이키델릭·큐트, 앨범 커버 기반)
-- 파일 기반 콘텐츠 (`content/data/*.ts`, `content/lyrics/*.ko.md`) — CMS 없음
+- 파일 기반 콘텐츠 (`content/data/*.ts`, `content/lyrics/*.{ko,ja}.md`) — CMS 없음
 - i18n: `/ko` `/ja` 경로 라우팅 (`middleware.ts`)
 - 이미지: MV 촬영 스틸 선별·WebP 최적화본 `public/images/` (next/image `unoptimized`)
 - 폰트: Bagel Fat One·Mochiy Pop One(디스플레이) / Gowun Dodum·Zen Maru Gothic(본문) / Gaegu·DotGothic16(악센트)
@@ -29,7 +29,7 @@ app/[lang]/        언어별 라우트 (홈·artists·album·video·gallery·lyr
 components/         Header, Footer, CTABlock, TrackList, Gallery, RetroImage, Reveal, ui(별·리본·웨이브·그루비)
 content/
   data/            링크·사이트 상태·앨범·트랙·아티스트·공연·갤러리·스토리 데이터
-  lyrics/          트랙별 한국어 가사 Markdown 원천
+  lyrics/          트랙별 한국어·일본어 가사 Markdown 원천
 lib/
   i18n.ts          로케일·UI 문자열 사전
   content.ts       기존 import 호환용 콘텐츠 barrel
@@ -52,7 +52,7 @@ docs/website/      기획·설계 문서 (PRD·IA·콘텐츠·디자인·i18n·�
 - **외부 링크**(텀블벅 URL, 뮤직비디오 ID, 음원 스트리밍): `content/data/links.ts`
 - **공연·소식**: `content/data/events.ts` (발매 공연은 확정 정보, 미정 일정은 `dateLabel`/`note`로 안전 표기)
 - **트랙 비하인드 / 아티스트 서사**: `content/data/tracks.ts`, `content/data/artists.ts`
-- **가사**: `content/lyrics/<slug>.ko.md`
+- **가사**: `content/lyrics/<slug>.<lang>.md` (`lang`: `ko` 또는 `ja`)
 
 자세한 운영 워크플로는 [docs/website/07-launch-ops-checklist.md](docs/website/07-launch-ops-checklist.md) 참조.
 

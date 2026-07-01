@@ -44,8 +44,9 @@ content/
 │  └─ story.ts          (음악의 뿌리·남산타워 트리비아)
 └─ lyrics/
    ├─ sarang-ui-suljan.ko.md
+   ├─ sarang-ui-suljan-ja.ja.md
    ├─ namsan-tower.ko.md
-   └─ ...               (공개 한국어 원곡 가사)
+   └─ ...               (공개 한국어 원곡·일본어 재해석 가사)
 ```
 
 > 구조 데이터는 TypeScript 파일로 타입 안전성을 우선하고, 긴 가사 원문만 사람이 읽기 쉬운 Markdown으로 관리한다.
@@ -170,8 +171,9 @@ content/
 - 링크 미확정 시 "곧 공개" 플레이스홀더
 
 ### 가사 `/lyrics`, `/lyrics/[slug]`
-- `content/lyrics/<slug>.ko.md`의 한국어 원곡 가사
-- 일본어 재해석본·미공개 곡은 CD 부클릿/PDF 안내로 안전 표기
+- `content/lyrics/<slug>.<lang>.md`의 공개 가사(`lang`: `ko` 또는 `ja`)
+- 트랙 slug와 파일명 slug를 일치시킨다. 일본어 재해석 트랙은 트랙 slug 자체가 `*-ja`이므로 예: `sarang-ui-suljan-ja.ja.md`.
+- 아직 파일이 없는 곡은 CD 부클릿/PDF 안내로 안전 표기
 
 ### 공연·소식 `/live`
 - 발매 공연 안내(무료·클로즈드·후원자 초청), 투어 검토(대구 등), 소식
@@ -185,7 +187,7 @@ content/
 
 ## 5. 콘텐츠 작업 항목 (To-do)
 
-- [x] `docs/lyrics/*.docx` → `content/lyrics/*.ko.md`로 추출·정리(트랙 02~10 한국어 원곡, 연 단위). 일본어 재해석본은 추후 추가
+- [x] `docs/lyrics/*.docx` → `content/lyrics/*.{ko,ja}.md`로 추출·정리(트랙 02~10 한국어 원곡, 일본어 재해석·보너스 공개본, 연 단위)
 - [x] 트랙 슬러그 15개 확정
 - [ ] 아티스트 프로필 사진 웹 최적화본 배치(`/images/artists/`)
 - [x] 앨범 커버 확정 (`images/album_cover.jpg`) — 사이키델릭·큐트 키비주얼 (`03` v2.0)

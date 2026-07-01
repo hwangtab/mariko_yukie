@@ -30,6 +30,7 @@ test("track audio paths are derived from every track slug", () => {
 
 test("lyrics are parsed from markdown sources by slug", () => {
   assert.equal(lyrics["sarang-ui-suljan"][0][0], "은혼식을 축하하기 위해서 프렌치 코스 예약완료");
+  assert.equal(lyrics["sarang-ui-suljan-ja"][0][0], "銀婚式のお祝いに フレンチコースを予約済み");
   assert.equal(lyrics["namsan-tower"][0].length > 0, true);
 });
 
