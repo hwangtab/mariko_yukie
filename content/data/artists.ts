@@ -10,9 +10,9 @@ export const artists: Artist[] = [
     roman: "Trot MARIKO",
     tagline: { ko: "트로트를 사랑한 순례자", ja: "トロットを愛した巡礼者", en: "A pilgrim who loved trot" },
     lead: {
-      ko: "마리코의 출발점은 팬이었다. 계산이 없었다. 트로트가 좋았고, 한국 무대에 서고 싶었고, 그 길을 스스로 만들어낸 사람이다.",
-      ja: "マリコの出発点はファンだった。打算がなかった。トロットが好きで、韓国の舞台に立ちたくて、その道を自ら切り拓いた人だ。",
-      en: "Mariko started out as a fan. No calculation. She loved trot, she wanted to stand on Korean stages, and she carved out that path herself.",
+      ko: "마리코의 출발점은 드라마였다. 한국 드라마를 본 것이 계기가 되어 한국을 좋아하게 되었고, 여행을 거듭하며 한국 문화에 관심을 갖게 되던 중 텔레비전의 한국 음악 방송에서 트로트를 만났다. 그 순간부터 확신했다 — 내 음악은 이것이라고.",
+      ja: "マリコの出発点はドラマだった。韓国ドラマを見たのがきっかけで韓国が好きになり、旅行を重ねて韓国文化への関心を深めるうち、テレビの韓国音楽番組でトロットに出会った。その瞬間から確信した — 私の音楽はこれだと。",
+      en: "Mariko's starting point was a drama. Watching Korean dramas made her fall for Korea; as repeated trips deepened her interest in Korean culture, a Korean music program on TV introduced her to trot. From that moment she was certain — this was her music.",
     },
     quote: {
       ko: "일본인이기 때문에 오히려 트로트의 본질에 더 가까이 — 역설적인 순수함.",
@@ -23,16 +23,19 @@ export const artists: Artist[] = [
     gallery: ["/images/namsan_21.webp", "/images/namsan_16.webp", "/images/namsan_40.webp", "/images/namsan_18.webp"],
     body: {
       ko: [
+        "한국 드라마를 본 것이 계기가 되어 한국을 좋아하게 되었고, 여행을 거듭하며 한국 문화에 관심을 갖게 되던 중 텔레비전의 한국 음악 방송에서 트로트를 만났다. 트로트를 들은 순간부터 '내 음악은 이것'이라고 확신했다.",
         "2009년부터 일본에서 열리는 한국가요 콘테스트에 나가기 시작했다. 2011년에는 전국대회에 출전했다. 수년간 일본에서 한국어 노래를 부르며 실력을 쌓은 뒤 직접 한국으로 건너왔다.",
         "KBS 전국노래자랑 2015년 연말 결산 대회에 출연해 재능을 인정받았고, 2016년 1집 《사랑이랍니다》로 한국 CD 데뷔를 했다. 이후 한국에서 TV·라디오·이벤트·군 위문 공연을, 일본에서는 한국대사관·한일친선협회 공연과 트로트 강사로도 활동했다.",
         "그녀의 목소리에는 80년대 트로트 특유의 것이 있다. 꾸밈음이 자연스럽게 흐르고, 감정이 절제와 넘침 사이를 정확히 오간다. 일본인이기 때문에 오히려 트로트의 본질에 더 가까이 다가간 — 역설적인 순수함이 이 가수의 핵심이다.",
       ],
       ja: [
+        "韓国ドラマを見たのがきっかけで韓国が好きになり、旅行を重ねて韓国文化への関心を深めるうち、テレビの韓国音楽番組でトロットに出会った。トロットを聴いた瞬間から「私の音楽はこれだ」と確信した。",
         "2009年から日本で開かれる韓国歌謡コンテストに出場し始めた。2011年には全国大会に出場。数年間、日本で韓国語の歌を歌って実力を積んだのち、自ら韓国へ渡った。",
         "KBS『全国のど自慢』年末決算大会出場で才能を認められ、2016年に1集《サランイラムニダ(愛なんです)》で韓国CDデビュー。以後、韓国でTV・ラジオ・イベント・慰問公演を、日本では韓国大使館・日韓親善協会の公演やトロット講師としても活動した。",
         "彼女の声には80年代トロット特有のものがある。装飾音が自然に流れ、感情が抑制とあふれのあいだを正確に行き来する。日本人だからこそ、かえってトロットの本質に近づいた — 逆説的な純粋さがこの歌手の核心だ。",
       ],
       en: [
+        "Watching Korean dramas made her fall for Korea; as repeated trips deepened her interest in Korean culture, a Korean music program on TV introduced her to trot. From the moment she heard it, she was certain — this was her music.",
         "From 2009 she began entering Korean-song contests held in Japan, and competed in the national competition in 2011. After years of singing in Korean in Japan, she crossed over to Korea herself.",
         "She competed in KBS's 2015 year-end National Singing Contest and won recognition; in 2016 she made her Korean CD debut with her first album 'Sarangirannida.' Since then she has performed on Korean TV, radio, events and military shows, and in Japan at the Korean Embassy and Korea–Japan friendship events, also teaching trot.",
         "Her voice carries something unmistakably '80s trot. The ornaments flow naturally; the feeling moves precisely between restraint and overflow. Being Japanese, she paradoxically reaches closer to the essence of trot — that paradoxical purity is the heart of this singer.",
