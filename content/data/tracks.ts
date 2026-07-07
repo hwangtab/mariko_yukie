@@ -14,7 +14,7 @@ export const tracks: Track[] = [
   },
   {
     number: 2, slug: "sarang-ui-suljan", language: "ko",
-    title: { ko: "사랑의 술잔", ja: "愛の盃", en: "Cup of Love" },
+    title: { ko: "사랑의 술잔", ja: "愛の盃(韓国語ver.)", en: "Cup of Love" },
     type: { ko: "듀엣, 그룹 사운드", ja: "デュエット、グループサウンド", en: "Duet, group sound" },
     pull: { ko: "사토유키에의 작법이 가장 따뜻하게 빛나는 트랙", ja: "サトウユキエの作法が最も温かく輝くトラック", en: "Where Sato Yukie's songwriting glows warmest" },
     body: {
@@ -34,7 +34,7 @@ export const tracks: Track[] = [
   },
   {
     number: 3, slug: "hot-flash", language: "ko",
-    title: { ko: "핫 플래시", ja: "ホットフラッシュ", en: "Hot Flash" },
+    title: { ko: "핫 플래시", ja: "ホットフラッシュ(韓国語ver.)", en: "Hot Flash" },
     type: { ko: "그룹 사운드 + 트로트", ja: "グループサウンド + トロット", en: "Group sound + trot" },
     pull: { ko: "사토유키에의 에너지와 마리코의 트로트 감성이 가장 선명하게 만나는 트랙", ja: "サトウユキエのエネルギーとマリコのトロット感性が最も鮮明に出会うトラック", en: "Where Sato Yukie's energy and Mariko's trot meet most vividly" },
     body: {
@@ -45,7 +45,7 @@ export const tracks: Track[] = [
   },
   {
     number: 4, slug: "beer-and-coffee", language: "ko",
-    title: { ko: "맥주와 커피", ja: "ビールとコーヒー", en: "Beer and Coffee" },
+    title: { ko: "맥주와 커피", ja: "ビールとコーヒー(韓国語ver.)", en: "Beer and Coffee" },
     type: { ko: "듀엣, 서정적", ja: "デュエット、叙情的", en: "Duet, lyrical" },
     pull: { ko: "60~70년대 그룹 사운드의 서정적인 면이 드러나는 트랙", ja: "60〜70年代グループサウンドの叙情的な面が表れるトラック", en: "Where the lyrical side of '60s–'70s group sound shows" },
     body: {
@@ -56,7 +56,7 @@ export const tracks: Track[] = [
   },
   {
     number: 5, slug: "namsan-tower", language: "ko", isTitle: true, hasMV: true,
-    title: { ko: "남산타워 Namsan Tower Lights", ja: "南山タワー Namsan Tower Lights", en: "Namsan Tower Lights" },
+    title: { ko: "남산타워 Namsan Tower Lights", ja: "南山タワー Namsan Tower Lights(韓国語ver.)", en: "Namsan Tower Lights" },
     type: { ko: "그룹 사운드 · 타이틀곡 · 뮤직비디오", ja: "グループサウンド・タイトル曲・MV", en: "Group sound · title track · music video" },
     pull: { ko: "이 음반의 타이틀곡이자 뮤직비디오 수록곡", ja: "このアルバムのタイトル曲でありMV収録曲", en: "The album's title track and music-video song" },
     body: {
@@ -131,25 +131,25 @@ export const tracks: Track[] = [
   },
   {
     number: 11, slug: "sarang-ui-suljan-ja", language: "ja",
-    title: { ko: "사랑의 술잔 (일본어)", ja: "愛の盃(日本語)", en: "Cup of Love (Japanese)" },
+    title: { ko: "사랑의 술잔 (일본어)", ja: "愛の盃(日本語ver.)", en: "Cup of Love (Japanese)" },
     type: { ko: "02번 트랙 일본어 버전", ja: "2曲目の日本語バージョン", en: "Japanese version of track 2" },
     body: { ko: ["번역이 아닌 재해석. 일본어로 가장 자연스럽게 전달되도록 다시 썼다."], ja: ["翻訳ではなく再解釈。日本語で最も自然に伝わるよう書き直した。"], en: ["Reinterpretation, not translation — rewritten to land most naturally in Japanese."] },
   },
   {
     number: 12, slug: "hot-flash-ja", language: "ja",
-    title: { ko: "핫 플래시 (일본어)", ja: "ホットフラッシュ(日本語)", en: "Hot Flash (Japanese)" },
+    title: { ko: "핫 플래시 (일본어)", ja: "ホットフラッシュ(日本語ver.)", en: "Hot Flash (Japanese)" },
     type: { ko: "03번 트랙 일본어 버전", ja: "3曲目の日本語バージョン", en: "Japanese version of track 3" },
     body: { ko: ["번역이 아닌 재해석."], ja: ["翻訳ではなく再解釈。"], en: ["Reinterpretation, not translation."] },
   },
   {
     number: 13, slug: "beer-and-coffee-ja", language: "ja",
-    title: { ko: "맥주와 커피 (일본어)", ja: "ビールとコーヒー(日本語)", en: "Beer and Coffee (Japanese)" },
+    title: { ko: "맥주와 커피 (일본어)", ja: "ビールとコーヒー(日本語ver.)", en: "Beer and Coffee (Japanese)" },
     type: { ko: "04번 트랙 일본어 버전", ja: "4曲目の日本語バージョン", en: "Japanese version of track 4" },
     body: { ko: ["번역이 아닌 재해석."], ja: ["翻訳ではなく再解釈。"], en: ["Reinterpretation, not translation."] },
   },
   {
     number: 14, slug: "namsan-tower-ja", language: "ja",
-    title: { ko: "남산타워 (일본어)", ja: "南山タワー(日本語)", en: "Namsan Tower (Japanese)" },
+    title: { ko: "남산타워 (일본어)", ja: "南山タワー(日本語ver.)", en: "Namsan Tower (Japanese)" },
     type: { ko: "05번 트랙 일본어 버전", ja: "5曲目の日本語バージョン", en: "Japanese version of track 5" },
     body: { ko: ["같은 멜로디가 두 언어에서 얼마나 다르게 울리는지 — 그 차이 자체가 들을 만한 것이다."], ja: ["同じメロディが二つの言語でどれほど違って響くか — その差そのものが聴きどころだ。"], en: ["How differently the same melody resonates in two languages — that difference itself is worth hearing."] },
   },
