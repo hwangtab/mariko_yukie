@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { links, images } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import CTABlock from "@/components/CTABlock";
 
@@ -13,7 +14,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.video[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/video",
+    title: ui.nav.video[loc],
+    description: tri(
+      loc,
+      "쇼와 버라이어티 감성으로 담은 남산타워 하루 유람 뮤직비디오.",
+      "昭和バラエティの感性で綴った南山タワー一日巡りのミュージックビデオ。",
+      "A Namsan Tower day-trip music video shot in the spirit of Showa-era variety TV.",
+    ),
+  });
 }
 
 export default async function VideoPage({

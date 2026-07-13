@@ -40,5 +40,9 @@ docs/superpowers/
 docs/트랙리스트_작성본.xlsx
 docs/ISRC등록_남산타워.xlsx
 
+# 유통자료 일체(트랙리스트·ISRC·소개글·아트워크·음원 등 내부 문서, 공개 금지)
+docs/유통자료/
+docs/유통자료*.zip
+
 # 로컬 검수용 아트워크 export(배포용은 public/images/album_cover.webp)
 docs/album_cover.png

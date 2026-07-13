@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, locales, ui, type Locale } from "@/lib/i18n";
 import { artists, getArtist } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import RetroImage from "@/components/RetroImage";
@@ -24,7 +25,13 @@ export async function generateMetadata({
   const loc: Locale = isLocale(lang) ? lang : "ko";
   const a = getArtist(id);
   if (!a) return {};
-  return { title: a.name[loc], description: a.lead[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: `/artists/${a.id}`,
+    title: a.name[loc],
+    description: a.lead[loc],
+    imageAlt: a.name[loc],
+  });
 }
 
 export default async function ArtistPage({

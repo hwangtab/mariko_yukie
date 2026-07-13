@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { album, images } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Stamp, Star, WaveDivider } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import TrackList from "@/components/TrackList";
@@ -15,7 +16,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: album.title[loc], description: album.concept[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/album",
+    title: album.title[loc],
+    description: album.concept[loc],
+  });
 }
 
 export default async function AlbumPage({

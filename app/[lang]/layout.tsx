@@ -4,7 +4,7 @@ import { notFound } from "next/navigation";
 import "../globals.css";
 import { isLocale, locales, type Locale } from "@/lib/i18n";
 import { album } from "@/lib/content";
-import { getSiteUrl } from "@/content/data/site";
+import { buildPageMetadata } from "@/lib/metadata";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { AudioPlayerProvider } from "@/components/AudioPlayer";
@@ -25,7 +25,6 @@ export async function generateMetadata({
     ja: "マリコ & ユキエ — 南山タワー",
     en: "Mariko & Yukie — Namsan Tower Lights",
   };
-  const ogLocales: Record<Locale, string> = { ko: "ko_KR", ja: "ja_JP", en: "en_US" };
   const keywordSets: Record<Locale, string[]> = {
     ko: ["마리코", "유키에", "사토유키에", "곱창전골", "남산타워", "트로트", "한국 록", "Mariko & Yukie"],
     ja: ["マリコ", "ユキエ", "佐藤行衛", "コプチャンチョンゴル", "南山タワー", "トロット", "韓国ロック"],
@@ -36,37 +35,16 @@ export async function generateMetadata({
   const siteName = album.artist[loc];
 
   return {
-    metadataBase: new URL(getSiteUrl()),
+    ...buildPageMetadata({
+      locale: loc,
+      path: "",
+      title,
+      description,
+      imageAlt: `${album.title[loc]} — ${album.artistRoman}`,
+    }),
     title: { default: title, template: `%s — ${album.artistRoman}` },
-    description,
     applicationName: siteName,
     keywords: keywordSets[loc],
-    alternates: {
-      languages: { ko: "/ko", ja: "/ja", en: "/en", "x-default": "/ko" },
-    },
-    openGraph: {
-      siteName,
-      title,
-      description,
-      url: `/${loc}`,
-      locale: ogLocales[loc],
-      alternateLocale: locales.filter((l) => l !== loc).map((l) => ogLocales[l]),
-      type: "website",
-      images: [
-        {
-          url: "/og.jpg",
-          width: 1200,
-          height: 630,
-          alt: `${album.title[loc]} — ${album.artistRoman}`,
-        },
-      ],
-    },
-    twitter: {
-      card: "summary_large_image",
-      title,
-      description,
-      images: ["/og.jpg"],
-    },
   };
 }
 

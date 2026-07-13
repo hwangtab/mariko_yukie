@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { tracks } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 
 export async function generateMetadata({
@@ -13,7 +14,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.lyrics[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/lyrics",
+    title: ui.nav.lyrics[loc],
+    description: tri(
+      loc,
+      "마리코 & 유키에 《남산타워》 수록곡의 한국어·일본어 공개 가사.",
+      "マリコ & ユキエ『南山タワー』収録曲の韓国語・日本語公開歌詞。",
+      "Published Korean and Japanese lyrics for Mariko & Yukie's Namsan Tower Lights.",
+    ),
+  });
 }
 
 export default async function LyricsIndex({

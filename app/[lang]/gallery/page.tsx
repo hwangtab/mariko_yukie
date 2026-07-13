@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { gallery } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import Gallery from "@/components/Gallery";
@@ -14,7 +15,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.gallery[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/gallery",
+    title: ui.nav.gallery[loc],
+    description: tri(
+      loc,
+      "2026년 4월 21일, 서울 남산타워 일대에서 촬영한 뮤직비디오 스틸 기록.",
+      "2026年4月21日、ソウル南山タワー一帯で撮影したミュージックビデオのスチル記録。",
+      "Music-video stills shot around Seoul's Namsan Tower on April 21, 2026.",
+    ),
+  });
 }
 
 export default async function GalleryPage({

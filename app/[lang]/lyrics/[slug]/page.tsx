@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, locales, tri, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
+import { buildPageMetadata } from "@/lib/metadata";
 import { Star } from "@/components/ui";
 
 export function generateStaticParams() {
@@ -21,7 +22,13 @@ export async function generateMetadata({
   const loc: Locale = isLocale(lang) ? lang : "ko";
   const tk = getTrack(slug);
   if (!tk) return {};
-  return { title: `${tk.title[loc]} — ${ui.nav.lyrics[loc]}` };
+  return buildPageMetadata({
+    locale: loc,
+    path: `/lyrics/${tk.slug}`,
+    title: `${tk.title[loc]} — ${ui.nav.lyrics[loc]}`,
+    description: tk.pull?.[loc] ?? tk.body[loc][0],
+    imageAlt: `${tk.title[loc]} — ${ui.nav.lyrics[loc]}`,
+  });
 }
 
 export default async function LyricsPage({

@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { events } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import CTABlock from "@/components/CTABlock";
@@ -13,7 +14,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.live[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/live",
+    title: ui.nav.live[loc],
+    description: tri(
+      loc,
+      "마리코 & 유키에 《남산타워》 발매 소식과 공연·라이브 일정 안내.",
+      "マリコ & ユキエ『南山タワー』のリリース情報と公演・ライブ日程のご案内。",
+      "Release news and live schedule for Mariko & Yukie's Namsan Tower Lights.",
+    ),
+  });
 }
 
 const statusLabel = {

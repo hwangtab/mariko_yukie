@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { credits, links, album, images } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel } from "@/components/ui";
 import CTABlock from "@/components/CTABlock";
 
@@ -13,7 +14,17 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.about[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/about",
+    title: ui.nav.about[loc],
+    description: tri(
+      loc,
+      "외부 투자 없이 두 일본인 음악가가 스스로 만들고 내는 앨범 이야기.",
+      "外部の投資なしに二人の日本人音楽家が自ら作り世に出すアルバムの物語。",
+      "The story of an album two Japanese musicians made and released entirely on their own.",
+    ),
+  });
 }
 
 export default async function AboutPage({

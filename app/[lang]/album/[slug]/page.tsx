@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, locales, tri, ui, type Locale } from "@/lib/i18n";
 import { tracks, getTrack, album, trackImages } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { Stamp } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 import CTABlock from "@/components/CTABlock";
@@ -27,10 +28,14 @@ export async function generateMetadata({
   // 트랙 제목이 앨범 제목을 포함하면 앨범명 반복 생략 (중복 방지)
   const t = tk.title[loc];
   const title = t.includes(album.title[loc]) ? t : `${t} — ${album.title[loc]}`;
-  return {
+  const description = tk.pull?.[loc] ?? tk.body[loc][0];
+  return buildPageMetadata({
+    locale: loc,
+    path: `/album/${tk.slug}`,
     title,
-    description: tk.pull?.[loc] ?? tk.body[loc][0],
-  };
+    description,
+    imageAlt: `${tk.title[loc]} — ${album.artistRoman}`,
+  });
 }
 
 export default async function TrackPage({

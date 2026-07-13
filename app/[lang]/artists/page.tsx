@@ -4,6 +4,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, ui, type Locale } from "@/lib/i18n";
 import { artists, duoIntro } from "@/lib/content";
+import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import Reveal from "@/components/Reveal";
 
@@ -14,7 +15,12 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { lang } = await params;
   const loc: Locale = isLocale(lang) ? lang : "ko";
-  return { title: ui.nav.artists[loc] };
+  return buildPageMetadata({
+    locale: loc,
+    path: "/artists",
+    title: ui.nav.artists[loc],
+    description: duoIntro[loc],
+  });
 }
 
 export default async function ArtistsPage({
