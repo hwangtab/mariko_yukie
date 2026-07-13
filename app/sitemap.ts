@@ -1,9 +1,10 @@
 import type { MetadataRoute } from "next";
 import { locales } from "@/lib/i18n";
 import { tracks, artists } from "@/lib/content";
-import { getSiteUrl } from "@/content/data/site";
+import { getContentUpdatedAt, getSiteUrl } from "@/content/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  const lastModified = getContentUpdatedAt();
   const staticPaths = ["", "/artists", "/album", "/video", "/gallery", "/lyrics", "/live", "/about"];
   const dynamicPaths = [
     ...artists.map((a) => `/artists/${a.id}`),
@@ -15,7 +16,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   return locales.flatMap((loc) =>
     all.map((p) => ({
       url: getSiteUrl(`/${loc}${p}`),
-      lastModified: new Date("2026-06-02"),
+      lastModified,
       alternates: {
         languages: Object.fromEntries(
           locales.map((l) => [l, getSiteUrl(`/${l}${p}`)]),
