@@ -36,6 +36,7 @@ export default async function VideoPage({
   if (!isLocale(lang)) notFound();
   const locale = lang as Locale;
   const ytId = links.musicVideoYoutubeId;
+  const fullId = links.fullAlbumYoutubeId;
 
   const concept = {
     ko: "두 사람이 서울 남산타워를 하루 동안 유람하는 영상입니다. 1970~80년대 쇼와 버라이어티 TV 프로그램의 감성으로 만들었습니다. 빈티지 필름 톤의 색보정, 이동·대기 장면의 코믹한 배속 편집, 8비트 픽셀 자막과 손글씨체 타이포그래피. 이 음반의 유머와 온도가 영상 안에서도 그대로 살아있습니다.",
@@ -96,6 +97,46 @@ export default async function VideoPage({
             "Filmed around Seoul's Namsan Tower on April 21, 2026.",
           )}
         </p>
+      </section>
+
+      <section className="border-y-2 border-navy bg-wash-blue">
+        <div className="mx-auto max-w-5xl px-5 py-16 md:px-8">
+          <SectionLabel tone="coral">Full Album</SectionLabel>
+          <h2 className="mt-4 font-display text-3xl text-navy md:text-4xl">
+            {tri(
+              locale,
+              "서울에 사는 일본인 부부의 하루",
+              "ソウルに住む日本人夫婦の一日",
+              "A Day of Two Japanese Living in Seoul",
+            )}
+          </h2>
+          <p className="mt-3 text-navy/80">
+            {tri(
+              locale,
+              "15곡을 순서대로 이어 듣는 49분짜리 영상입니다. 한국어 가사 자막을 켜면 노래를 따라 읽을 수 있고, 곡마다 뮤직비디오 촬영 스틸이 바뀝니다.",
+              "15曲を順に聴ける49分の映像です。韓国語の歌詞字幕をオンにすると歌を追って読めます。曲ごとにMV撮影スチルが切り替わります。",
+              "A 49-minute video playing all 15 tracks in order. Turn on Korean captions to read along; the music-video stills change with each song.",
+            )}
+          </p>
+
+          <div className="sticker mt-8 overflow-hidden rounded-card">
+            {fullId ? (
+              <div className="relative aspect-video bg-black">
+                <iframe
+                  className="absolute inset-0 h-full w-full"
+                  src={`https://www.youtube-nocookie.com/embed/${fullId}?cc_load_policy=1&cc_lang_pref=ko`}
+                  title="Namsan Tower Lights — Full Album"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                  allowFullScreen
+                />
+              </div>
+            ) : (
+              <div className="relative flex aspect-video items-center justify-center bg-night">
+                <span className="pixel text-2xl text-yellow">▶ {ui.cta.soon[locale]}</span>
+              </div>
+            )}
+          </div>
+        </div>
       </section>
 
       <CTABlock locale={locale} />

@@ -2,6 +2,7 @@
 export const links = {
   tumblbug: "https://tumblbug.com/marikoandyukie", // 펀딩 페이지
   musicVideoYoutubeId: "bWIwjnij0XQ", // 영상 ID (https://youtu.be/bWIwjnij0XQ)
+  fullAlbumYoutubeId: "vYH3fOjVvTM", // 전곡 이어듣기 49분, 한국어 가사 자막 (https://youtu.be/vYH3fOjVvTM)
   streaming: {
     spotify: "",
     appleMusic: "",

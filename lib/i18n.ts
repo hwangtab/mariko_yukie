@@ -31,7 +31,7 @@ export const ui = {
   nav: {
     artists: { ko: "아티스트", ja: "アーティスト", en: "Artists" },
     album: { ko: "앨범", ja: "アルバム", en: "Album" },
-    video: { ko: "뮤직비디오", ja: "MV", en: "Video" },
+    video: { ko: "비디오", ja: "ビデオ", en: "Video" },
     gallery: { ko: "갤러리", ja: "ギャラリー", en: "Gallery" },
     lyrics: { ko: "가사", ja: "歌詞", en: "Lyrics" },
     live: { ko: "공연·소식", ja: "ライブ", en: "Live" },
