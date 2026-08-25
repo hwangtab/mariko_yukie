@@ -1,13 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  album,
   artists,
   campaignPhase,
   events,
   getArtist,
   getSiteUrl,
   getTrack,
-  links,
   siteConfig,
   trackAudio,
   tracks,
@@ -36,7 +36,18 @@ test("lyrics are parsed from markdown sources by slug", () => {
 
 test("site config centralizes campaign phase and URL generation", () => {
   assert.equal(siteConfig.campaignPhase, campaignPhase);
-  assert.equal(campaignPhase, "funding");
+  assert.equal(campaignPhase, "preRelease");
   assert.equal(getSiteUrl("/ko/album"), "https://marikoyukie.vercel.app/ko/album");
-  assert.equal(links.tumblbug.length > 0, true);
+});
+
+test("release date is pinned to 2026-09-04 across locales", () => {
+  assert.equal(album.releaseLabel.ko, "2026년 9월 4일 발매");
+  assert.equal(album.releaseLabel.ja, "2026年9月4日リリース");
+  assert.equal(album.releaseLabel.en, "Out September 4, 2026");
+
+  const releaseRow = album.spec.find((row) => row.label.en === "Release");
+  assert.ok(releaseRow, "spec must contain a Release row");
+  assert.equal(releaseRow.value.ko, "2026년 9월 4일");
+  assert.equal(releaseRow.value.ja, "2026年9月4日");
+  assert.equal(releaseRow.value.en, "September 4, 2026");
 });

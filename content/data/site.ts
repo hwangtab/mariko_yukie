@@ -1,7 +1,7 @@
 export type SitePhase = "funding" | "preRelease" | "released" | "postCampaign";
 
 export const fallbackSiteUrl = "https://marikoyukie.vercel.app";
-export const campaignPhase: SitePhase = "funding";
+export const campaignPhase: SitePhase = "preRelease";
 
 export const siteConfig = {
   name: "Mariko & Yukie",

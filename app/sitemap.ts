@@ -5,7 +5,7 @@ import { getContentUpdatedAt, getSiteUrl } from "@/content/data/site";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = getContentUpdatedAt();
-  const staticPaths = ["", "/artists", "/album", "/video", "/gallery", "/lyrics", "/live", "/about"];
+  const staticPaths = ["", "/artists", "/album", "/video", "/gallery", "/lyrics", "/live", "/about", "/press"];
   const dynamicPaths = [
     ...artists.map((a) => `/artists/${a.id}`),
     ...tracks.map((t) => `/album/${t.slug}`),
