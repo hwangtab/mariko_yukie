@@ -27,6 +27,9 @@ next-env.d.ts
 ~$*.xlsx
 .vercel
 
+# 언론 아웃리치 수신자 데이터·발송 로그(개인정보, 공개 금지)
+private/
+
 # 로컬/에이전트 작업 산출물(제품 소스 아님)
 .superpowers/
 _workspace/
