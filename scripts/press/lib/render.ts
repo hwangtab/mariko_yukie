@@ -12,8 +12,13 @@ export const REPLY_TO = "hwangtab@gmail.com";
 const SITE = "https://marikoyukie.vercel.app";
 const COVER = `${SITE}/press/email-cover.jpg`;
 const MV_ID = "bWIwjnij0XQ";
-const MV_URL = `https://www.youtube.com/watch?v=${MV_ID}`;
+const MV_URL = `https://youtu.be/${MV_ID}`;
 const MV_THUMB = `https://img.youtube.com/vi/${MV_ID}/maxresdefault.jpg`;
+
+/** 전곡 이어듣기(49분, 챕터 15개). 기자가 링크 하나로 앨범을 다 들을 수 있다. */
+const FULL_ID = "vYH3fOjVvTM";
+const FULL_URL = `https://youtu.be/${FULL_ID}`;
+const FULL_THUMB = `https://img.youtube.com/vi/${FULL_ID}/maxresdefault.jpg`;
 
 export const SUBJECTS = {
   A: "일본인 둘이 서울에서 만든 한국어 앨범 《남산타워》 — 9월 4일 발매",
@@ -166,6 +171,8 @@ function shell({
   bodyParagraphs: string[];
   facts: string[][];
   labels: {
+    full: string;
+    fullNote: string;
     mv: string;
     page: string;
     cta: string;
@@ -198,6 +205,14 @@ function shell({
   </td></tr>
 
   <tr><td style="padding:6px 34px 0;">
+    <a href="${FULL_URL}" style="display:block;text-decoration:none;border-radius:8px;overflow:hidden;border:1px solid #e4e1da;">
+      <img src="${FULL_THUMB}" width="532" alt="Full album" style="display:block;width:100%;height:auto;border:0;">
+      <span style="display:block;background:#c2410c;color:#ffffff;font-family:${FONT};font-size:14px;font-weight:700;text-align:center;padding:12px;">&#9654;&nbsp;&nbsp;${esc(labels.full)}</span>
+    </a>
+    <div style="font-size:12px;color:#8a8a8a;margin-top:7px;line-height:1.6;">${esc(labels.fullNote)}</div>
+  </td></tr>
+
+  <tr><td style="padding:16px 34px 0;">
     <a href="${MV_URL}" style="display:block;text-decoration:none;border-radius:8px;overflow:hidden;border:1px solid #e4e1da;">
       <img src="${MV_THUMB}" width="532" alt="Namsan Tower Lights MV" style="display:block;width:100%;height:auto;border:0;">
       <span style="display:block;background:#141414;color:#ffffff;font-family:${FONT};font-size:13px;text-align:center;padding:11px;">&#9654;&nbsp;&nbsp;${esc(labels.mv)}</span>
@@ -258,6 +273,7 @@ export function renderEmail({
       "",
       ...FACTS_EN.map(([label, value]) => `· ${label}: ${value}`),
       "",
+      `Full album (49 min, chaptered): ${FULL_URL}`,
       `Music video: ${MV_URL}`,
       "",
       "Every track streams on one page, with lyrics, credits and high-resolution artwork.",
@@ -277,7 +293,9 @@ export function renderEmail({
         bodyParagraphs: WHY_EN,
         facts: FACTS_EN,
         labels: {
-          mv: "Watch the music video on YouTube",
+          full: "Listen to the whole album on YouTube",
+          fullNote: "49 minutes, chaptered track by track — no download needed.",
+          mv: "Watch the music video for the title track",
           page: "Every track streams on one page, with lyrics, credits and high-resolution artwork.",
           cta: "Open the press kit",
           reply: "Just reply to this message if you need anything else.",
@@ -318,7 +336,9 @@ export function renderEmail({
       bodyParagraphs,
       facts: FACTS,
       labels: {
-        mv: "유튜브에서 뮤직비디오 보기",
+        full: "유튜브에서 전곡 이어듣기",
+        fullNote: "49분, 트랙마다 챕터가 달려 있어 원하는 곡으로 바로 넘어갑니다. 내려받지 않으셔도 됩니다.",
+        mv: "타이틀곡 「남산타워」 뮤직비디오 보기",
         page: CLOSING.page,
         cta: "프레스킷 열기",
         reply: CLOSING.reply,
