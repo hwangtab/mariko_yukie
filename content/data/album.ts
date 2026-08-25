@@ -68,6 +68,7 @@ export const album = {
     { label: { ko: "레코딩 디렉터", ja: "レコーディングディレクター", en: "Recording Director" }, value: productionCredits.recordingDirector },
     { label: { ko: "믹싱 엔지니어", ja: "ミキシングエンジニア", en: "Mixing Engineer" }, value: productionCredits.mixingEngineer },
     { label: { ko: "마스터링 엔지니어", ja: "マスタリングエンジニア", en: "Mastering Engineer" }, value: productionCredits.masteringEngineer },
+    { label: { ko: "기획·제작·운영", ja: "企画・制作・運営", en: "Planning · production · operation" }, value: productionCredits.planningProduction },
     { label: { ko: "오리지널 아트워크 & 디자인", ja: "オリジナルアートワーク & デザイン", en: "Original Artwork & Design" }, value: productionCredits.originalArtworkDesign },
   ] as SpecRow[],
 };

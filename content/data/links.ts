@@ -16,5 +16,5 @@ export const links = {
     yukieYoutube: "https://www.youtube.com/channel/UC6PtS4px3uFY8HKZnM4SzWA", // 사토유키에 개인 J-Music Archive
     yukieFacebook: "https://www.facebook.com/Kopchangjeongol",
   },
-  contactEmail: "contact@kosmart.org",
+  contactEmail: "hello@studionol.co.kr",
 };

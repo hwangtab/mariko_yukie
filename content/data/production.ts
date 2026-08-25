@@ -21,4 +21,9 @@ export const productionCredits = {
   mixingEngineer: { ko: "황경하", ja: "ファン・ギョンハ", en: "Hwang Kyeong-ha" } as Localized,
   masteringEngineer: { ko: "Hashimoto Yoei", ja: "Hashimoto Yoei", en: "Hashimoto Yoei" } as Localized,
   originalArtworkDesign: { ko: "Nao (Studio Vamp)", ja: "Nao (Studio Vamp)", en: "Nao (Studio Vamp)" } as Localized,
+  planningProduction: {
+    ko: "황경하 (스튜디오 놀)",
+    ja: "ファン・ギョンハ(スタジオ・ノル)",
+    en: "Hwang Kyeong-ha (Studio Nol)",
+  } as Localized,
 };
