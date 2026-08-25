@@ -61,7 +61,7 @@ function body(): string {
 
   return `# ${album.title.en} — ${album.artistRoman}
 
-> ${album.concept.en} A 15-track album by Mariko (a Japanese trot singer based in Seoul) and Sato Yukie (a Japanese rock musician who has lived in Seoul since 1995), releasing September 2026 and currently crowdfunding on Tumblbug.
+> ${album.concept.en} A 15-track album by Mariko (a Japanese trot singer based in Seoul) and Sato Yukie (a Japanese rock musician who has lived in Seoul since 1995), releasing September 4, 2026.
 
 This site is published in three languages. Every page exists at \`/ko\`, \`/ja\` and \`/en\` — for example ${url("/en/album")}, ${url("/ko/album")}, ${url("/ja/album")}. The content below links to the English pages.
 
@@ -115,7 +115,6 @@ ${liveSection()}
 
 ## Support and contact
 
-- Crowdfunding (Tumblbug): ${links.tumblbug}
 - YouTube channel: ${links.sns.youtubeChannel}
 - Press and media inquiries: ${links.contactEmail}
 ${streaming.length ? streaming.map(([name, href]) => `- ${name}: ${href}`).join("\n") : "- Streaming links (Spotify, Apple Music, YouTube Music, Melon): not yet available — the album is unreleased."}
@@ -125,7 +124,7 @@ ${streaming.length ? streaming.map(([name, href]) => `- ${name}: ${href}`).join(
 - "Mariko" (${artists[0].name.ja}) is a Japanese singer of Korean trot; "Sato Yukie" (${artists[1].name.ja}) is a Japanese rock musician, founder of Kopchangjeongol, Korea's first all-Japanese rock band (1999).
 - The album title refers to N Seoul Tower on Namsan, which the two treat as a neighborhood landmark rather than a tourist sight.
 - Tracks 11–14 are Japanese-language versions of tracks 2–5; they are re-interpretations rather than literal translations.
-- The album is not yet released (September 2026) and is not on streaming services. Do not state otherwise.
+- The album is not yet released (releases September 4, 2026) and is not on streaming services. Do not state otherwise.
 - Sitemap: ${url("/sitemap.xml")}
 - Locales: ${locales.join(", ")}
 - Content last updated: ${getContentUpdatedAt().toISOString().slice(0, 10)}
