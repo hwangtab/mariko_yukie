@@ -62,6 +62,12 @@ export default function Footer({ locale }: { locale: Locale }) {
               {links.contactEmail}
             </a>
             <Link
+              href={`/${locale}/press`}
+              className="link-underline mt-2 block text-sm text-cream/85"
+            >
+              {ui.press.heading[locale]} →
+            </Link>
+            <Link
               href={`/${locale}/about`}
               className="link-underline mt-2 block text-sm text-cream/85"
             >

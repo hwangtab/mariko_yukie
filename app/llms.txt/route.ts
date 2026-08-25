@@ -112,6 +112,7 @@ ${liveSection()}
 - [Music video](${url("/en/video")}): "Namsan Tower Lights" MV — https://youtu.be/${links.musicVideoYoutubeId}
 - [Gallery](${url("/en/gallery")}): photos from the Namsan sessions
 - [About](${url("/en/about")}): project background, credits, contact
+- [Press kit](${url("/en/press")}): stream all 15 tracks, lyrics, high-resolution artwork, specifications
 
 ## Support and contact
 

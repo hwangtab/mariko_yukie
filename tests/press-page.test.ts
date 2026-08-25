@@ -5,6 +5,7 @@ import { join } from "node:path";
 import { tracks } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
 import { ui, locales } from "@/lib/i18n";
+import sitemap from "@/app/sitemap";
 
 test("press artwork is published at a stable public path", () => {
   const path = join(process.cwd(), "public/press/albumart-4000.png");
@@ -49,4 +50,15 @@ test("every track the press page lists is playable", () => {
 test("lyrics lookup is keyed by track slug", () => {
   const withLyrics = tracks.filter((track) => lyrics[track.slug]);
   assert.equal(withLyrics.length > 0, true, "at least some tracks must have lyrics");
+});
+
+test("press page is listed in the sitemap for every locale", () => {
+  const urls = sitemap().map((entry) => entry.url);
+  for (const locale of locales) {
+    assert.equal(
+      urls.includes(`https://marikoyukie.vercel.app/${locale}/press`),
+      true,
+      `sitemap missing /${locale}/press`,
+    );
+  }
 });
