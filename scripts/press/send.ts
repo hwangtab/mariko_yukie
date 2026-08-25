@@ -14,6 +14,7 @@ import { join } from "node:path";
 import { findUnsourcedClaims, renderEmail, type Recipient } from "./lib/render";
 import { loadSentAddresses, sendOne } from "./lib/transport";
 import { normalizeName } from "./lib/duplicates";
+import { DISTINCT_PEOPLE } from "./lib/decisions";
 
 const DELAY_MS = 600;
 const LOG_PATH = join(process.cwd(), "private/send-log.jsonl");
@@ -80,7 +81,13 @@ async function main(): Promise<void> {
     if (!key || key === "-") continue;
     byName.set(key, [...(byName.get(key) ?? []), recipient.email]);
   }
-  const stillDuplicated = [...byName.entries()].filter(([, emails]) => emails.length > 1);
+  // 이름은 같지만 다른 사람으로 판단해 둘 다 남긴 행은 통과시킨다.
+  const allowed = new Set(
+    DISTINCT_PEOPLE.map((person) => `${normalizeName(person.name)}|${[...person.emails].sort().join(",")}`),
+  );
+  const stillDuplicated = [...byName.entries()].filter(
+    ([name, emails]) => emails.length > 1 && !allowed.has(`${name}|${[...emails].sort().join(",")}`),
+  );
   if (stillDuplicated.length > 0) {
     console.error(`\n같은 이름이 여러 주소로 남아 있습니다 (${stillDuplicated.length}그룹).`);
     for (const [name, emails] of stillDuplicated) {
