@@ -1,5 +1,6 @@
 import type { Contact } from "./contacts";
 import { groundingFor } from "./grounding";
+import { ENGLISH_RECIPIENTS } from "./decisions";
 import type { Segment } from "./segment";
 
 export type Recipient = Contact & { segment: Segment; opener: string };
@@ -11,6 +12,23 @@ export const SUBJECTS = {
   A: "일본인 둘이 서울에서 만든 한국어 앨범 《남산타워》 — 9월 4일 발매",
   B: "《남산타워》 앨범 소개 — 마리코 & 유키에 (한국어 10곡, 일본어 5곡)",
 } as const;
+
+export const SUBJECT_EN =
+  "Two Japanese musicians in Seoul, singing in Korean — 'Namsan Tower Lights', out Sept 4";
+
+export function isEnglish(email: string): boolean {
+  return ENGLISH_RECIPIENTS.has(email.toLowerCase());
+}
+
+const WHY_EN =
+  "Sato Yukie came to Seoul in 1995, bought a Shin Joong-hyun LP at a record shop, and never left; he has spent thirty years digging into Korean rock. Mariko found Korea through its TV dramas, went on KBS's national singing contest, and debuted as a trot singer.\n\nThe two of them made a record in Korean about living in Seoul. The Korean and Japanese lyrics are not translations of each other — each is its own original. In \"Cup of Love\", the word \"yeobo-yeobo\" means \"darling\" in Korean and describes an old person's frailty in Japanese. One word, working in both languages at once.";
+
+const FACTS_EN = [
+  "'Namsan Tower Lights' (《남산타워》) — Mariko & Yukie",
+  "15 tracks: 10 in Korean, 5 in Japanese",
+  "Out September 4, 2026 · CD limited to 500 copies + digital",
+  "Release show: Sun, Sept 6, 5 PM — Space Hangang, Seoul",
+];
 
 /**
  * 관계나 과거 행위를 주장하는 표현.
@@ -75,9 +93,9 @@ const WHY_IT_MATTERS: Record<Segment, string> = {
   critic:
     "사토유키에는 1995년 서울의 한 음반 가게에서 신중현과 엽전들의 LP를 산 뒤 여기 눌러앉아 곱창전골을 만든 사람이고, 마리코는 한국 드라마로 시작해 KBS 전국노래자랑을 거쳐 트로트로 데뷔한 사람입니다. 그 둘이 서울 생활에서 나온 이야기를 한국어로 부른 음반입니다.\n\n두 언어는 번역 관계가 아니라 각각의 원본입니다. 「사랑의 술잔」의 “여보여보”는 한국어에서 배우자를 부르는 말이고 일본어에서는 노인의 모습을 그리는 의태어인데, 이 한 단어가 음반이 선 자리를 그대로 보여줍니다.",
   "music-press":
-    "서울에 사는 일본인 두 사람이 한국어로 만든 15트랙 음반입니다. 관광객의 시선이 아니라 서울이 이미 집이 된 사람들의 시선이라, 남산타워가 명소가 아니라 동네 랜드마크로 등장합니다. 한일 문화교류를 늘 이야기하지만 이 방향의 사례는 드뭅니다.",
+    "사토유키에는 1995년 서울의 음반 가게에서 신중현과 엽전들의 LP를 산 뒤 눌러앉아 밴드 곱창전골을 만든 사람이고, 마리코는 한국 드라마로 한국을 알게 돼 KBS 전국노래자랑을 거쳐 트로트로 데뷔한 사람입니다. 두 사람이 함께 활동한 지 여덟 해째입니다.\n\n관광객의 시선이 아니라 서울이 이미 집이 된 사람들의 시선이라, 남산타워가 명소가 아니라 동네 랜드마크로 등장합니다. 한일 문화교류를 늘 이야기하지만 이 방향의 사례는 드뭅니다.",
   "culture-desk":
-    "서울에 사는 일본인 두 사람이 한국어로 만든 15트랙 음반입니다. 한일 문화교류를 늘 이야기하지만, 일본인이 서울에서 한국 음악을 흡수해 한국어로 내놓는 이 방향의 사례는 드뭅니다.",
+    "사토유키에는 1995년 서울에 와 신중현과 엽전들의 LP를 만난 뒤 30년째 여기 살고 있고, 마리코는 한국 드라마로 한국을 알게 돼 KBS 전국노래자랑을 거쳐 트로트 가수가 됐습니다.\n\n한일 문화교류를 이야기할 때는 대개 한국에서 밖으로 나가는 방향을 보게 되는데, 이 음반은 반대 방향입니다. 기획이 아니라 두 사람의 서울 생활에서 그대로 나온 노래들입니다.",
   "generic-desk":
     "서울에 사는 일본인 두 사람이 한국어로 만든 15트랙 음반이 9월 4일 발매됩니다.",
   "art-press":
@@ -96,7 +114,7 @@ const FACTS = [
 export function renderEmail({
   recipient,
   pressUrl,
-  subject = SUBJECTS.A,
+  subject,
 }: {
   recipient: Recipient;
   pressUrl: string;
@@ -105,6 +123,12 @@ export function renderEmail({
   const opener = recipient.opener.trim();
   if (!opener) throw new Error(`opener is empty for ${recipient.email}`);
 
+  const english = isEnglish(recipient.email);
+  if (english) {
+    return renderEnglish({ recipient, opener, pressUrl: pressUrl.replace("/ko/", "/en/") });
+  }
+
+  const resolvedSubject = subject ?? SUBJECTS.A;
   const why = WHY_IT_MATTERS[recipient.segment];
 
   const text = [
@@ -138,5 +162,45 @@ export function renderEmail({
   <p style="margin:16px 0 0;font-size:12px;color:#999;">수신을 원치 않으시면 이 메일에 회신해 주시면 됩니다.</p>
 </div>`;
 
-  return { subject, html, text };
+  return { subject: resolvedSubject, html, text };
+}
+
+function renderEnglish({
+  opener,
+  pressUrl,
+}: {
+  recipient: Recipient;
+  opener: string;
+  pressUrl: string;
+}): { subject: string; html: string; text: string } {
+  const text = [
+    opener,
+    "",
+    WHY_EN,
+    "",
+    ...FACTS_EN.map((fact) => `· ${fact}`),
+    "",
+    "Every track streams on one page, along with lyrics, credits and high-resolution artwork.",
+    pressUrl,
+    "",
+    "Just reply to this message if you need anything else.",
+    "",
+    "Mariko & Yukie",
+    "If you would rather not hear from us, a reply saying so is enough.",
+  ].join("\n");
+
+  const html = `<div style="font-family:${FONT};max-width:600px;margin:0 auto;color:#1a1a1a;font-size:15px;line-height:1.8;">
+  <p style="margin:0 0 18px;">${esc(opener)}</p>
+  ${WHY_EN.split("\n\n").map((para) => `<p style="margin:0 0 18px;">${esc(para)}</p>`).join("\n  ")}
+  <ul style="margin:0 0 18px;padding-left:18px;">
+    ${FACTS_EN.map((fact) => `<li style="margin-bottom:4px;">${esc(fact)}</li>`).join("\n    ")}
+  </ul>
+  <p style="margin:0 0 8px;">Every track streams on one page, along with lyrics, credits and high-resolution artwork.</p>
+  <p style="margin:0 0 24px;"><a href="${esc(pressUrl)}" style="color:#c2410c;font-weight:700;">${esc(pressUrl)}</a></p>
+  <p style="margin:0 0 24px;">Just reply to this message if you need anything else.</p>
+  <p style="margin:0;color:#111;">Mariko &amp; Yukie</p>
+  <p style="margin:16px 0 0;font-size:12px;color:#999;">If you would rather not hear from us, a reply saying so is enough.</p>
+</div>`;
+
+  return { subject: SUBJECT_EN, html, text };
 }

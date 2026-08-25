@@ -11,7 +11,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import { join } from "node:path";
 import { resolveMx } from "node:dns/promises";
 import { parseCsv, toCsv } from "./lib/csv";
-import { duplicateExclusions, DISTINCT_PEOPLE, NOT_PRESS, type Exclusion } from "./lib/decisions";
+import { duplicateExclusions, DISTINCT_PEOPLE, FABRICATED, NOT_PRESS, type Exclusion } from "./lib/decisions";
 
 const apply = process.argv.includes("--apply");
 const root = process.cwd();
@@ -51,6 +51,7 @@ async function main(): Promise<void> {
       .map((row) => ({ email: row[col("email")], reason: "MX 레코드 없음 — 반송된다" })),
     ...duplicateExclusions().filter((exclusion) => stillIncluded.has(exclusion.email.toLowerCase())),
     ...NOT_PRESS.filter((exclusion) => stillIncluded.has(exclusion.email.toLowerCase())),
+    ...FABRICATED.filter((exclusion) => stillIncluded.has(exclusion.email.toLowerCase())),
   ];
 
   const byEmail = new Map(exclusions.map((exclusion) => [exclusion.email.toLowerCase(), exclusion]));

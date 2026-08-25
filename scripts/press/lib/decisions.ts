@@ -123,6 +123,26 @@ export const DISTINCT_PEOPLE: { name: string; emails: string[]; why: string }[] 
  * 예술인 대출·상담 함이나 인력육성 부서에 앨범 보도자료를 보내면
  * 기사가 나오지 않을뿐더러 받는 쪽에 폐가 된다.
  */
+/**
+ * 한국어를 읽지 않을 가능성이 높은 수신자.
+ *
+ * 서울 주재 한국어 매체의 한국인 기자는 영문 매체 소속이라도 한국어로 보낸다.
+ * 여기 넣는 것은 해외에서 영어로 쓰는 사람과 영문 플랫폼뿐이다.
+ */
+export const ENGLISH_RECIPIENTS = new Set([
+  "jeffbenjaminwrites@gmail.com",
+  "tamarhermanwrites@gmail.com",
+  "raphael@journalist.net",
+  "blog@zzounds.com",
+  "write@kpopwise.com",
+]);
+
+export const FABRICATED: Exclusion[] = [
+  { email: "janedoe@korea.net", reason: "조작 의심 — 역할이 '기자 예시 형식', 이름이 Jane Doe" },
+  { email: "sofia@freelance.com", reason: "조작 의심 — freelance.com은 자리표시자 도메인" },
+  { email: "a1b2n3@themusictelegraph.com", reason: "조작 의심 — 무작위로 보이는 로컬파트" },
+];
+
 export const NOT_PRESS: Exclusion[] = [
   { email: "artloan@kawf.kr", reason: "보도 창구 아님 — 예술인 대출 상담" },
   { email: "counseling@kawf.kr", reason: "보도 창구 아님 — 예술인 상담" },
