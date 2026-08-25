@@ -8,7 +8,6 @@ import {
   getArtist,
   getSiteUrl,
   getTrack,
-  links,
   siteConfig,
   trackAudio,
   tracks,
@@ -37,9 +36,8 @@ test("lyrics are parsed from markdown sources by slug", () => {
 
 test("site config centralizes campaign phase and URL generation", () => {
   assert.equal(siteConfig.campaignPhase, campaignPhase);
-  assert.equal(campaignPhase, "funding");
+  assert.equal(campaignPhase, "preRelease");
   assert.equal(getSiteUrl("/ko/album"), "https://marikoyukie.vercel.app/ko/album");
-  assert.equal(links.tumblbug.length > 0, true);
 });
 
 test("release date is pinned to 2026-09-04 across locales", () => {

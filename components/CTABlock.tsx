@@ -3,13 +3,13 @@ import { tri, ui, type Locale } from "@/lib/i18n";
 import { campaignPhase, links } from "@/lib/content";
 import { Star } from "./ui";
 
-// 상황별 CTA — 펀딩 기간엔 텀블벅, 미확정 시 "곧 공개"
+// 상황별 CTA — 펀딩 기간엔 텀블벅, 그 밖에는 발매 예고와 공연으로 보낸다.
+// hasTumblbug 분기를 남겨두는 이유: campaignPhase는 4개 국면을 오가는 스위치이고,
+// 나중에 다른 펀딩을 열 수 있다. 죽은 코드가 아니라 스위치의 한쪽 날개다.
 export default function CTABlock({ locale }: { locale: Locale }) {
   const isFunding = campaignPhase === "funding";
   const hasTumblbug = isFunding && links.tumblbug.length > 0;
   const hasStreaming = Object.values(links.streaming).some(Boolean);
-  const secondaryHref = hasStreaming ? `/${locale}/album` : `/${locale}/video`;
-  const secondaryLabel = hasStreaming ? ui.cta.listen[locale] : ui.cta.watchMV[locale];
 
   return (
     <section className="night relative overflow-hidden">
@@ -23,12 +23,19 @@ export default function CTABlock({ locale }: { locale: Locale }) {
           2026 · Namsan Tower Lights
         </p>
         <h2 className="mx-auto mt-5 max-w-2xl text-balance font-display text-3xl leading-tight outline-navy-thin md:text-5xl">
-          {tri(
-            locale,
-            "이 음반을 세상에 내보내는 힘은 당신의 후원입니다.",
-            "このアルバムを世に出す力は、あなたの応援です。",
-            "The power to bring this album into the world is your support.",
-          )}
+          {hasTumblbug
+            ? tri(
+                locale,
+                "이 음반을 세상에 내보내는 힘은 당신의 후원입니다.",
+                "このアルバムを世に出す力は、あなたの応援です。",
+                "The power to bring this album into the world is your support.",
+              )
+            : tri(
+                locale,
+                "2026년 9월 4일, 《남산타워》가 나옵니다.",
+                "2026年9月4日、『南山タワー』が届きます。",
+                "September 4, 2026 — Namsan Tower Lights arrives.",
+              )}
         </h2>
 
         <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
@@ -42,16 +49,19 @@ export default function CTABlock({ locale }: { locale: Locale }) {
               {ui.cta.support[locale]} ↗
             </a>
           ) : (
-            <span className="rounded-full border-2 border-yellow bg-yellow/10 px-8 py-3.5 font-display text-base text-yellow">
-              {ui.cta.support[locale]} · {ui.cta.soon[locale]}
-            </span>
+            <Link
+              href={`/${locale}/album`}
+              className="sticker sticker-coral rounded-full bg-coral px-8 py-3.5 font-display text-base text-cream transition hover:-translate-y-1 hover:bg-coral-deep"
+            >
+              {hasStreaming ? ui.cta.listen[locale] : ui.nav.album[locale]} →
+            </Link>
           )}
 
           <Link
-            href={secondaryHref}
+            href={`/${locale}/live`}
             className="rounded-full border-2 border-cream/80 px-8 py-3.5 font-display text-base text-cream transition hover:-translate-y-1 hover:bg-cream hover:text-night"
           >
-            {secondaryLabel} →
+            {ui.nav.live[locale]} →
           </Link>
         </div>
       </div>

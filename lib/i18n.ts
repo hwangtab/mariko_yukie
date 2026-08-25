@@ -38,7 +38,7 @@ export const ui = {
     about: { ko: "소개", ja: "について", en: "About" },
   },
   cta: {
-    support: { ko: "텀블벅에서 후원하기", ja: "텀블벅で応援する", en: "Back us on Tumblbug" },
+    support: { ko: "텀블벅에서 후원하기", ja: "テンブルバグで応援する", en: "Back us on Tumblbug" },
     supportShort: { ko: "후원하기", ja: "応援する", en: "Support" },
     listen: { ko: "음원 듣기", ja: "音源を聴く", en: "Listen" },
     watchMV: { ko: "뮤직비디오 보기", ja: "ミュージックビデオを見る", en: "Watch the video" },
