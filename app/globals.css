@@ -279,6 +279,16 @@ p {
   .reveal { opacity: 1; transform: none; }
 }
 
+/* ── 가사 아코디언 ── */
+@keyframes lyrics-open {
+  from { opacity: 0; transform: translateY(-6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.lyrics-open { animation: lyrics-open 0.28s cubic-bezier(0.22, 1, 0.36, 1); }
+@media (prefers-reduced-motion: reduce) {
+  .lyrics-open { animation: none; }
+}
+
 /* ── 둥실 떠다니는 데코 ── */
 @keyframes float-y {
   0%, 100% { transform: translateY(0); }

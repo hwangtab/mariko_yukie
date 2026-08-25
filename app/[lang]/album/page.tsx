@@ -3,6 +3,7 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale} from "@/lib/i18n";
 import { album, images } from "@/lib/content";
+import { lyrics } from "@/lib/lyrics";
 import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Stamp, Star, WaveDivider } from "@/components/ui";
 import Reveal from "@/components/Reveal";
@@ -128,8 +129,16 @@ export default async function AlbumPage({
         <p className="mt-1 text-sm text-navy/60">
           {tri(locale, "한국어 10 + 일본어 5", "韓国語10 + 日本語5", "10 Korean + 5 Japanese")}
         </p>
+        <p className="mt-3 text-sm text-navy/70">
+          {tri(
+            locale,
+            "곡을 누르면 가사가 펼쳐지고, ▶ 를 누르면 그 자리에서 재생됩니다.",
+            "曲名を押すと歌詞が開き、▶ を押すとその場で再生されます。",
+            "Tap a title to open its lyrics, or ▶ to play it right here.",
+          )}
+        </p>
         <div className="mt-7">
-          <TrackList locale={locale} />
+          <TrackList locale={locale} lyrics={lyrics} />
         </div>
       </section>
 
