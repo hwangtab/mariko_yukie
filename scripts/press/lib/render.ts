@@ -73,7 +73,7 @@ const FONT =
 
 const WHY_IT_MATTERS: Record<Segment, string> = {
   critic:
-    "1960~70년대 그룹 사운드를 몸으로 통과한 사토유키에와 트로트 가수 마리코가, 서울에 살면서 한국어로 만든 음반입니다. 두 언어가 번역이 아니라 각각의 원본으로 존재합니다. 「사랑의 술잔」의 “여보여보”가 한국어에서는 배우자를 부르는 말이고 일본어에서는 노인의 모습을 그리는 의태어라는 것, 그 하나가 이 음반이 어디에 서 있는지를 보여줍니다.",
+    "사토유키에는 1995년 서울의 한 음반 가게에서 신중현과 엽전들의 LP를 산 뒤 여기 눌러앉아 곱창전골을 만든 사람이고, 마리코는 한국 드라마로 시작해 KBS 전국노래자랑을 거쳐 트로트로 데뷔한 사람입니다. 그 둘이 서울 생활에서 나온 이야기를 한국어로 부른 음반입니다.\n\n두 언어는 번역 관계가 아니라 각각의 원본입니다. 「사랑의 술잔」의 “여보여보”는 한국어에서 배우자를 부르는 말이고 일본어에서는 노인의 모습을 그리는 의태어인데, 이 한 단어가 음반이 선 자리를 그대로 보여줍니다.",
   "music-press":
     "서울에 사는 일본인 두 사람이 한국어로 만든 15트랙 음반입니다. 관광객의 시선이 아니라 서울이 이미 집이 된 사람들의 시선이라, 남산타워가 명소가 아니라 동네 랜드마크로 등장합니다. 한일 문화교류를 늘 이야기하지만 이 방향의 사례는 드뭅니다.",
   "culture-desk":
@@ -125,7 +125,7 @@ export function renderEmail({
 
   const html = `<div style="font-family:${FONT};max-width:600px;margin:0 auto;color:#1a1a1a;font-size:15px;line-height:1.8;">
   <p style="margin:0 0 18px;">${esc(opener).replace(/\n/g, "<br>")}</p>
-  <p style="margin:0 0 18px;">${esc(why)}</p>
+  ${why.split("\n\n").map((para) => `<p style="margin:0 0 18px;">${esc(para)}</p>`).join("\n  ")}
   <ul style="margin:0 0 18px;padding-left:18px;">
     ${FACTS.map((fact) => `<li style="margin-bottom:4px;">${esc(fact)}</li>`).join("\n    ")}
   </ul>

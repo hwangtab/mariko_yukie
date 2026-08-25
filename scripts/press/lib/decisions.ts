@@ -68,6 +68,24 @@ export const DUPLICATE_DECISIONS: DuplicateDecision[] = [
     why: "일반 문의 창구다. 다른 쪽은 국제회원 관리 담당이라 음반 보도자료를 받을 자리가 아니다.",
   },
   {
+    name: "임진모 (로마자 표기 중복)",
+    keep: "ohganzi@gmail.com",
+    drop: ["jinmo@izm.co.kr"],
+    why: "IZM 창립자 본인 주소다. 이름이 'Lim Jin-mo'로 적혀 있어 한글 표기와 이어지지 않았다.",
+  },
+  {
+    name: "김도헌 (로마자 표기 중복)",
+    keep: "doheon@izm.co.kr",
+    drop: ["zener1218@gmail.com"],
+    why: "'Do Heon Kim'과 같은 사람이다. IZM 편집장이라는 근거를 도메인이 증명하는 쪽을 남긴다.",
+  },
+  {
+    name: "IZM 편집부",
+    keep: "doheon@izm.co.kr",
+    drop: ["webzineizm@gmail.com"],
+    why: "창립자와 편집장에게 각각 보내는 마당에 편집부 함까지 더하면 같은 소수 인원에게 세 통이 간다.",
+  },
+  {
     name: "리토피아",
     keep: "litopia@hanmail.net",
     drop: ["litopia999@naver.com"],
@@ -97,6 +115,19 @@ export const DISTINCT_PEOPLE: { name: string; emails: string[]; why: string }[] 
     emails: ["lee@kokoplay.com", "jwlee@munhwa.com"],
     why: "코코플레이 대표와 문화일보 기자로, 소속과 도메인이 각각 일치한다.",
   },
+];
+
+/**
+ * 보도 매체가 아닌 창구.
+ *
+ * 예술인 대출·상담 함이나 인력육성 부서에 앨범 보도자료를 보내면
+ * 기사가 나오지 않을뿐더러 받는 쪽에 폐가 된다.
+ */
+export const NOT_PRESS: Exclusion[] = [
+  { email: "artloan@kawf.kr", reason: "보도 창구 아님 — 예술인 대출 상담" },
+  { email: "counseling@kawf.kr", reason: "보도 창구 아님 — 예술인 상담" },
+  { email: "ncas@arko.or.kr", reason: "보도 창구 아님 — 예술인력육성 사업" },
+  { email: "music11@arko.or.kr", reason: "보도 창구 아님 — 예술인력육성팀" },
 ];
 
 /** 발송을 막을 주소와 사유. verify 단계가 채운다. */
