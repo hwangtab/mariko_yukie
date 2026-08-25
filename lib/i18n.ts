@@ -36,6 +36,7 @@ export const ui = {
     lyrics: { ko: "가사", ja: "歌詞", en: "Lyrics" },
     live: { ko: "공연·소식", ja: "ライブ", en: "Live" },
     about: { ko: "소개", ja: "について", en: "About" },
+    press: { ko: "프레스", ja: "プレス", en: "Press" },
   },
   cta: {
     support: { ko: "텀블벅에서 후원하기", ja: "テンブルバグで応援する", en: "Back us on Tumblbug" },
@@ -57,6 +58,35 @@ export const ui = {
     mv: { ko: "MV", ja: "MV", en: "MV" },
     contactMedia: { ko: "미디어 문의", ja: "メディアのお問い合わせ", en: "Press & media" },
     listenLinks: { ko: "들을 수 있는 곳", ja: "配信リンク", en: "Where to listen" },
+  },
+  press: {
+    heading: { ko: "프레스킷", ja: "プレスキット", en: "Press Kit" },
+    intro: {
+      ko: "취재에 필요한 자료를 한곳에 모았습니다. 전곡을 이 페이지에서 바로 들으실 수 있습니다.",
+      ja: "取材に必要な資料をまとめました。全曲をこのページで直接お聴きいただけます。",
+      en: "Everything you need to cover the album, in one place. Every track streams right here.",
+    },
+    selectTrack: {
+      ko: "트랙을 선택하면 재생되고 가사가 함께 표시됩니다.",
+      ja: "トラックを選ぶと再生され、歌詞が一緒に表示されます。",
+      en: "Pick a track to play it and read its lyrics alongside.",
+    },
+    lyricsPending: {
+      ko: "이 곡의 가사는 아직 공개 전입니다.",
+      ja: "この曲の歌詞は未公開です。",
+      en: "Lyrics for this track are not yet published.",
+    },
+    artwork: {
+      ko: "고해상 재킷 내려받기 (4000px)",
+      ja: "高解像度ジャケットをダウンロード (4000px)",
+      en: "Download high-resolution artwork (4000px)",
+    },
+    watchMV: {
+      ko: "뮤직비디오 보기",
+      ja: "ミュージックビデオを見る",
+      en: "Watch the music video",
+    },
+    contact: { ko: "취재 문의", ja: "取材のお問い合わせ", en: "Press inquiries" },
   },
   home: {
     enter: { ko: "들어가기", ja: "入る", en: "Enter" },
