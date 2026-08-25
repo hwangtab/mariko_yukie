@@ -165,7 +165,15 @@ function shell({
   opener: string;
   bodyParagraphs: string[];
   facts: string[][];
-  labels: { mv: string; page: string; cta: string; reply: string; optout: string; tracklist: string };
+  labels: {
+    mv: string;
+    page: string;
+    cta: string;
+    reply: string;
+    optout: string;
+    tracklist: string;
+    sign: string;
+  };
   pressUrl: string;
   locale: "ko" | "en";
 }): string {
@@ -220,7 +228,7 @@ function shell({
 
   <tr><td style="padding:24px 34px 30px;">
     ${p(labels.reply)}
-    <div style="font-size:15px;color:#141414;margin-top:14px;">Mariko &amp; Yukie</div>
+    <div style="font-size:15px;color:#141414;margin-top:14px;">${esc(labels.sign)}</div>
     <div style="margin-top:18px;padding-top:14px;border-top:1px solid #eeebe4;font-size:12px;color:#a5a5a5;line-height:1.7;">
       ${esc(labels.optout)}<br>${esc(pressUrl)}
     </div>
@@ -275,6 +283,7 @@ export function renderEmail({
           reply: "Just reply to this message if you need anything else.",
           optout: "If you would rather not hear from us, a reply saying so is enough.",
           tracklist: "Tracklist",
+          sign: "Mariko & Yukie",
         },
         pressUrl: enUrl,
         locale: "en",
@@ -315,6 +324,7 @@ export function renderEmail({
         reply: CLOSING.reply,
         optout: CLOSING.optout,
         tracklist: "수록곡",
+        sign: "마리코 & 유키에",
       },
       pressUrl,
       locale: "ko",
