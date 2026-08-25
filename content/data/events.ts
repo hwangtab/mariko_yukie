@@ -6,7 +6,7 @@ export const events: EventItem[] = [
     id: "release-show-2026",
     type: "release",
     title: { ko: "《남산타워》 발매 기념공연", ja: "《南山タワー》リリース記念公演", en: "'Namsan Tower Lights' Release Show" },
-    dateLabel: { ko: "2026년 9월 6일 (일) 오후 5시", ja: "2026年9月6日(日)17:00", en: "Sun, Sep 6, 2026 · 5 PM" },
+    dateLabel: { ko: "2026년 9월 6일 (일) 오후 6시", ja: "2026年9月6日(日)18:00", en: "Sun, Sep 6, 2026 · 6 PM" },
     venue: { ko: "스페이스 한강 (서울)", ja: "スペース・ハンガン(ソウル)", en: "Space Hangang, Seoul" },
     note: { ko: "후원자 초청제로 진행되는 무료 공연입니다.", ja: "支援者招待制の無料公演です。", en: "A free, backers-invited show." },
     status: "confirmed",
