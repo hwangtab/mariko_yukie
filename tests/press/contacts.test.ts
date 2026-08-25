@@ -51,3 +51,18 @@ test("drops rows with no usable address", () => {
   assert.equal(merged.length, 1);
   assert.equal(merged[0].email, "ok@x.com");
 });
+
+test("keeps role text separated by source", () => {
+  // 문화부 리스트의 소속 칸은 이름과 무관한 매체 나열이라 개인화 근거로 쓸 수 없다.
+  // 어느 쪽에서 온 문장인지 알 수 있어야 draft 단계가 음악 리스트 쪽만 쓸 수 있다.
+  const merged = mergeContacts([
+    { source: "culture", rows: [["이름/직함", "이메일", "소속/설명"], ["임진모", "ohganzi@gmail.com", "중앙일보"]] },
+    {
+      source: "music",
+      rows: [["성명/조직", "역할/소속", "이메일"], ["임진모", "대중음악 평론가", "ohganzi@gmail.com"]],
+    },
+  ]);
+
+  assert.equal(merged[0].roleBySource.culture, "중앙일보");
+  assert.equal(merged[0].roleBySource.music, "대중음악 평론가");
+});

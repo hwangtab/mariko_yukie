@@ -11,7 +11,8 @@ import { join } from "node:path";
 import { toCsv } from "./lib/csv";
 import type { Contact } from "./lib/contacts";
 import { classify, SEGMENT_ORDER, WAVE_ONE, type Segment } from "./lib/segment";
-import { checkOutlet } from "./lib/outlet";
+import { groundingFor } from "./lib/grounding";
+import { normalizeName, sameNameGroups } from "./lib/duplicates";
 
 const contacts: Contact[] = JSON.parse(
   readFileSync(join(process.cwd(), "private/contacts.json"), "utf8"),
@@ -21,19 +22,35 @@ const tagged = contacts
   .map((contact) => ({ contact, segment: classify(contact) }))
   .sort((a, b) => SEGMENT_ORDER.indexOf(a.segment) - SEGMENT_ORDER.indexOf(b.segment));
 
+const inWave = tagged.filter(({ segment }) => WAVE_ONE.includes(segment));
+const duplicateGroups = sameNameGroups(inWave.map(({ contact }) => contact));
+
 const rows = [
-  ["segment", "name", "role", "email", "outlet_warning", "include"],
+  [
+    "segment",
+    "name",
+    "email",
+    "grounded_role",
+    "verified_outlet",
+    "never_mention",
+    "same_person_as",
+    "raw_role",
+    "include",
+  ],
   ...tagged.map(({ contact, segment }) => {
-    const { contradicted, actual } = checkOutlet(contact);
-    const warning = contradicted.length
-      ? `역할이 말하는 ${contradicted.join("·")} ≠ 주소가 말하는 ${actual ?? "개인/기타"}`
-      : "";
+    const g = groundingFor(contact);
+    const siblings = (duplicateGroups.get(normalizeName(contact.name)) ?? []).filter(
+      (email) => email !== contact.email,
+    );
     return [
       segment,
-      contact.name,
-      contact.role,
+      g.name,
       contact.email,
-      warning,
+      g.statedRole,
+      g.verifiedOutlet ?? "",
+      g.forbiddenOutlets.join("·"),
+      siblings.join(" · "),
+      contact.role,
       WAVE_ONE.includes(segment) ? "y" : "n",
     ];
   }),
@@ -48,9 +65,14 @@ for (const segment of SEGMENT_ORDER) {
   console.log(`${segment.padEnd(14)} ${counts.get(segment) ?? 0}`);
 }
 
-const waveOne = rows.slice(1).filter((row) => row[5] === "y");
-const warned = waveOne.filter((row) => row[4]).length;
+const waveOne = rows.slice(1).filter((row) => row[8] === "y");
+const forbidden = waveOne.filter((row) => row[5]).length;
+const noGround = waveOne.filter((row) => !row[3] && !row[4]).length;
+const dupRows = waveOne.filter((row) => row[6]).length;
 console.log(`\n1차 대상(include=y): ${waveOne.length}명`);
-console.log(`그중 소속-주소 불일치 경고: ${warned}명 — 개인화 문장에 매체명을 쓰면 안 되는 행들`);
+console.log(`  언급 금지 매체가 있는 행: ${forbidden}명`);
+console.log(`  개인화 근거가 이름뿐인 행: ${noGround}명 — 매체·역할을 언급하지 않는 도입부로 쓴다`);
+console.log(`  같은 이름이 다른 주소로 또 있는 행: ${dupRows}명 (${duplicateGroups.size}그룹)`);
+console.log("    → 같은 사람이면 한 주소만 남기세요. 주소가 달라도 두 통이 가면 스팸입니다.");
 console.log(`→ ${out}`);
 console.log("스프레드시트로 열어 include 열을 손보세요. 이 검수가 유일한 오발송 방어선입니다.");

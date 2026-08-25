@@ -6,6 +6,7 @@ const contact = (email: string, name = "", role = "") => ({
   email,
   name,
   role,
+  roleBySource: { culture: role, music: role },
   sources: ["culture", "music"],
 });
 

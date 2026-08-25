@@ -6,6 +6,7 @@ const contact = (email: string, name = "", role = "", sources = ["culture"]) => 
   email,
   name,
   role,
+  roleBySource: Object.fromEntries(sources.map((source) => [source, role])),
   sources,
 });
 

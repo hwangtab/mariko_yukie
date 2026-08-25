@@ -1,7 +1,17 @@
 export type Contact = {
   email: string;
   name: string;
+  /** 출처를 합친 표시용 문자열. 분류에는 써도 개인화 근거로는 쓰지 않는다. */
   role: string;
+  /**
+   * 출처별 역할 원문.
+   *
+   * 문화부 리스트의 소속 칸은 이름·이메일과 무관하게 따로 흘러가는 매체
+   * 나열이다(141~143행이 연합뉴스→연합뉴스(영문)→뉴시스인데 셋 다 조선일보
+   * 기자, 155~158행이 조선→중앙→한겨레→한국인데 넷 다 프리랜스 평론가).
+   * 합쳐 놓으면 어느 쪽이 사실인지 알 수 없으므로 출처를 보존한다.
+   */
+  roleBySource: Record<string, string>;
   sources: string[];
 };
 
@@ -47,13 +57,24 @@ export function mergeContacts(inputs: { source: string; rows: string[][] }[]): C
 
       if (!existing) {
         // 발송에는 처음 본 원본 표기를 그대로 쓴다. 키만 소문자다.
-        byKey.set(key, { email, name, role, sources: [source] });
+        byKey.set(key, {
+          email,
+          name,
+          role,
+          roleBySource: role ? { [source]: role } : {},
+          sources: [source],
+        });
         continue;
       }
 
       if (!existing.name) existing.name = name;
-      if (role && !existing.role.includes(role)) {
-        existing.role = existing.role ? `${existing.role} / ${role}` : role;
+      if (role) {
+        existing.roleBySource[source] = existing.roleBySource[source]
+          ? `${existing.roleBySource[source]} / ${role}`
+          : role;
+        if (!existing.role.includes(role)) {
+          existing.role = existing.role ? `${existing.role} / ${role}` : role;
+        }
       }
       if (!existing.sources.includes(source)) existing.sources.push(source);
     }
