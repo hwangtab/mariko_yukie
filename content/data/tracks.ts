@@ -4,7 +4,7 @@ import type { Track } from "./types";
 export const tracks: Track[] = [
   {
     number: 1, slug: "mariyuki-theme", language: "ko",
-    title: { ko: "마리 유키 테마", ja: "マリ・ユキ テーマ", en: "Mari-Yuki Theme" },
+    title: { ko: "Mari Yuki Theme", ja: "マリ・ユキ テーマ", en: "Mari Yuki Theme" },
     type: { ko: "인트로 소곡", ja: "イントロ小曲", en: "Intro" },
     body: {
       ko: ["두 사람의 이름을 합친 앨범 오프닝 소곡. 짧은 곡이지만 이 음반 전체의 온도를 먼저 보여준다. 뒤에 이어질 14곡이 어떤 세계인지 미리 알려주는 문 같은 트랙."],
@@ -34,7 +34,7 @@ export const tracks: Track[] = [
   },
   {
     number: 3, slug: "hot-flash", language: "ko",
-    title: { ko: "핫 플래시", ja: "ホットフラッシュ(韓国語ver.)", en: "Hot Flash" },
+    title: { ko: "Hot Flash", ja: "ホットフラッシュ(韓国語ver.)", en: "Hot Flash" },
     type: { ko: "그룹 사운드 + 트로트", ja: "グループサウンド + トロット", en: "Group sound + trot" },
     pull: { ko: "사토유키에의 에너지와 마리코의 트로트 감성이 가장 선명하게 만나는 트랙", ja: "サトウユキエのエネルギーとマリコのトロット感性が最も鮮明に出会うトラック", en: "Where Sato Yukie's energy and Mariko's trot meet most vividly" },
     body: {
@@ -131,31 +131,31 @@ export const tracks: Track[] = [
   },
   {
     number: 11, slug: "sarang-ui-suljan-ja", language: "ja",
-    title: { ko: "사랑의 술잔 (일본어)", ja: "愛の盃(日本語ver.)", en: "Cup of Love (Japanese)" },
+    title: { ko: "愛の盃", ja: "愛の盃(日本語ver.)", en: "Cup of Love (Japanese)" },
     type: { ko: "02번 트랙 일본어 버전", ja: "2曲目の日本語バージョン", en: "Japanese version of track 2" },
     body: { ko: ["번역이 아닌 재해석. 일본어로 가장 자연스럽게 전달되도록 다시 썼다."], ja: ["翻訳ではなく再解釈。日本語で最も自然に伝わるよう書き直した。"], en: ["Reinterpretation, not translation — rewritten to land most naturally in Japanese."] },
   },
   {
     number: 12, slug: "hot-flash-ja", language: "ja",
-    title: { ko: "핫 플래시 (일본어)", ja: "ホットフラッシュ(日本語ver.)", en: "Hot Flash (Japanese)" },
+    title: { ko: "ホットフラッシュ", ja: "ホットフラッシュ(日本語ver.)", en: "Hot Flash (Japanese)" },
     type: { ko: "03번 트랙 일본어 버전", ja: "3曲目の日本語バージョン", en: "Japanese version of track 3" },
     body: { ko: ["번역이 아닌 재해석."], ja: ["翻訳ではなく再解釈。"], en: ["Reinterpretation, not translation."] },
   },
   {
     number: 13, slug: "beer-and-coffee-ja", language: "ja",
-    title: { ko: "맥주와 커피 (일본어)", ja: "ビールとコーヒー(日本語ver.)", en: "Beer and Coffee (Japanese)" },
+    title: { ko: "ビールとコーヒー", ja: "ビールとコーヒー(日本語ver.)", en: "Beer and Coffee (Japanese)" },
     type: { ko: "04번 트랙 일본어 버전", ja: "4曲目の日本語バージョン", en: "Japanese version of track 4" },
     body: { ko: ["번역이 아닌 재해석."], ja: ["翻訳ではなく再解釈。"], en: ["Reinterpretation, not translation."] },
   },
   {
     number: 14, slug: "namsan-tower-ja", language: "ja",
-    title: { ko: "남산타워 (일본어)", ja: "南山タワー(日本語ver.)", en: "Namsan Tower (Japanese)" },
+    title: { ko: "南山タワー", ja: "南山タワー(日本語ver.)", en: "Namsan Tower (Japanese)" },
     type: { ko: "05번 트랙 일본어 버전", ja: "5曲目の日本語バージョン", en: "Japanese version of track 5" },
     body: { ko: ["같은 멜로디가 두 언어에서 얼마나 다르게 울리는지 — 그 차이 자체가 들을 만한 것이다."], ja: ["同じメロディが二つの言語でどれほど違って響くか — その差そのものが聴きどころだ。"], en: ["How differently the same melody resonates in two languages — that difference itself is worth hearing."] },
   },
   {
     number: 15, slug: "yume-no-hito", language: "ja", isBonus: true,
-    title: { ko: "꿈 속에서 본 사람 (일본어)", ja: "夢で逢った男(ひと)", en: "The Person I Saw in a Dream (Japanese)" },
+    title: { ko: "夢で逢った男(ひと)", ja: "夢で逢った男(ひと)", en: "The Person I Saw in a Dream (Japanese)" },
     type: { ko: "보너스 트랙", ja: "ボーナストラック", en: "Bonus track" },
     pull: { ko: "후원자가 먼저 만날 수 있는 곡", ja: "支援者が先に出会える曲", en: "A song backers hear first" },
     body: {

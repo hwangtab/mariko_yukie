@@ -77,9 +77,9 @@ content/
 
 | # | 제목 | slug(제안) | 성격 |
 |---|------|-----------|------|
-| 01 | 마리 유키 테마 | `mariyuki-theme` | 인트로 소곡 |
+| 01 | Mari Yuki Theme | `mariyuki-theme` | 인트로 소곡 |
 | 02 | 사랑의 술잔 | `sarang-ui-suljan` | 듀엣, 그룹 사운드 |
-| 03 | 핫 플래시 | `hot-flash` | 그룹 사운드+트로트 |
+| 03 | Hot Flash | `hot-flash` | 그룹 사운드+트로트 |
 | 04 | 맥주와 커피 | `beer-and-coffee` | 듀엣, 서정 |
 | 05 | 남산타워 Namsan Tower Lights | `namsan-tower` | 타이틀, MV |
 | 06 | 맞아 맞아 송 | `maja-maja-song` | 경쾌한 그룹 사운드 |
@@ -87,11 +87,11 @@ content/
 | 08 | 홍어의 눈물 | `hongeo-tears` | 마리코 솔로, 트로트 |
 | 09 | 안녕 내사랑 | `annyeong-my-love` | 듀엣, 버블검 팝 |
 | 10 | 고향 | `gohyang` | 사토유키에 솔로 |
-| 11 | 사랑의 술잔 (일본어) | `sarang-ui-suljan-ja` | 02 일본어 |
-| 12 | 핫 플래시 (일본어) | `hot-flash-ja` | 03 일본어 |
-| 13 | 맥주와 커피 (일본어) | `beer-and-coffee-ja` | 04 일본어 |
-| 14 | 남산타워 (일본어) | `namsan-tower-ja` | 05 일본어 |
-| 15 | 꿈 속에서 본 사람 (일본어) | `yume-no-hito` | 보너스 |
+| 11 | 愛の盃 | `sarang-ui-suljan-ja` | 02 일본어 |
+| 12 | ホットフラッシュ | `hot-flash-ja` | 03 일본어 |
+| 13 | ビールとコーヒー | `beer-and-coffee-ja` | 04 일본어 |
+| 14 | 南山タワー | `namsan-tower-ja` | 05 일본어 |
+| 15 | 夢で逢った男(ひと) | `yume-no-hito` | 보너스 |
 
 ### 3.2 트랙 본문 (`content/data/tracks.ts`)
 

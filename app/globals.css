@@ -38,9 +38,11 @@
   --color-night-line: #463a73;
 
   /* 폰트 */
-  --font-display: "Bagel Fat One", "Black Han Sans", sans-serif;
+  /* 한국어·영어 페이지에도 일본어 곡명(愛の盃 등)이 나오므로 JP 폰트를 폴백에 둔다.
+     한글·라틴은 앞쪽 폰트가 먼저 잡히므로 기존 렌더링은 그대로다. */
+  --font-display: "Bagel Fat One", "Black Han Sans", "Mochiy Pop One", sans-serif;
   --font-display-jp: "Mochiy Pop One", "Bagel Fat One", sans-serif;
-  --font-heading: "Jua", "Gowun Dodum", sans-serif;
+  --font-heading: "Jua", "Gowun Dodum", "Zen Maru Gothic", sans-serif;
   --font-body: "Gowun Dodum", "Noto Sans KR", sans-serif;
   --font-body-jp: "Zen Maru Gothic", "Noto Sans JP", sans-serif;
   --font-hand: "Gaegu", cursive;
