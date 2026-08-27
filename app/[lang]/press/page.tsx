@@ -86,6 +86,16 @@ export default async function PressPage({
           <ul className="space-y-3 self-center">
             <li>
               <a
+                href="/press/namsan-tower-press-kit.zip"
+                download
+                className="font-heading text-lg text-coral-deep underline decoration-2 underline-offset-4 hover:text-coral"
+              >
+                {ui.press.audioZip[locale]} ↓
+              </a>
+              <p className="mt-1 text-sm text-navy/60">{ui.press.audioHiRes[locale]}</p>
+            </li>
+            <li>
+              <a
                 href="/press/albumart-4000.png"
                 download
                 className="font-heading text-lg text-coral-deep underline decoration-2 underline-offset-4 hover:text-coral"

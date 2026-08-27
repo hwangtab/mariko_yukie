@@ -76,6 +76,16 @@ export const ui = {
       ja: "この曲の歌詞は未公開です。",
       en: "Lyrics for this track are not yet published.",
     },
+    audioZip: {
+      ko: "전곡 MP3 내려받기 (15곡, 68MB)",
+      ja: "全曲MP3をダウンロード (15曲, 68MB)",
+      en: "Download all 15 tracks (MP3, 68MB)",
+    },
+    audioHiRes: {
+      ko: "방송용 320k MP3나 WAV 마스터가 필요하시면 회신으로 알려 주세요.",
+      ja: "放送用の320k MP3やWAVマスターが必要でしたら、ご返信でお知らせください。",
+      en: "Need 320k MP3 or WAV masters for broadcast? Just reply and we will send them.",
+    },
     artwork: {
       ko: "고해상 재킷 내려받기 (4000px)",
       ja: "高解像度ジャケットをダウンロード (4000px)",
