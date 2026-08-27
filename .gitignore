@@ -46,8 +46,5 @@ docs/ISRC등록_남산타워.xlsx
 docs/유통자료/
 docs/유통자료*.zip
 
-# 빌드 시점에 생성하는 프레스킷 묶음(음원 68MB) — 커밋하지 않는다
-public/press/namsan-tower-press-kit.zip
-
 # 로컬 검수용 아트워크 export(배포용은 public/images/album_cover.webp)
 docs/album_cover.png

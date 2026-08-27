@@ -12,8 +12,7 @@
     "test": "node --import tsx --test \"tests/**/*.test.ts\"",
     "typecheck": "tsc --noEmit",
     "check": "pnpm test && pnpm typecheck && pnpm lint && pnpm build",
-    "prebuild": "node scripts/build-press-zip.mjs",
-    "press:zip": "node scripts/build-press-zip.mjs"
+    "press:zip": "tsx scripts/press-zip.ts"
   },
   "dependencies": {
     "next": "^15.5.19",
