@@ -2,7 +2,7 @@ import Image from "next/image";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
-import { album, images, links, tracks } from "@/lib/content";
+import { album, images, links, tracks, fullAlbumVideoId } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
 import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
@@ -111,6 +111,16 @@ export default async function PressPage({
                 className="font-heading text-lg text-coral-deep underline decoration-2 underline-offset-4 hover:text-coral"
               >
                 {ui.press.watchMV[locale]} ↗
+              </a>
+            </li>
+            <li>
+              <a
+                href={`https://www.youtube.com/watch?v=${fullAlbumVideoId(locale)}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="font-heading text-lg text-coral-deep underline decoration-2 underline-offset-4 hover:text-coral"
+              >
+                {ui.press.watchFullAlbum[locale]} ↗
               </a>
             </li>
             <li>

@@ -86,6 +86,11 @@ export const ui = {
       ja: "放送用の320k MP3やWAVマスターが必要でしたら、ご返信でお知らせください。",
       en: "Need 320k MP3 or WAV masters for broadcast? Just reply and we will send them.",
     },
+    watchFullAlbum: {
+      ko: "전곡 이어듣기 영상 보기 (49분, 가사 자막)",
+      ja: "全曲つづけて聴く動画を見る (49分・歌詞字幕つき)",
+      en: "Watch the full-album video (49 min, with lyric captions)",
+    },
     artwork: {
       ko: "고해상 재킷 내려받기 (4000px)",
       ja: "高解像度ジャケットをダウンロード (4000px)",
