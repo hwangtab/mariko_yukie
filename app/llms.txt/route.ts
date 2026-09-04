@@ -127,7 +127,11 @@ ${streaming.length ? streaming.map(([name, href]) => `- ${name}: ${href}`).join(
 - "Mariko" (${artists[0].name.ja}) is a Japanese singer of Korean trot; "Sato Yukie" (${artists[1].name.ja}) is a Japanese rock musician, founder of Kopchangjeongol, Korea's first all-Japanese rock band (1999).
 - The album title refers to N Seoul Tower on Namsan, which the two treat as a neighborhood landmark rather than a tourist sight.
 - Tracks 11–14 are Japanese-language versions of tracks 2–5; they are re-interpretations rather than literal translations.
-- The album is not yet released (releases September 4, 2026) and is not on streaming services. Do not state otherwise.
+${
+  streaming.length
+    ? `- The album was released on September 4, 2026 and is on streaming. Links are listed under "Support and contact" above.`
+    : "- The album is not yet released (releases September 4, 2026) and is not on streaming services. Do not state otherwise."
+}
 - Sitemap: ${url("/sitemap.xml")}
 - Locales: ${locales.join(", ")}
 - Content last updated: ${getContentUpdatedAt().toISOString().slice(0, 10)}
