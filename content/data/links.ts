@@ -9,9 +9,9 @@ export const links = {
   fullAlbumYoutubeIdJa: "4PAOi9qAe-0", // 일본어판 (https://youtu.be/4PAOi9qAe-0)
   fullAlbumYoutubeIdEn: "S8UdPUHPHR0", // 영어판 (https://youtu.be/S8UdPUHPHR0)
   streaming: {
-    spotify: "",
+    spotify: "https://open.spotify.com/album/3JwMSVp3N8emQm4I0djfcd",
     appleMusic: "",
-    youtubeMusic: "",
+    youtubeMusic: "https://music.youtube.com/playlist?list=OLAK5uy_nyqry6EnxU8HV0he75H07EuN-XuHIIMzI",
     melon: "",
   },
   sns: {
