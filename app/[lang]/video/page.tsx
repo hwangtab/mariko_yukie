@@ -37,6 +37,7 @@ export default async function VideoPage({
   const locale = lang as Locale;
   const ytId = links.musicVideoYoutubeId;
   const fullId = fullAlbumVideoId(locale);
+  const showId = links.releaseShowYoutubeId;
 
   const concept = {
     ko: "두 사람이 서울 남산타워를 하루 동안 유람하는 영상입니다. 1970~80년대 쇼와 버라이어티 TV 프로그램의 감성으로 만들었습니다. 빈티지 필름 톤의 색보정, 이동·대기 장면의 코믹한 배속 편집, 8비트 픽셀 자막과 손글씨체 타이포그래피. 이 음반의 유머와 온도가 영상 안에서도 그대로 살아있습니다.",
@@ -138,6 +139,40 @@ export default async function VideoPage({
           </div>
         </div>
       </section>
+
+      {showId ? (
+        <section className="mx-auto max-w-5xl px-5 py-16 md:px-8">
+          <SectionLabel tone="coral">Release Show</SectionLabel>
+          <h2 className="mt-4 font-display text-3xl text-navy md:text-4xl">
+            {tri(
+              locale,
+              "2026년 9월 6일, 스페이스 한강",
+              "2026年9月6日、スペース漢江",
+              "September 6, 2026 · Space Hangang",
+            )}
+          </h2>
+          <p className="mt-3 text-navy/80">
+            {tri(
+              locale,
+              "발매 이틀 뒤 서울 스페이스 한강에서 연 발매공연 실황입니다. 음반에서 들은 노래를 두 사람이 무대에서 어떻게 부르는지 볼 수 있습니다.",
+              "リリース二日後、ソウルのスペース漢江で開いたリリース公演の実況です。アルバムで聴いた歌を二人が舞台でどう歌うのかが見られます。",
+              "The release show, held at Space Hangang in Seoul two days after the album came out. This is how the two play these songs on a stage.",
+            )}
+          </p>
+
+          <div className="sticker mt-8 overflow-hidden rounded-card">
+            <div className="relative aspect-video bg-black">
+              <iframe
+                className="absolute inset-0 h-full w-full"
+                src={`https://www.youtube-nocookie.com/embed/${showId}`}
+                title="Namsan Tower Lights — Release Show"
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                allowFullScreen
+              />
+            </div>
+          </div>
+        </section>
+      ) : null}
 
       <CTABlock locale={locale} />
     </>

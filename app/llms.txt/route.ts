@@ -112,6 +112,7 @@ ${liveSection()}
 - [Home](${url("/en")}): entry point, album overview
 - [Music video](${url("/en/video")}): "Namsan Tower Lights" MV — https://youtu.be/${links.musicVideoYoutubeId}
 - [Full album video](${url("/en/video")}): all 15 tracks in order, 49 min, with lyric captions — https://youtu.be/${links.fullAlbumYoutubeId}
+- [Release show](${url("/en/video")}): the September 6, 2026 release show at Space Hangang, Seoul, in full — https://youtu.be/${links.releaseShowYoutubeId}
 - [Gallery](${url("/en/gallery")}): photos from the Namsan sessions
 - [About](${url("/en/about")}): project background, credits, contact
 - [Press kit](${url("/en/press")}): stream all 15 tracks, lyrics, high-resolution artwork, specifications

@@ -8,6 +8,8 @@ export const links = {
   // 공개 전환 전까지는 비워 둘 것).
   fullAlbumYoutubeIdJa: "4PAOi9qAe-0", // 일본어판 (https://youtu.be/4PAOi9qAe-0)
   fullAlbumYoutubeIdEn: "S8UdPUHPHR0", // 영어판 (https://youtu.be/S8UdPUHPHR0)
+  // 2026-09-06 스페이스 한강 발매공연 실황 (https://youtu.be/THWEUKPUHOU)
+  releaseShowYoutubeId: "THWEUKPUHOU",
   streaming: {
     spotify: "https://open.spotify.com/album/3JwMSVp3N8emQm4I0djfcd",
     appleMusic: "",
