@@ -2,6 +2,7 @@ import { album, artists, tracks, events, duoIntro } from "@/lib/content";
 import { links } from "@/content/data/links";
 import { productionCredits } from "@/content/data/production";
 import { getContentUpdatedAt, getSiteUrl } from "@/content/data/site";
+import { pressRelease } from "@/content/data/press-release";
 import { locales } from "@/lib/i18n";
 
 export const dynamic = "force-static";
@@ -116,6 +117,10 @@ ${liveSection()}
 - [Gallery](${url("/en/gallery")}): photos from the Namsan sessions
 - [About](${url("/en/about")}): project background, credits, contact
 - [Press kit](${url("/en/press")}): stream all 15 tracks, lyrics, high-resolution artwork, specifications
+
+## Press release (English, ready to run)
+
+${pressRelease.article.en}
 
 ## Support and contact
 

@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { isLocale, tri, ui, type Locale } from "@/lib/i18n";
 import { album, images, links, tracks, fullAlbumVideoId } from "@/lib/content";
 import { lyrics } from "@/lib/lyrics";
+import { pressRelease } from "@/content/data/press-release";
 import { buildPageMetadata } from "@/lib/metadata";
 import { SectionLabel, Star } from "@/components/ui";
 import PressTrackBrowser, { type PressTrackItem } from "@/components/press/PressTrackBrowser";
@@ -66,6 +67,33 @@ export default async function PressPage({
             </div>
           ))}
         </dl>
+      </section>
+
+      <section className="mx-auto max-w-5xl px-5 pb-14 md:px-8">
+        <SectionLabel tone="coral">{ui.press.releaseHeading[locale]}</SectionLabel>
+        <p className="mt-3 text-sm text-navy/60">{ui.press.releaseNote[locale]}</p>
+        <article className="mt-6 max-w-3xl space-y-4 rounded-card border-2 border-navy bg-cream px-6 py-6 text-navy">
+          {pressRelease.article[locale].split("\n\n").map((block, i) =>
+            block.startsWith("■ ") ? (
+              <h3 key={i} className="pixel pt-2 text-[10px] uppercase tracking-[0.15em] text-coral-deep">
+                {block.slice(2).split("\n")[0]}
+                {block.includes("\n") ? (
+                  <span className="mt-2 block whitespace-pre-line font-body text-sm normal-case tracking-normal text-navy/85">
+                    {block.split("\n").slice(1).join("\n")}
+                  </span>
+                ) : null}
+              </h3>
+            ) : i === 0 ? (
+              <h2 key={i} className="font-heading text-2xl leading-snug text-navy md:text-3xl whitespace-pre-line">
+                {block}
+              </h2>
+            ) : (
+              <p key={i} className="whitespace-pre-line leading-relaxed">
+                {block}
+              </p>
+            ),
+          )}
+        </article>
       </section>
 
       <section className="mx-auto max-w-5xl px-5 pb-14 md:px-8">

@@ -66,6 +66,12 @@ export const ui = {
       ja: "取材に必要な資料をまとめました。全曲をこのページで直接お聴きいただけます。",
       en: "Everything you need to cover the album, in one place. Every track streams right here.",
     },
+    releaseHeading: { ko: "보도자료 전문", ja: "プレスリリース全文", en: "Press release" },
+    releaseNote: {
+      ko: "그대로 실으셔도 되고 줄이셔도 됩니다. 사진에는 크레딧을 함께 적어 주세요.",
+      ja: "そのまま掲載していただいても、短くしていただいても構いません。写真にはクレジットを添えてください。",
+      en: "Run it as is or cut it down. Please keep the photo credits.",
+    },
     selectTrack: {
       ko: "트랙을 선택하면 재생되고 가사가 함께 표시됩니다.",
       ja: "トラックを選ぶと再生され、歌詞が一緒に表示されます。",
